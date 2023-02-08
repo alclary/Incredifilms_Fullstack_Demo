@@ -17,16 +17,16 @@ CREATE TABLE `Customer` (
 
 -- TODO Populate Customer Table
 INSERT INTO `Customer` (`customer_id`, `first_name`, `last_name`, `dob`, `email`) VALUES
-	(1, 'AJ', 'Styles', '1977-06-02', 'AJ.Styles@incredifilms.com'),
-	(2, 'Alberto', 'Rio', '1977-05-25', 'Alberto.Rio@incredifilms.com'),
-	(3, 'Alexa', 'Bliss', '1991-08-09', 'Alexa.Bliss@incredifilms.com'),
-	(4, 'Alundra', 'Blayze', '1964-02-09', 'Alundra.Blayze@incredifilms.com'),
-	(5, 'Andrade', 'Andrade', '1989-11-03', 'Andrade.Andrade@incredifilms.com'),
-	(6, 'Andre', 'Giant', '1946-05-19', 'Andre.Giant@incredifilms.com'),
-	(7, 'Antonio', 'Cesaro', '1980-12-27', 'Antonio.Cesaro@incredifilms.com'),
-	(8, 'Antonio', 'Inoki', '1943-02-20', 'Antonio.Inoki@incredifilms.com'),
-	(9, 'Apollo', 'Crews', '1987-08-22', 'Apollo.Crews@incredifilms.com'),
-	(10, 'Asuka', 'Asuka', '1981-09-26', 'Asuka.Asuka@incredifilms.com');
+	(1, 'AJ', 'Styles', '1977-06-02', 'AJ.Styles@bmail.com'),
+	(2, 'Alberto', 'Rio', '1977-05-25', 'Alberto.Rio@bmail.com'),
+	(3, 'Alexa', 'Bliss', '1991-08-09', 'Alexa.Bliss@bmail.com'),
+	(4, 'Alundra', 'Blayze', '1964-02-09', 'Alundra.Blayze@bmail.com'),
+	(5, 'Andrade', 'Andrade', '1989-11-03', 'Andrade.Andrade@bmail.com'),
+	(6, 'Andre', 'Giant', '1946-05-19', 'Andre.Giant@bmail.com'),
+	(7, 'Antonio', 'Cesaro', '1980-12-27', 'Antonio.Cesaro@bmail.com'),
+	(8, 'Antonio', 'Inoki', '1943-02-20', 'Antonio.Inoki@bmail.com'),
+	(9, 'Apollo', 'Crews', '1987-08-22', 'Apollo.Crews@bmail.com'),
+	(10, 'Asuka', 'Asuka', '1981-09-26', 'Asuka.Asuka@bmail.com');
 
 -- TODO Create Genre Table
 CREATE TABLE `Genre` (
