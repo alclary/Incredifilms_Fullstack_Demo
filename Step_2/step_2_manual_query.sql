@@ -8,11 +8,12 @@ Jesseline Velazquez, Anthony Logan Clary
 
 -- Create Customer Table
 CREATE TABLE `Customer` (
-  `customer_id` int(11) NOT NULL,
+  `customer_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `first_name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
   `dob` date NOT NULL,
-  `email` varchar(254) DEFAULT NULL
+  `email` varchar(254) UNIQUE,
+  PRIMARY KEY (customer_id),
 );
 
 -- TODO Populate Customer Table
@@ -28,10 +29,11 @@ INSERT INTO `Customer` (`customer_id`, `first_name`, `last_name`, `dob`, `email`
 	(9, 'Apollo', 'Crews', '1987-08-22', 'Apollo.Crews@bmail.com'),
 	(10, 'Asuka', 'Asuka', '1981-09-26', 'Asuka.Asuka@bmail.com');
 
--- TODO Create Genre Table
+-- Create Genre Table
 CREATE TABLE `Genre` (
-  `genre_id` int(11) NOT NULL,
-  `genre_name` varchar(45) NOT NULL
+  `genre_id` int NOT NULL AUTO_INCREMENT UNIQUE,
+  `genre_name` varchar(45) NOT NULL,
+  PRIMARY KEY (genre_id)
 );
 
 -- TODO Populate Genre Table
@@ -45,13 +47,14 @@ INSERT INTO `Genre` (`genre_id`, `genre_name`) VALUES
 	(7, 'Music & Musicals'),
 	(8, 'Thrillers');
 
--- TODO Create Movie Table
+-- Create Movie Table
 CREATE TABLE `Movie` (
-  `movie_id` int(11) NOT NULL,
+  `movie_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `movie_name` varchar(100) NOT NULL,
   `runtime_min` int(4) NOT NULL,
   `mpa_rating` varchar(5) NOT NULL,
-  `movie_year` year(4) NOT NULL
+  `movie_year` year NOT NULL,
+   PRIMARY KEY (movie_id)
 );
 
 -- TODO Populate Movie Table
@@ -65,9 +68,10 @@ INSERT INTO `Movie` (`movie_id`, `movie_name`, `runtime_min`, `mpa_rating`, `mov
 
 -- TODO Create Movie_Genre Table
 CREATE TABLE `Movie_Genre` (
-  `movie_genre_id` int(11) NOT NULL,
-  `movie_id` int(11) DEFAULT NULL,
-  `genre_id` int(11) DEFAULT NULL
+  `movie_genre_id` int NOT NULL,
+  `movie_id` int,
+  `genre_id` int,
+  PRIMARY KEY (movie_genre_id)
 );
 
 -- TODO Populate Movie_Genre Table
@@ -77,10 +81,11 @@ INSERT INTO `Movie_Genre` (`movie_genre_id`, `movie_id`, `genre_id`) VALUES
 
 -- TODO Create Showtime Table
 CREATE TABLE `Showtime` (
-  `showtime_id` int(11) NOT NULL,
+  `showtime_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `showtime_date_time` datetime NOT NULL,
-  `movie_id` int(11) DEFAULT NULL,
-  `theater_id` int(11) DEFAULT NULL
+  `movie_id` int,
+  `theater_id` int,
+  PRIMARY KEY (showtime_id)
 );
 
 -- TODO Populate Showtime Table
@@ -94,9 +99,10 @@ INSERT INTO `Showtime` (`showtime_id`, `showtime_date_time`, `movie_id`, `theate
 
 -- TODO Create Theater Table
 CREATE TABLE `Theater` (
-  `theater_id` int(11) NOT NULL,
-  `theater_name` varchar(50) DEFAULT NULL,
-  `no_of_seats` int(4) NOT NULL
+  `theater_id` int NOT NULL AUTO_INCREMENT UNIQUE,
+  `theater_name` varchar(50),
+  `no_of_seats` int(4) NOT NULL,
+  PRIMARY KEY (theater_id)
 );
 
 -- TODO Populate Theater Table
@@ -110,11 +116,12 @@ INSERT INTO `Theater` (`theater_id`, `theater_name`, `no_of_seats`) VALUES
 
 -- TODO Create Ticket Table
 CREATE TABLE `Ticket` (
-  `ticket_id` int(11) NOT NULL,
-  `customer_id` int(11) DEFAULT NULL,
-  `price` decimal(3,2) NOT NULL,
-  `payment_method` varchar(45) DEFAULT NULL,
-  `showtime_id` int(11) DEFAULT NULL
+  `ticket_id` int NOT NULL AUTO_INCREMENT UNIQUE,
+  `customer_id` int,
+  `price` decimal(5,2) NOT NULL,
+  `payment_method` varchar(45),
+  `showtime_id` int,
+  PRIMARY KEY (ticket_id)
 );
  
 -- TODO Populate Ticket Table
