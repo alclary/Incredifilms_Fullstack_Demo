@@ -1,24 +1,20 @@
 ﻿genre_id,genre_name
-1,Documentary
-2,Kids
-3,Family
-4,Comedy
-5,Independent
-6,International
-7,Drama
-8,Musical
-9,Thriller
-10,Horror
-11,Sci-Fi
-12,Romance
-13,Animated
-14,Sports
-15,Action
-16,Cult Classic
-17,Action
-18,Adventure
-19,LGBTQ+
-20,Crime
-21,Mystery
-22,Fantasy
-23,Historical
+1,Documentaries
+2,Children & Family Movies
+3,Comedies
+4,Independent Movies
+5,International Movies
+6,Dramas
+7,Music & Musicals
+8,Thrillers
+9,Horror Movies
+10,Sci-Fi & Fantasy
+11,Romantic Movies
+12,Anime Features
+13,Sports Movies
+14,Classic Movies
+15,Cult Movies
+16,Stand-Up Comedy
+17,Action & Adventure
+18,LGBTQ Movies
+19,Faith & Spirituality
