@@ -6,6 +6,10 @@ Jesseline Velazquez, Anthony Logan Clary
 */
 -- --------------------------------------------------------
 
+-- Diable commits and foreign key checks to minimize errors
+SET FOREIGN_KEY_CHECKS=0;
+SET AUTOCOMMIT = 0;
+
 -- Create Customer Table
 CREATE TABLE `Customer` (
   `customer_id` int NOT NULL AUTO_INCREMENT UNIQUE,
@@ -129,3 +133,7 @@ INSERT INTO `Ticket` (`ticket_id`, `customer_id`, `price`, `payment_method`, `sh
 	(1, 10, '9.00', 'CASH', 3),
 	(2, 1, '9.00', 'CASH', 3),
 	(3, 1, '9.00', 'CARD', 8);
+
+-- Re-enable commits and foreign key checks
+SET FOREIGN_KEY_CHECKS=1;
+COMMIT;
