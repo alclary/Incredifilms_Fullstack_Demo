@@ -144,14 +144,14 @@ CREATE TABLE `Theater` (
   PRIMARY KEY (theater_id)
 );
 
--- TODO Populate Theater Table
+-- Populate Theater Table
 INSERT INTO `Theater` (`theater_id`, `theater_name`, `no_of_seats`) VALUES
-	(6, 'IncrediFilms Lake View', 250),
-	(4, 'IncrediFilms Lincoln Square', 250),
-	(5, 'IncrediFilms North Center', 250),
-	(1, 'IncrediFilms Rogers Park', 300),
-	(3, 'IncrediFilms Uptown', 300),
-	(2, 'IncrediFilms West Ridge', 300);
+  ('IncrediFilms Rogers Park', 300),
+  ('IncrediFilms Wicker Park', 500),
+  ('IncrediFilms Uptown', 300),
+  ('IncrediFilms Lincoln Square', 250),
+  ('IncrediFilms North Center', 250),
+  ('IncrediFilms Lake View', 250);
 
 -- TODO Create Ticket Table
 CREATE TABLE `Ticket` (
