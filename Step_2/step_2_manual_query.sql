@@ -93,9 +93,30 @@ CREATE TABLE `Movie_Genre` (
   FOREIGN KEY (genre_id) REFERENCES Genre(genre_id)
 );
 
--- TODO Populate Movie_Genre Table
+-- Populate Movie_Genre Table
 INSERT INTO `Movie_Genre` (`movie_genre_id`, `movie_id`, `genre_id`) VALUES
-(); 
+  (1, 1, 4),
+  (2, 1, 15),
+  (3, 2, 11),
+  (4, 2, 15),
+  (5, 2, 17),
+  (6, 2, 9),
+  (7, 3, 12),
+  (8, 3, 4),
+  (9, 4, 10),
+  (10, 4, 20),
+  (11, 5, 11),
+  (12, 5, 4),
+  (13, 5, 20),
+  (14, 6, 2),
+  (15, 6, 3),
+  (16, 6, 8),
+  (17, 6, 17),
+  (18, 7, 3),
+  (19, 7, 4),
+  (20, 7, 15),
+  (21, 7, 17),
+  (22, 7, 16);
 
 -- TODO Create Showtime Table
 CREATE TABLE `Showtime` (
