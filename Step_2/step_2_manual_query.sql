@@ -156,22 +156,26 @@ INSERT INTO `Showtime` (`showtime_date_time`, `movie_id`, `theater_id`) VALUES
   ('2023-02-16 12:00:00', 3, 5),
   ('2023-02-16 15:30:00', 4, 1);
 
--- TODO Create Ticket Table
+-- Create Ticket Table
 CREATE TABLE `Ticket` (
   `ticket_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `customer_id` int NOT NULL,
   `showtime_id` int NOT NULL,
   `price` decimal(5,2) NOT NULL,
   `payment_method` varchar(45),
-  `showtime_id` int,
-  PRIMARY KEY (ticket_id)
+  PRIMARY KEY (ticket_id),
+  FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
+  FOREIGN KEY (showtime_id) REFERENCES Showtime(showtime_id)
 );
  
--- TODO Populate Ticket Table
-INSERT INTO `Ticket` (`ticket_id`, `customer_id`, `price`, `payment_method`, `showtime_id`) VALUES
-	(1, 10, '9.00', 'CASH', 3),
-	(2, 1, '9.00', 'CASH', 3),
-	(3, 1, '9.00', 'CARD', 8);
+-- Populate Ticket Table
+INSERT INTO `Ticket` (`customer_id`, `showtime_id`, `price`, `payment_method`) VALUES
+	(2, 5, 9, 'CREDIT'),
+  (2, 6, 5, 'CREDIT'),
+  (8, 1, 9, 'CASH'),
+  (6, 1, 9, 'DEBIT'),
+  (3, 2, 9, 'CREDIT'),
+  (4, 4, 9, 'CASH');
 
 -- Re-enable commits and foreign key checks
 SET FOREIGN_KEY_CHECKS=1;
