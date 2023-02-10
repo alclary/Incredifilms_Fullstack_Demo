@@ -73,14 +73,15 @@ CREATE TABLE `Movie` (
    PRIMARY KEY (movie_id)
 );
 
--- TODO Populate Movie Table
+-- Populate Movie Table
 INSERT INTO `Movie` (`movie_id`, `movie_name`, `runtime_min`, `mpa_rating`, `movie_year`) VALUES
-	(2, 'Confessions of an Invisible Girl', 91, 'TV-PG', 2021),
-	(1, 'Dick Johnson Is Dead', 90, 'PG-13', 2020),
-	(6, 'Je Suis Karl', 127, 'TV-MA', 2021),
-	(5, 'Motu Patlu in the Game of Zones', 87, 'TV-Y7', 2019),
-	(3, 'Sankofa', 125, 'TV-MA', 1993),
-	(4, 'The Starling', 104, 'PG-13', 2021);
+	(1, 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb', 95, 'PG', 1964),
+  (2, 'Interstellar', 169, 'PG-13', 2014),
+  (3, 'Amélie', 122, 'R', 2001),
+  (4, 'The Shining', 146, 'R', 1980),
+  (5, 'Everything Everywhere All at Once', 139, 'R', 2022),
+  (6, 'Encanto', 102, 'PG', 2021),
+  (7, 'Bee Movie', 91, 'PG', 2007);
 
 -- TODO Create Movie_Genre Table
 CREATE TABLE `Movie_Genre` (
