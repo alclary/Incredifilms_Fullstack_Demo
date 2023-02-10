@@ -11,6 +11,7 @@ SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
 
 -- Create Customer Table
+DROP TABLE IF EXISTS Customer CASCADE;
 CREATE TABLE `Customer` (
   `customer_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `first_name` varchar(30) NOT NULL,
@@ -32,6 +33,7 @@ INSERT INTO `Customer` (`first_name`, `last_name`, `dob`, `email`) VALUES
   ('Em', 'Patterson', '2017-12-02', NULL);
 
 -- Create Genre Table
+DROP TABLE IF EXISTS Genre CASCADE;
 CREATE TABLE `Genre` (
   `genre_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `genre_name` varchar(45) NOT NULL,
@@ -64,6 +66,7 @@ INSERT INTO `Genre` (`genre_name`) VALUES
   ('Historical');
 
 -- Create Movie Table
+DROP TABLE IF EXISTS Movie CASCADE;
 CREATE TABLE `Movie` (
   `movie_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `movie_name` varchar(100) NOT NULL,
@@ -84,6 +87,7 @@ INSERT INTO `Movie` (`movie_name`, `runtime_min`, `mpa_rating`, `movie_year`) VA
   ('Bee Movie', 91, 'PG', 2007);
 
   -- Create Theater Table
+DROP TABLE IF EXISTS Theater CASCADE;
 CREATE TABLE `Theater` (
   `theater_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `theater_name` varchar(50),
@@ -101,6 +105,7 @@ INSERT INTO `Theater` (`theater_id`, `theater_name`, `no_of_seats`) VALUES
   ('IncrediFilms Lake View', 250);
 
 -- Create Movie_Genre Table
+DROP TABLE IF EXISTS Movie_Genre CASCADE;
 CREATE TABLE `Movie_Genre` (
   `movie_genre_id` int NOT NULL,
   `movie_id` int NOT NULL,
@@ -136,6 +141,7 @@ INSERT INTO `Movie_Genre` (`movie_id`, `genre_id`) VALUES
   (7, 16);
 
 -- Create Showtime Table
+DROP TABLE IF EXISTS Showtime CASCADE;
 CREATE TABLE `Showtime` (
   `showtime_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `showtime_date_time` datetime NOT NULL,
