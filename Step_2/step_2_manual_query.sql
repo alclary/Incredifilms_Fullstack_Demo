@@ -20,18 +20,16 @@ CREATE TABLE `Customer` (
   PRIMARY KEY (customer_id),
 );
 
--- TODO Populate Customer Table
+-- Populate Customer Table
 INSERT INTO `Customer` (`customer_id`, `first_name`, `last_name`, `dob`, `email`) VALUES
 	(1, 'AJ', 'Styles', '1977-06-02', 'AJ.Styles@bmail.com'),
-	(2, 'Alberto', 'Rio', '1977-05-25', 'Alberto.Rio@bmail.com'),
-	(3, 'Alexa', 'Bliss', '1991-08-09', 'Alexa.Bliss@bmail.com'),
-	(4, 'Alundra', 'Blayze', '1964-02-09', 'Alundra.Blayze@bmail.com'),
-	(5, 'Andrade', 'Andrade', '1989-11-03', 'Andrade.Andrade@bmail.com'),
-	(6, 'Andre', 'Giant', '1946-05-19', 'Andre.Giant@bmail.com'),
-	(7, 'Antonio', 'Cesaro', '1980-12-27', 'Antonio.Cesaro@bmail.com'),
-	(8, 'Antonio', 'Inoki', '1943-02-20', 'Antonio.Inoki@bmail.com'),
-	(9, 'Apollo', 'Crews', '1987-08-22', 'Apollo.Crews@bmail.com'),
-	(10, 'Asuka', 'Asuka', '1981-09-26', 'Asuka.Asuka@bmail.com');
+	(2, 'Stephanie', 'Helmsley', '1976-09-24', 'Stephanie.Helmsely@bmail.com'),
+  (3, 'Alexa', 'Bliss', '1991-08-09', 'Alexa.Bliss@bmail.com'),
+  (4, 'Booker', 'T', '1965-03-01', NULL),
+  (5, 'Jenna', 'Andrade', '1989-11-03', 'Jenna.Andrade@bmail.com'),
+  (6, 'Andre', 'Giant', '1946-05-19', NULL),
+  (7, 'Michaela', 'Hargrove', '2001-05-30', 'Michaela.Hargrove@bmail.com'),
+  (8, 'Em', 'Patterson', '2017-12-02', NULL);
 
 -- Create Genre Table
 CREATE TABLE `Genre` (
@@ -81,7 +79,6 @@ CREATE TABLE `Movie_Genre` (
 -- TODO Populate Movie_Genre Table
 INSERT INTO `Movie_Genre` (`movie_genre_id`, `movie_id`, `genre_id`) VALUES
 (); 
--- TODO --------------------------------------------------------
 
 -- TODO Create Showtime Table
 CREATE TABLE `Showtime` (
