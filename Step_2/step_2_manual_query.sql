@@ -5,7 +5,6 @@ Group #25
 Jesseline Velazquez, Anthony Logan Clary
 */
 -- --------------------------------------------------------
-
 -- Diable commits and foreign key checks to minimize errors
 SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
@@ -18,13 +17,13 @@ CREATE TABLE `Customer` (
   `last_name` varchar(30) NOT NULL,
   `dob` date NOT NULL,
   `email` varchar(254),
-  PRIMARY KEY (customer_id),
+  PRIMARY KEY (customer_id)
 );
 
 -- Populate Customer Table
 INSERT INTO `Customer` (`first_name`, `last_name`, `dob`, `email`) VALUES
-	('AJ', 'Styles', '1977-06-02', 'AJ.Styles@bmail.com'),
-	('Stephanie', 'Helmsley', '1976-09-24', 'Stephanie.Helmsely@bmail.com'),
+  ('AJ', 'Styles', '1977-06-02', 'AJ.Styles@bmail.com'),
+  ('Stephanie', 'Helmsley', '1976-09-24', 'Stephanie.Helmsely@bmail.com'),
   ('Alexa', 'Bliss', '1991-08-09', 'Alexa.Bliss@bmail.com'),
   ('Booker', 'T', '1965-03-01', NULL),
   ('Jenna', 'Andrade', '1989-11-03', 'Jenna.Andrade@bmail.com'),
@@ -42,7 +41,7 @@ CREATE TABLE `Genre` (
 
 -- Populate Genre Table
 INSERT INTO `Genre` (`genre_name`) VALUES
-	('Documentary'),
+  ('Documentary'),
   ('Kids'),
   ('Family'),
   ('Comedy'),
@@ -70,7 +69,7 @@ DROP TABLE IF EXISTS Movie CASCADE;
 CREATE TABLE `Movie` (
   `movie_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `movie_name` varchar(100) NOT NULL,
-  `runtime_min` int(4) NOT NULL,
+  `runtime_min` int NOT NULL,
   `mpa_rating` varchar(5) NOT NULL,
   `movie_year` year NOT NULL,
    PRIMARY KEY (movie_id)
@@ -78,7 +77,7 @@ CREATE TABLE `Movie` (
 
 -- Populate Movie Table
 INSERT INTO `Movie` (`movie_name`, `runtime_min`, `mpa_rating`, `movie_year`) VALUES
-	('Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb', 95, 'PG', 1964),
+  ('Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb', 95, 'PG', 1964),
   ('Interstellar', 169, 'PG-13', 2014),
   ('Amélie', 122, 'R', 2001),
   ('The Shining', 146, 'R', 1980),
@@ -86,17 +85,17 @@ INSERT INTO `Movie` (`movie_name`, `runtime_min`, `mpa_rating`, `movie_year`) VA
   ('Encanto', 102, 'PG', 2021),
   ('Bee Movie', 91, 'PG', 2007);
 
-  -- Create Theater Table
+-- Create Theater Table
 DROP TABLE IF EXISTS Theater CASCADE;
 CREATE TABLE `Theater` (
   `theater_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `theater_name` varchar(50),
-  `no_of_seats` int(4) NOT NULL,
+  `no_of_seats` int NOT NULL,
   PRIMARY KEY (theater_id)
 );
 
 -- Populate Theater Table
-INSERT INTO `Theater` (`theater_id`, `theater_name`, `no_of_seats`) VALUES
+INSERT INTO `Theater` (`theater_name`, `no_of_seats`) VALUES
   ('IncrediFilms Rogers Park', 300),
   ('IncrediFilms Wicker Park', 500),
   ('IncrediFilms Uptown', 300),
@@ -154,7 +153,7 @@ CREATE TABLE `Showtime` (
 
 -- Populate Showtime Table
 INSERT INTO `Showtime` (`showtime_date_time`, `movie_id`, `theater_id`) VALUES
-	('2023-02-10 16:00:00', 1, 1),
+  ('2023-02-10 16:00:00', 1, 1),
   ('2023-02-10 15:00:00', 2, 4),
   ('2023-02-14 17:00:00', 2, 4),
   ('2023-02-14 18:00:00', 7, 2),
@@ -177,7 +176,7 @@ CREATE TABLE `Ticket` (
  
 -- Populate Ticket Table
 INSERT INTO `Ticket` (`customer_id`, `showtime_id`, `price`, `payment_method`) VALUES
-	(2, 5, 9, 'CREDIT'),
+  (2, 5, 9, 'CREDIT'),
   (2, 6, 5, 'CREDIT'),
   (8, 1, 9, 'CASH'),
   (6, 1, 9, 'DEBIT'),
