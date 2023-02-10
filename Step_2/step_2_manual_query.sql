@@ -21,15 +21,15 @@ CREATE TABLE `Customer` (
 );
 
 -- Populate Customer Table
-INSERT INTO `Customer` (`customer_id`, `first_name`, `last_name`, `dob`, `email`) VALUES
-	(1, 'AJ', 'Styles', '1977-06-02', 'AJ.Styles@bmail.com'),
-	(2, 'Stephanie', 'Helmsley', '1976-09-24', 'Stephanie.Helmsely@bmail.com'),
-  (3, 'Alexa', 'Bliss', '1991-08-09', 'Alexa.Bliss@bmail.com'),
-  (4, 'Booker', 'T', '1965-03-01', NULL),
-  (5, 'Jenna', 'Andrade', '1989-11-03', 'Jenna.Andrade@bmail.com'),
-  (6, 'Andre', 'Giant', '1946-05-19', NULL),
-  (7, 'Michaela', 'Hargrove', '2001-05-30', 'Michaela.Hargrove@bmail.com'),
-  (8, 'Em', 'Patterson', '2017-12-02', NULL);
+INSERT INTO `Customer` (`first_name`, `last_name`, `dob`, `email`) VALUES
+	('AJ', 'Styles', '1977-06-02', 'AJ.Styles@bmail.com'),
+	('Stephanie', 'Helmsley', '1976-09-24', 'Stephanie.Helmsely@bmail.com'),
+  ('Alexa', 'Bliss', '1991-08-09', 'Alexa.Bliss@bmail.com'),
+  ('Booker', 'T', '1965-03-01', NULL),
+  ('Jenna', 'Andrade', '1989-11-03', 'Jenna.Andrade@bmail.com'),
+  ('Andre', 'Giant', '1946-05-19', NULL),
+  ('Michaela', 'Hargrove', '2001-05-30', 'Michaela.Hargrove@bmail.com'),
+  ('Em', 'Patterson', '2017-12-02', NULL);
 
 -- Create Genre Table
 CREATE TABLE `Genre` (
@@ -39,29 +39,29 @@ CREATE TABLE `Genre` (
 );
 
 -- Populate Genre Table
-INSERT INTO `Genre` (`genre_id`, `genre_name`) VALUES
-	(1, 'Documentary'),
-  (2, 'Kids'),
-  (3, 'Family'),
-  (4, 'Comedy'),
-  (5, 'Independent'),
-  (6, 'International'),
-  (7, 'Drama'),
-  (8, 'Musical'),
-  (9, 'Thriller'),
-  (10, 'Horror'),
-  (11, 'Sci-Fi'),
-  (12, 'Romance'),
-  (13, 'Animated'),
-  (14, 'Sports'),
-  (15, 'Action'),
-  (16, 'Cult Classic'),
-  (17, 'Adventure'),
-  (18, 'LGBTQ+'),
-  (19, 'Crime'),
-  (20, 'Mystery'),
-  (21, 'Fantasy'),
-  (22, 'Historical');
+INSERT INTO `Genre` (`genre_name`) VALUES
+	('Documentary'),
+  ('Kids'),
+  ('Family'),
+  ('Comedy'),
+  ('Independent'),
+  ('International'),
+  ('Drama'),
+  ('Musical'),
+  ('Thriller'),
+  ('Horror'),
+  ('Sci-Fi'),
+  ('Romance'),
+  ('Animated'),
+  ('Sports'),
+  ('Action'),
+  ('Cult Classic'),
+  ('Adventure'),
+  ('LGBTQ+'),
+  ('Crime'),
+  ('Mystery'),
+  ('Fantasy'),
+  ('Historical');
 
 -- Create Movie Table
 CREATE TABLE `Movie` (
@@ -74,14 +74,14 @@ CREATE TABLE `Movie` (
 );
 
 -- Populate Movie Table
-INSERT INTO `Movie` (`movie_id`, `movie_name`, `runtime_min`, `mpa_rating`, `movie_year`) VALUES
-	(1, 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb', 95, 'PG', 1964),
-  (2, 'Interstellar', 169, 'PG-13', 2014),
-  (3, 'Amélie', 122, 'R', 2001),
-  (4, 'The Shining', 146, 'R', 1980),
-  (5, 'Everything Everywhere All at Once', 139, 'R', 2022),
-  (6, 'Encanto', 102, 'PG', 2021),
-  (7, 'Bee Movie', 91, 'PG', 2007);
+INSERT INTO `Movie` (`movie_name`, `runtime_min`, `mpa_rating`, `movie_year`) VALUES
+	('Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb', 95, 'PG', 1964),
+  ('Interstellar', 169, 'PG-13', 2014),
+  ('Amélie', 122, 'R', 2001),
+  ('The Shining', 146, 'R', 1980),
+  ('Everything Everywhere All at Once', 139, 'R', 2022),
+  ('Encanto', 102, 'PG', 2021),
+  ('Bee Movie', 91, 'PG', 2007);
 
 -- Create Movie_Genre Table
 CREATE TABLE `Movie_Genre` (
@@ -94,29 +94,29 @@ CREATE TABLE `Movie_Genre` (
 );
 
 -- Populate Movie_Genre Table
-INSERT INTO `Movie_Genre` (`movie_genre_id`, `movie_id`, `genre_id`) VALUES
-  (1, 1, 4),
-  (2, 1, 15),
-  (3, 2, 11),
-  (4, 2, 15),
-  (5, 2, 17),
-  (6, 2, 9),
-  (7, 3, 12),
-  (8, 3, 4),
-  (9, 4, 10),
-  (10, 4, 20),
-  (11, 5, 11),
-  (12, 5, 4),
-  (13, 5, 20),
-  (14, 6, 2),
-  (15, 6, 3),
-  (16, 6, 8),
-  (17, 6, 17),
-  (18, 7, 3),
-  (19, 7, 4),
-  (20, 7, 15),
-  (21, 7, 17),
-  (22, 7, 16);
+INSERT INTO `Movie_Genre` (`movie_id`, `genre_id`) VALUES
+  (1, 4),
+  (1, 15),
+  (2, 11),
+  (2, 15),
+  (2, 17),
+  (2, 9),
+  (3, 12),
+  (3, 4),
+  (4, 10),
+  (4, 20),
+  (5, 11),
+  (5, 4),
+  (5, 20),
+  (6, 2),
+  (6, 3),
+  (6, 8),
+  (6, 17),
+  (7, 3),
+  (7, 4),
+  (7, 15),
+  (7, 17),
+  (7, 16);
 
 -- TODO Create Showtime Table
 CREATE TABLE `Showtime` (
