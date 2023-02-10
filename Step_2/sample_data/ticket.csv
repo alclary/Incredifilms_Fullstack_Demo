@@ -1,0 +1,7 @@
+customer_id,showtime_id,price,payment_method
+2, 5, 9, 'CREDIT'
+2, 6, 5, 'CREDIT'
+8, 1, 9, 'CASH'
+6, 1, 9, 'DEBIT'
+3, 2, 9, 'CREDIT'
+4, 4, 9, 'CASH'
