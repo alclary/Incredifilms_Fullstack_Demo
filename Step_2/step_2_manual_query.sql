@@ -38,16 +38,30 @@ CREATE TABLE `Genre` (
   PRIMARY KEY (genre_id)
 );
 
--- TODO Populate Genre Table
+-- Populate Genre Table
 INSERT INTO `Genre` (`genre_id`, `genre_name`) VALUES
-	(2, 'Children & Family Movies'),
-	(3, 'Comedies'),
-	(1, 'Documentaries'),
-	(6, 'Dramas'),
-	(4, 'Independent Movies'),
-	(5, 'International Movies'),
-	(7, 'Music & Musicals'),
-	(8, 'Thrillers');
+	(1, 'Documentary'),
+  (2, 'Kids'),
+  (3, 'Family'),
+  (4, 'Comedy'),
+  (5, 'Independent'),
+  (6, 'International'),
+  (7, 'Drama'),
+  (8, 'Musical'),
+  (9, 'Thriller'),
+  (10, 'Horror'),
+  (11, 'Sci-Fi'),
+  (12, 'Romance'),
+  (13, 'Animated'),
+  (14, 'Sports'),
+  (15, 'Action'),
+  (16, 'Cult Classic'),
+  (17, 'Adventure'),
+  (18, 'LGBTQ+'),
+  (19, 'Crime'),
+  (20, 'Mystery'),
+  (21, 'Fantasy'),
+  (22, 'Historical');
 
 -- Create Movie Table
 CREATE TABLE `Movie` (
