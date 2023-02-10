@@ -103,8 +103,8 @@ INSERT INTO `Theater` (`theater_id`, `theater_name`, `no_of_seats`) VALUES
 -- Create Movie_Genre Table
 CREATE TABLE `Movie_Genre` (
   `movie_genre_id` int NOT NULL,
-  `movie_id` int,
-  `genre_id` int,
+  `movie_id` int NOT NULL,
+  `genre_id` int NOT NULL,
   PRIMARY KEY (movie_genre_id),
   FOREIGN KEY (movie_id) REFERENCES Movie(movie_id),
   FOREIGN KEY (genre_id) REFERENCES Genre(genre_id)
@@ -139,8 +139,8 @@ INSERT INTO `Movie_Genre` (`movie_id`, `genre_id`) VALUES
 CREATE TABLE `Showtime` (
   `showtime_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `showtime_date_time` datetime NOT NULL,
-  `movie_id` int,
-  `theater_id` int,
+  `movie_id` int NOT NULL,
+  `theater_id` int NOT NULL,
   PRIMARY KEY (showtime_id),
   FOREIGN KEY (movie_id) REFERENCES Movie(movie_id),
   FOREIGN KEY (theater_id) REFERENCES Theater(theater_id)
@@ -159,7 +159,8 @@ INSERT INTO `Showtime` (`showtime_date_time`, `movie_id`, `theater_id`) VALUES
 -- TODO Create Ticket Table
 CREATE TABLE `Ticket` (
   `ticket_id` int NOT NULL AUTO_INCREMENT UNIQUE,
-  `customer_id` int,
+  `customer_id` int NOT NULL,
+  `showtime_id` int NOT NULL,
   `price` decimal(5,2) NOT NULL,
   `payment_method` varchar(45),
   `showtime_id` int,
