@@ -21,6 +21,12 @@ CREATE TABLE `Customer` (
 );
 
 -- Populate Customer Table
+/* Data for the Customer Table is a blend of invented data and edited data from the following source:
+		Kaggle Public Dataset: Professional Wrestling Champions (WWE/WWF)
+        Author: MDABBERT
+        License: Creative Commons - Attribution 4.0 International
+        Source: https://www.kaggle.com/datasets/mdabbert/professional-wrestling-champions-wwewwf
+        Retrieved: 2/5/2023 via the web */
 INSERT INTO `Customer` (`first_name`, `last_name`, `dob`, `email`) VALUES
   ('AJ', 'Styles', '1977-06-02', 'AJ.Styles@bmail.com'),
   ('Stephanie', 'Helmsley', '1976-09-24', 'Stephanie.Helmsely@bmail.com'),
