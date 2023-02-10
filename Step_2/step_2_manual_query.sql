@@ -163,6 +163,7 @@ INSERT INTO `Showtime` (`showtime_date_time`, `movie_id`, `theater_id`) VALUES
   ('2023-02-16 15:30:00', 4, 1);
 
 -- Create Ticket Table
+DROP TABLE IF EXISTS Ticket CASCADE;
 CREATE TABLE `Ticket` (
   `ticket_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `customer_id` int NOT NULL,
