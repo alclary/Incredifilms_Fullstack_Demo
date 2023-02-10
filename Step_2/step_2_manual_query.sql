@@ -83,12 +83,14 @@ INSERT INTO `Movie` (`movie_id`, `movie_name`, `runtime_min`, `mpa_rating`, `mov
   (6, 'Encanto', 102, 'PG', 2021),
   (7, 'Bee Movie', 91, 'PG', 2007);
 
--- TODO Create Movie_Genre Table
+-- Create Movie_Genre Table
 CREATE TABLE `Movie_Genre` (
   `movie_genre_id` int NOT NULL,
   `movie_id` int,
   `genre_id` int,
-  PRIMARY KEY (movie_genre_id)
+  PRIMARY KEY (movie_genre_id),
+  FOREIGN KEY (movie_id) REFERENCES Movie(movie_id),
+  FOREIGN KEY (genre_id) REFERENCES Genre(genre_id)
 );
 
 -- TODO Populate Movie_Genre Table
