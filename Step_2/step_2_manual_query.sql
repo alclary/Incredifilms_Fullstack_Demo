@@ -188,7 +188,7 @@ INSERT INTO `Ticket` (`customer_id`, `showtime_id`, `price`, `payment_method`) V
   ((SELECT customer_id FROM Customer WHERE first_name = 'Em' AND last_name = 'Patterson'), (SELECT showtime_id from Showtime WHERE showtime_date_time = '2023-02-10 16:00:00' AND theater_id = '1'), 9, 'CASH'),
   ((SELECT customer_id FROM Customer WHERE first_name = 'Andre' AND last_name = 'Giant'), (SELECT showtime_id from Showtime WHERE showtime_date_time = '2023-02-10 16:00:00' AND theater_id = '1'), 9, 'DEBIT'),
   ((SELECT customer_id FROM Customer WHERE first_name = 'Alexa' AND last_name = 'Bliss'), (SELECT showtime_id from Showtime WHERE showtime_date_time = '2023-02-10 15:00:00' AND theater_id = '4'), 9, 'CREDIT'),
-  ((SELECT customer_id FROM Customer WHERE first_name = 'Booker' AND last_name = 'T'), (SELECT showtime_id from Showtime WHERE showtime_date_time = '2023-02-14 18:00:00' AND theater_id = '2'), 9, 'CASH');
+  ((SELECT customer_id FROM Customer WHERE first_name = 'Booker' AND last_name = 'T'), (SELECT showtime_id from Showtime WHERE showtime_date_time = '2023-02-14 18:00:00' AND theater_id = '2'), 9, NULL);
 
 -- Re-enable commits and foreign key checks
 SET FOREIGN_KEY_CHECKS=1;
