@@ -16,7 +16,7 @@ CREATE TABLE `Customer` (
   `first_name` varchar(30) NOT NULL,
   `last_name` varchar(30) NOT NULL,
   `dob` date NOT NULL,
-  `email` varchar(254) UNIQUE,
+  `email` varchar(254),
   PRIMARY KEY (customer_id),
 );
 
