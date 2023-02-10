@@ -116,28 +116,28 @@ CREATE TABLE `Movie_Genre` (
 
 -- Populate Movie_Genre Table
 INSERT INTO `Movie_Genre` (`movie_id`, `genre_id`) VALUES
-  (1, 4),
-  (1, 15),
-  (2, 11),
-  (2, 15),
-  (2, 17),
-  (2, 9),
-  (3, 12),
-  (3, 4),
-  (4, 10),
-  (4, 20),
-  (5, 11),
-  (5, 4),
-  (5, 20),
-  (6, 2),
-  (6, 3),
-  (6, 8),
-  (6, 17),
-  (7, 3),
-  (7, 4),
-  (7, 15),
-  (7, 17),
-  (7, 16);
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb'), (SELECT genre_id FROM Genre WHERE genre_name = 'Comedy')),
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb'), (SELECT genre_id FROM Genre WHERE genre_name = 'Action')),
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'Interstellar'), (SELECT genre_id FROM Genre WHERE genre_name = 'Sci-Fi')),
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'Interstellar'), (SELECT genre_id FROM Genre WHERE genre_name = 'Action')),
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'Interstellar'), (SELECT genre_id FROM Genre WHERE genre_name = 'Adventure')),
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'Interstellar'), (SELECT genre_id FROM Genre WHERE genre_name = 'Thriller')),
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'Amélie'), (SELECT genre_id FROM Genre WHERE genre_name = 'Romance')),
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'Amélie'), (SELECT genre_id FROM Genre WHERE genre_name = 'Comedy')),
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'The Shining'), (SELECT genre_id FROM Genre WHERE genre_name = 'Horror')),
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'The Shining'), (SELECT genre_id FROM Genre WHERE genre_name = 'Mystery')),
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'Everything Everywhere All at Once'), (SELECT genre_id FROM Genre WHERE genre_name = 'Sci-Fi')),
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'Everything Everywhere All at Once'), (SELECT genre_id FROM Genre WHERE genre_name = 'Comedy')),
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'Everything Everywhere All at Once'), (SELECT genre_id FROM Genre WHERE genre_name = 'Mystery')),
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'Encanto'), (SELECT genre_id FROM Genre WHERE genre_name = 'Kids')),
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'Encanto'), (SELECT genre_id FROM Genre WHERE genre_name = 'Family')),
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'Encanto'), (SELECT genre_id FROM Genre WHERE genre_name = 'Musical')),
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'Encanto'), (SELECT genre_id FROM Genre WHERE genre_name = 'Adventure')),
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'Bee Movie'), (SELECT genre_id FROM Genre WHERE genre_name = 'Family')),
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'Bee Movie'), (SELECT genre_id FROM Genre WHERE genre_name = 'Comedy')),
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'Bee Movie'), (SELECT genre_id FROM Genre WHERE genre_name = 'Action')),
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'Bee Movie'), (SELECT genre_id FROM Genre WHERE genre_name = 'Adventure')),
+  ((SELECT movie_id FROM Movie WHERE movie_name = 'Bee Movie'), (SELECT genre_id FROM Genre WHERE genre_name = 'Cult Classic'));
 
 -- Create Showtime Table
 DROP TABLE IF EXISTS Showtime CASCADE;
@@ -153,13 +153,14 @@ CREATE TABLE `Showtime` (
 
 -- Populate Showtime Table
 INSERT INTO `Showtime` (`showtime_date_time`, `movie_id`, `theater_id`) VALUES
-  ('2023-02-10 16:00:00', 1, 1),
-  ('2023-02-10 15:00:00', 2, 4),
-  ('2023-02-14 17:00:00', 2, 4),
-  ('2023-02-14 18:00:00', 7, 2),
-  ('2023-02-14 18:00:00', 7, 1),
-  ('2023-02-16 12:00:00', 3, 5),
-  ('2023-02-16 15:30:00', 4, 1);
+  ('2023-02-10 16:00:00', (SELECT movie_id FROM Movie WHERE movie_name =  'Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb'), (SELECT theater_id FROM Theater WHERE theater_name = 'IncrediFilms Rogers Park')),
+  ('2023-02-10 15:00:00', (SELECT movie_id FROM Movie WHERE movie_name =  'Interstellar'), (SELECT theater_id FROM Theater WHERE theater_name = 'IncrediFilms Lincoln Square')),
+  ('2023-02-14 17:00:00', (SELECT movie_id FROM Movie WHERE movie_name =  'Interstellar'), (SELECT theater_id FROM Theater WHERE theater_name = 'IncrediFilms Lincoln Square')),
+  ('2023-02-14 18:00:00', (SELECT movie_id FROM Movie WHERE movie_name =  'Bee Movie'), (SELECT theater_id FROM Theater WHERE theater_name = 'IncrediFilms Wicker Park')),
+  ('2023-02-14 18:00:00', (SELECT movie_id FROM Movie WHERE movie_name =  'Bee Movie'), (SELECT theater_id FROM Theater WHERE theater_name = 'IncrediFilms Rogers Park')),
+  ('2023-02-16 12:00:00', (SELECT movie_id FROM Movie WHERE movie_name =  'Amélie'), (SELECT theater_id FROM Theater WHERE theater_name = 'IncrediFilms North Center')),
+  ('2023-02-16 15:30:00', (SELECT movie_id FROM Movie WHERE movie_name =  'The Shining'), (SELECT theater_id FROM Theater WHERE theater_name = 'IncrediFilms Rogers Park'));
+
 
 -- Create Ticket Table
 DROP TABLE IF EXISTS Ticket CASCADE;
@@ -176,12 +177,12 @@ CREATE TABLE `Ticket` (
  
 -- Populate Ticket Table
 INSERT INTO `Ticket` (`customer_id`, `showtime_id`, `price`, `payment_method`) VALUES
-  (2, 5, 9, 'CREDIT'),
-  (2, 6, 5, 'CREDIT'),
-  (8, 1, 9, 'CASH'),
-  (6, 1, 9, 'DEBIT'),
-  (3, 2, 9, 'CREDIT'),
-  (4, 4, 9, 'CASH');
+  ((SELECT customer_id FROM Customer WHERE first_name = 'Stephanie' AND last_name = 'Helmsley'), (SELECT showtime_id from Showtime WHERE showtime_date_time = '2023-02-14 18:00:00' AND theater_id = '1'), 9, 'CREDIT'),
+  ((SELECT customer_id FROM Customer WHERE first_name = 'Stephanie' AND last_name = 'Helmsley'), (SELECT showtime_id from Showtime WHERE showtime_date_time = '2023-02-16 12:00:00' AND theater_id = '5'), 5, 'CREDIT'),
+  ((SELECT customer_id FROM Customer WHERE first_name = 'Em' AND last_name = 'Patterson'), (SELECT showtime_id from Showtime WHERE showtime_date_time = '2023-02-10 16:00:00' AND theater_id = '1'), 9, 'CASH'),
+  ((SELECT customer_id FROM Customer WHERE first_name = 'Andre' AND last_name = 'Giant'), (SELECT showtime_id from Showtime WHERE showtime_date_time = '2023-02-10 16:00:00' AND theater_id = '1'), 9, 'DEBIT'),
+  ((SELECT customer_id FROM Customer WHERE first_name = 'Alexa' AND last_name = 'Bliss'), (SELECT showtime_id from Showtime WHERE showtime_date_time = '2023-02-10 15:00:00' AND theater_id = '4'), 9, 'CREDIT'),
+  ((SELECT customer_id FROM Customer WHERE first_name = 'Booker' AND last_name = 'T'), (SELECT showtime_id from Showtime WHERE showtime_date_time = '2023-02-14 18:00:00' AND theater_id = '2'), 9, 'CASH');
 
 -- Re-enable commits and foreign key checks
 SET FOREIGN_KEY_CHECKS=1;
