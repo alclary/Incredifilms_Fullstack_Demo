@@ -95,7 +95,7 @@ INSERT INTO `Movie` (`movie_name`, `runtime_min`, `mpa_rating`, `movie_year`) VA
 DROP TABLE IF EXISTS Theater CASCADE;
 CREATE TABLE `Theater` (
   `theater_id` int NOT NULL AUTO_INCREMENT UNIQUE,
-  `theater_name` varchar(50),
+  `theater_name` varchar(50) NOT NULL,
   `no_of_seats` int NOT NULL,
   PRIMARY KEY (theater_id)
 );
