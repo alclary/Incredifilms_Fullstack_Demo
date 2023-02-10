@@ -135,40 +135,26 @@ INSERT INTO `Movie_Genre` (`movie_id`, `genre_id`) VALUES
   (7, 17),
   (7, 16);
 
--- TODO Create Showtime Table
+-- Create Showtime Table
 CREATE TABLE `Showtime` (
   `showtime_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `showtime_date_time` datetime NOT NULL,
   `movie_id` int,
   `theater_id` int,
-  PRIMARY KEY (showtime_id)
+  PRIMARY KEY (showtime_id),
+  FOREIGN KEY (movie_id) REFERENCES Movie(movie_id),
+  FOREIGN KEY (theater_id) REFERENCES Theater(theater_id)
 );
 
--- TODO Populate Showtime Table
-INSERT INTO `Showtime` (`showtime_id`, `showtime_date_time`, `movie_id`, `theater_id`) VALUES
-	(3, '2023-02-10 16:00:00', 1, 1),
-	(4, '2023-02-10 15:00:00', 2, 4),
-	(5, '2023-02-14 17:00:00', 2, 4),
-	(6, '2023-02-14 18:00:00', 3, 2),
-	(7, '2023-02-16 12:00:00', 3, 5),
-	(8, '2023-02-16 15:30:00', 4, 1);
-
--- TODO Create Theater Table
-CREATE TABLE `Theater` (
-  `theater_id` int NOT NULL AUTO_INCREMENT UNIQUE,
-  `theater_name` varchar(50),
-  `no_of_seats` int(4) NOT NULL,
-  PRIMARY KEY (theater_id)
-);
-
--- Populate Theater Table
-INSERT INTO `Theater` (`theater_id`, `theater_name`, `no_of_seats`) VALUES
-  ('IncrediFilms Rogers Park', 300),
-  ('IncrediFilms Wicker Park', 500),
-  ('IncrediFilms Uptown', 300),
-  ('IncrediFilms Lincoln Square', 250),
-  ('IncrediFilms North Center', 250),
-  ('IncrediFilms Lake View', 250);
+-- Populate Showtime Table
+INSERT INTO `Showtime` (`showtime_date_time`, `movie_id`, `theater_id`) VALUES
+	('2023-02-10 16:00:00', 1, 1),
+  ('2023-02-10 15:00:00', 2, 4),
+  ('2023-02-14 17:00:00', 2, 4),
+  ('2023-02-14 18:00:00', 7, 2),
+  ('2023-02-14 18:00:00', 7, 1),
+  ('2023-02-16 12:00:00', 3, 5),
+  ('2023-02-16 15:30:00', 4, 1);
 
 -- TODO Create Ticket Table
 CREATE TABLE `Ticket` (
