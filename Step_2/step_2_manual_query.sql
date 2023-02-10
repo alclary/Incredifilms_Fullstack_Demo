@@ -83,6 +83,23 @@ INSERT INTO `Movie` (`movie_name`, `runtime_min`, `mpa_rating`, `movie_year`) VA
   ('Encanto', 102, 'PG', 2021),
   ('Bee Movie', 91, 'PG', 2007);
 
+  -- Create Theater Table
+CREATE TABLE `Theater` (
+  `theater_id` int NOT NULL AUTO_INCREMENT UNIQUE,
+  `theater_name` varchar(50),
+  `no_of_seats` int(4) NOT NULL,
+  PRIMARY KEY (theater_id)
+);
+
+-- Populate Theater Table
+INSERT INTO `Theater` (`theater_id`, `theater_name`, `no_of_seats`) VALUES
+  ('IncrediFilms Rogers Park', 300),
+  ('IncrediFilms Wicker Park', 500),
+  ('IncrediFilms Uptown', 300),
+  ('IncrediFilms Lincoln Square', 250),
+  ('IncrediFilms North Center', 250),
+  ('IncrediFilms Lake View', 250);
+
 -- Create Movie_Genre Table
 CREATE TABLE `Movie_Genre` (
   `movie_genre_id` int NOT NULL,
