@@ -106,7 +106,7 @@ INSERT INTO `Theater` (`theater_name`, `no_of_seats`) VALUES
 -- Create Movie_Genre Table
 DROP TABLE IF EXISTS Movie_Genre CASCADE;
 CREATE TABLE `Movie_Genre` (
-  `movie_genre_id` int NOT NULL,
+  `movie_genre_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `movie_id` int NOT NULL,
   `genre_id` int NOT NULL,
   PRIMARY KEY (movie_genre_id),
