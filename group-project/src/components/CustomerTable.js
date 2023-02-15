@@ -12,7 +12,8 @@ export default function CustomerTable({ customers, onDelete, onEdit }) {
           <th className="">Date of Birth</th>
           <th className="">Email</th>
           <th className="">edit</th>
-          <th className="">del</th>
+          <th className="">del</th> 
+          
         </tr>
       </thead>
       <tbody>
