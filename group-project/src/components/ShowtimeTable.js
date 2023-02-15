@@ -1,16 +1,15 @@
 import React from "react";
-import CustomerRow from "./CustomerRow";
+import ShowtimeRow from "./ShowtimeRow";
 
-export default function CustomerTable({ customers, onDelete, onEdit }) {
+export default function ShowtimeTable({ showtimes, onDelete, onEdit }) {
   return (
     <table className="table">
       <thead>
         <tr>
-          <th className="">Customer ID</th>
-          <th className="">First Name</th>
-          <th className="">Last Name</th>
-          <th className="">Date of Birth</th>
-          <th className="">Email</th>
+          <th className="">Showtime ID</th>
+          <th className="">Showtime Date & Time</th>
+          <th className="">Movie ID</th>
+          <th className="">Theater ID</th>
           <th className="">edit</th>
           <th className="">del</th>
         </tr>
@@ -21,22 +20,11 @@ export default function CustomerTable({ customers, onDelete, onEdit }) {
           <td className=""></td>
           <td className=""></td>
           <td className=""></td>
-          <td className=""></td>
           <td className=""><a href="">edit</a></td>
           <td className=""><a href="">del</a></td>
         </tr>
         <tr>
         <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""><a href="">edit</a></td>
-          <td className=""><a href="">del</a></td>
-        </tr>
-        <tr>
-        <td className=""></td>
-          <td className=""></td>
           <td className=""></td>
           <td className=""></td>
           <td className=""></td>
@@ -48,13 +36,19 @@ export default function CustomerTable({ customers, onDelete, onEdit }) {
           <td className=""></td>
           <td className=""></td>
           <td className=""></td>
-          <td className=""></td>
           <td className=""><a href="">edit</a></td>
           <td className=""><a href="">del</a></td>
         </tr>
         <tr>
         <td className=""></td>
           <td className=""></td>
+          <td className=""></td>
+          <td className=""></td>
+          <td className=""><a href="">edit</a></td>
+          <td className=""><a href="">del</a></td>
+        </tr>
+        <tr>
+        <td className=""></td>
           <td className=""></td>
           <td className=""></td>
           <td className=""></td>
