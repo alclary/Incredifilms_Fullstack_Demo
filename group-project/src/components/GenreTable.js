@@ -14,8 +14,8 @@ export default function GenreTable({ genres, onDelete, onEdit }) {
       </thead>
       <tbody>
         <tr>
-          <td className=""></td>
-          <td className=""></td>
+          <td className="">1</td>
+          <td className="">Documentary</td>
           <td className="">
             <a href="">edit</a>
           </td>
@@ -24,8 +24,8 @@ export default function GenreTable({ genres, onDelete, onEdit }) {
           </td>
         </tr>
         <tr>
-          <td className=""></td>
-          <td className=""></td>
+          <td className="">2</td>
+          <td className="">Kids</td>
           <td className="">
             <a href="">edit</a>
           </td>
@@ -34,8 +34,8 @@ export default function GenreTable({ genres, onDelete, onEdit }) {
           </td>
         </tr>
         <tr>
-          <td className=""></td>
-          <td className=""></td>
+          <td className="">3</td>
+          <td className="">Family</td>
           <td className="">
             <a href="">edit</a>
           </td>
@@ -44,8 +44,8 @@ export default function GenreTable({ genres, onDelete, onEdit }) {
           </td>
         </tr>
         <tr>
-          <td className=""></td>
-          <td className=""></td>
+          <td className="">4</td>
+          <td className="">Comedy</td>
           <td className="">
             <a href="">edit</a>
           </td>
@@ -54,8 +54,8 @@ export default function GenreTable({ genres, onDelete, onEdit }) {
           </td>
         </tr>
         <tr>
-          <td className=""></td>
-          <td className=""></td>
+          <td className="">5</td>
+          <td className="">Independent</td>
           <td className="">
             <a href="">edit</a>
           </td>

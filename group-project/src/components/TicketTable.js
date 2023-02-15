@@ -17,11 +17,11 @@ export default function TicketTable({ tickets, onDelete, onEdit }) {
       </thead>
       <tbody>
         <tr>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
+          <td className="">1</td>
+          <td className="">2</td>
+          <td className="">5</td>
+          <td className="">9.00</td>
+          <td className="">CREDIT</td>
           <td className="">
             <a href="">edit</a>
           </td>
@@ -30,11 +30,11 @@ export default function TicketTable({ tickets, onDelete, onEdit }) {
           </td>
         </tr>
         <tr>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
+          <td className="">2</td>
+          <td className="">2</td>
+          <td className="">6</td>
+          <td className="">5.00</td>
+          <td className="">CREDIT</td>
           <td className="">
             <a href="">edit</a>
           </td>
@@ -43,11 +43,11 @@ export default function TicketTable({ tickets, onDelete, onEdit }) {
           </td>
         </tr>
         <tr>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
+          <td className="">3</td>
+          <td className="">8</td>
+          <td className="">1</td>
+          <td className="">9.00</td>
+          <td className="">CASH</td>
           <td className="">
             <a href="">edit</a>
           </td>
@@ -56,11 +56,11 @@ export default function TicketTable({ tickets, onDelete, onEdit }) {
           </td>
         </tr>
         <tr>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
+          <td className="">4</td>
+          <td className="">6</td>
+          <td className="">1</td>
+          <td className="">9.00</td>
+          <td className="">DEBIT</td>
           <td className="">
             <a href="">edit</a>
           </td>
@@ -69,11 +69,11 @@ export default function TicketTable({ tickets, onDelete, onEdit }) {
           </td>
         </tr>
         <tr>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
+          <td className="">5</td>
+          <td className="">3</td>
+          <td className="">2</td>
+          <td className="">9.00</td>
+          <td className="">CREDIT</td>
           <td className="">
             <a href="">edit</a>
           </td>

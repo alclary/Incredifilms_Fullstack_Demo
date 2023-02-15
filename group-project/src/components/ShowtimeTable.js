@@ -15,59 +15,77 @@ export default function ShowtimeTable({ showtimes, onDelete, onEdit }) {
         </tr>
       </thead>
       <tbody>
-      <tr>
-      <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""><a href="">edit</a></td>
-          <td className=""><a href="">del</a></td>
+        <tr>
+          <td className="">1</td>
+          <td className="">2023-02-10 16:00:00</td>
+          <td className="">1</td>
+          <td className="">1</td>
+          <td className="">
+            <a href="">edit</a>
+          </td>
+          <td className="">
+            <a href="">del</a>
+          </td>
         </tr>
         <tr>
-        <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""><a href="">edit</a></td>
-          <td className=""><a href="">del</a></td>
+          <td className="">2</td>
+          <td className="">2023-02-10 15:00:00</td>
+          <td className="">2</td>
+          <td className="">4</td>
+          <td className="">
+            <a href="">edit</a>
+          </td>
+          <td className="">
+            <a href="">del</a>
+          </td>
         </tr>
         <tr>
-        <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""><a href="">edit</a></td>
-          <td className=""><a href="">del</a></td>
+          <td className="">3</td>
+          <td className="">2023-02-14 17:00:00</td>
+          <td className="">2</td>
+          <td className="">4</td>
+          <td className="">
+            <a href="">edit</a>
+          </td>
+          <td className="">
+            <a href="">del</a>
+          </td>
         </tr>
         <tr>
-        <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""><a href="">edit</a></td>
-          <td className=""><a href="">del</a></td>
+          <td className="">4</td>
+          <td className="">2023-02-14 18:00:00</td>
+          <td className="">7</td>
+          <td className="">2</td>
+          <td className="">
+            <a href="">edit</a>
+          </td>
+          <td className="">
+            <a href="">del</a>
+          </td>
         </tr>
         <tr>
-        <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""></td>
-          <td className=""><a href="">edit</a></td>
-          <td className=""><a href="">del</a></td>
+          <td className="">5</td>
+          <td className="">2023-02-14 18:00:00</td>
+          <td className="">7</td>
+          <td className="">1</td>
+          <td className="">
+            <a href="">edit</a>
+          </td>
+          <td className="">
+            <a href="">del</a>
+          </td>
         </tr>
-
       </tbody>
       <tfoot></tfoot>
     </table>
   );
 }
 
-
 //        {customers.map((customer, i) => (
 //  <CustomerRow
 //  customer={customer}
- // onDelete={onDelete}
-  //onEdit={onEdit}
- // key={i}
+// onDelete={onDelete}
+//onEdit={onEdit}
+// key={i}
 ///>
 //))}

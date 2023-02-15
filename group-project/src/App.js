@@ -45,6 +45,7 @@ export default function App() {
               <Route exact path="/GenreNew" element={<GenreNew />} />
               <Route exact path="/TheaterNew" element={<TheaterNew />} />
               <Route exact path="/MovieNew" element={<MovieNew />} />
+              <Route exact path="*" element={<h1>Page not found</h1>} />
             </Routes>
           </Router>
         </main>
