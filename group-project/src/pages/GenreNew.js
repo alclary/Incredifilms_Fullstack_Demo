@@ -19,7 +19,6 @@ export const GenreNew = () => {
       </article>
 
       <a href="./Genre">Return to all genres</a>
-
     </>
   );
 };

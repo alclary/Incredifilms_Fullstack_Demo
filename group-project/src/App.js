@@ -9,6 +9,7 @@ import Genres from "./pages/Genres";
 import Movies from "./pages/Movies";
 import Showtimes from "./pages/Showtimes";
 import Theaters from "./pages/Theaters";
+import MovieGenres from "./pages/MovieGenres";
 
 import Sidebar from "./components/Sidebar";
 import Tickets from "./pages/Tickets";
@@ -38,6 +39,7 @@ export default function App() {
               <Route exact path="/theater" element={<Theaters />} />
               <Route exact path="/ticket" element={<Tickets />} />
               <Route exact path="/genre" element={<Genres />} />
+              <Route exact path="/moviegenre" element={<MovieGenres />} />
 
               <Route exact path="/CustomerNew" element={<CustomerNew />} />
               <Route exact path="/ShowtimeNew" element={<ShowtimeNew />} />

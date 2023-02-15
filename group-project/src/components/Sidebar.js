@@ -15,7 +15,8 @@ export default function Sidebar() {
         <a href="/theater" className="">Theatres</a>
         <a href="/showtime" className="">Showtimes</a>
         <a href="/ticket" className="">Tickets</a>
-        <a href="customer" className="">Customers</a>
+        <a href="/customer" className="">Customers</a>
+        <a href="/moviegenre">MovieGenres</a>
        
 
     </div>
