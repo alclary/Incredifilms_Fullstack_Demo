@@ -1,28 +1,20 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-export const CustomerNew = () => {
+export const TheaterNew = () => {
   return (
     <>
       <article>
-        <h2>New customer form</h2>
-        <p>New cu$tomer alert</p>
+        <h2>New theater form</h2>
+        <p>New theater alert</p>
         <form>
           <label>
-            First name:
+            Theater Name:
             <input type="text" required />
           </label>
           <label>
-            Last name:
-            <input type="text" required />
-          </label>
-          <label>
-            Date of Birth
-            <input type="date" required />
-          </label>
-          <label>
-            Email
-            <input type="email" />
+            Capacity:
+            <input type="number" min="0" required />
           </label>
           <label>
             <input type="submit" />
@@ -30,13 +22,12 @@ export const CustomerNew = () => {
         </form>
       </article>
 
-      <a href="./Customer">Return to all customers</a>
-
+      <a href="./Theater">Return to all theaters</a>
     </>
   );
 };
 
-export default CustomerNew;
+export default TheaterNew;
 
 // export const CustomerNew = () => {
 //   const [name, setName] = useState("");

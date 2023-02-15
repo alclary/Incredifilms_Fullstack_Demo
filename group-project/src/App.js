@@ -12,9 +12,14 @@ import Theaters from "./pages/Theaters";
 
 import Sidebar from "./components/Sidebar";
 import Tickets from "./pages/Tickets";
+import CustomerNew from "./pages/CustomerNew";
+import MovieNew from "./pages/MovieNew";
+import TheaterNew from "./pages/TheaterNew";
+import GenreNew from "./pages/GenreNew";
+import ShowtimeNew from "./pages/ShowtimeNew";
+import TicketNew from "./pages/TicketNew";
 
 export default function App() {
-
   return (
     <div className="App">
       <div className="sidebar">
@@ -33,6 +38,13 @@ export default function App() {
               <Route exact path="/theater" element={<Theaters />} />
               <Route exact path="/ticket" element={<Tickets />} />
               <Route exact path="/genre" element={<Genres />} />
+
+              <Route exact path="/CustomerNew" element={<CustomerNew />} />
+              <Route exact path="/ShowtimeNew" element={<ShowtimeNew />} />
+              <Route exact path="/TicketNew" element={<TicketNew />} />
+              <Route exact path="/GenreNew" element={<GenreNew />} />
+              <Route exact path="/TheaterNew" element={<TheaterNew />} />
+              <Route exact path="/MovieNew" element={<MovieNew />} />
             </Routes>
           </Router>
         </main>

@@ -8,7 +8,7 @@ export default function TheaterTable({ theaters, onDelete, onEdit }) {
         <tr>
           <th className="">Theater ID</th>
           <th className="">Theater Name</th>
-          <th className=""># pf seats</th>
+          <th className=""># of seats</th>
           <th className="">edit</th>
           <th className="">del</th>
         </tr>

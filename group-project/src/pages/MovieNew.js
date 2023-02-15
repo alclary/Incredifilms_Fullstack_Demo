@@ -1,42 +1,56 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-export const CustomerNew = () => {
+export const MovieNew = () => {
   return (
     <>
       <article>
-        <h2>New customer form</h2>
-        <p>New cu$tomer alert</p>
+        <h2>New movie form</h2>
+        <p>New movie alert</p>
         <form>
           <label>
-            First name:
+            Movie name:
             <input type="text" required />
           </label>
+
           <label>
-            Last name:
-            <input type="text" required />
+            Runtime (Mins):
+            <input type="number" min="1" required />
           </label>
+
           <label>
-            Date of Birth
-            <input type="date" required />
+            MPA Rating --> dropdown menu
+            <input type="radio" id="" name="" value="PG-13" />
+            <label>PG-13</label>
+            <input type="radio" id="" name="" value="PG-13" />
+            <label>PG</label>
+            <input type="radio" id="" name="" value="PG-13" />
+            <label>NR</label>
+            <input type="radio" id="" name="" value="PG-13" />
+            <label>Other</label>
+            <input type="radio" id="" name="" value="PG-13" />
+            <label>Other-2</label>
+            <input type="radio" id="" name="" value="PG-13" />
+            <label>Other3</label>
           </label>
+
           <label>
-            Email
-            <input type="email" />
+            Year
+            <input type="number" min="1900" max="2023" />
           </label>
+
           <label>
             <input type="submit" />
           </label>
         </form>
       </article>
 
-      <a href="./Customer">Return to all customers</a>
-
+      <a href="./Movie">Return to all movies</a>
     </>
   );
 };
 
-export default CustomerNew;
+export default MovieNew;
 
 // export const CustomerNew = () => {
 //   const [name, setName] = useState("");
