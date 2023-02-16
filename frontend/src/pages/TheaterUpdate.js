@@ -6,12 +6,16 @@ export default function TheaterUpdate() {
       <p>Edit this record below</p>
       <table>
         <tr>
-          <td>Theater ID</td>
-          <td>Theater Name</td>
-          <td># of Seats</td>
+          <th>Theater ID</th>
+          <th>Theater Name</th>
+          <th># of Seats</th>
         </tr>
         <button>
           <a href="./Theater">Update</a>
+        </button>
+
+        <button>
+          <a href="./Theater">Cancel</a>
         </button>
 
       </table>

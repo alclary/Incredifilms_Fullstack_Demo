@@ -7,14 +7,18 @@ export default function MovieUpdate() {
 
       <table>
         <tr>
-          <td>Movie ID</td>
-          <td>Movie Name</td>
-          <td>Runtime (Mins)</td>
-          <td>MPA Rating</td>
-          <td>Year</td>
+          <th>Movie ID</th>
+          <th>Movie Name</th>
+          <th>Runtime (Mins)</th>
+          <th>MPA Rating</th>
+          <th>Year</th>
         </tr>
         <button>
           <a href="./Movie">Update</a>
+        </button>
+
+        <button>
+          <a href="./Movie">Cancel</a>
         </button>
 
       </table>

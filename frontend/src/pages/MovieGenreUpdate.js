@@ -5,7 +5,6 @@ export default function MovieGenreUpdate() {
     <form>
       <label>
         Update a movie-genre relationship:
-        <input type="text" required />
       </label>
 
       <label>
@@ -33,7 +32,11 @@ export default function MovieGenreUpdate() {
           <option>Independent</option>
         </select>
 
-        <button>Update</button>
+        <button><a href="./MovieGenre">Update</a></button>
+
+        <button>
+          <a href="./MovieGenre">Cancel</a>
+        </button>
       </label>
     </form>
   );

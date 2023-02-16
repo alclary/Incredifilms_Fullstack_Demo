@@ -6,13 +6,17 @@ export default function ShowtimeUpdate() {
       <p>Edit this record below</p>
       <table>
         <tr>
-          <td>Showtime ID</td>
-          <td>Showtime Date & Time</td>
-          <td>Movie ID</td>
-          <td>Theater ID</td>
+          <th>Showtime ID</th>
+          <th>Showtime Date & Time</th>
+          <th>Movie ID</th>
+          <th>Theater ID</th>
         </tr>
         <button>
           <a href="./Showtime">Update</a>
+        </button>
+
+        <button>
+          <a href="./Showtime">Cancel</a>
         </button>
       </table>
     </div>

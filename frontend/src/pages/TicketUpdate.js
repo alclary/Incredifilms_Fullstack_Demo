@@ -6,11 +6,11 @@ export default function TicketUpdate() {
       <p>Edit this record below</p>
       <table>
         <tr>
-          <td>Ticket ID</td>
-          <td>Customer ID</td>
-          <td>Showtime ID</td>
-          <td>Price</td>
-          <td>Payment Method</td>
+          <th>Ticket ID</th>
+          <th>Customer ID</th>
+          <th>Showtime ID</th>
+          <th>Price</th>
+          <th>Payment Method</th>
         </tr>
         <button>
           <a href="./Ticket">Confirm</a>

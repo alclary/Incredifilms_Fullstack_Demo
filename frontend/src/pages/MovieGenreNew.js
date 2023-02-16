@@ -8,7 +8,6 @@ export const MovieGenreNew = () => {
     <form>
       <label>
         Add a new movie-genre:
-        <input type="text" required />
       </label>
 
       <label>

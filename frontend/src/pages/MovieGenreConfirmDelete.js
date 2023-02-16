@@ -32,7 +32,12 @@ export default function MovieGenreConfirmDelete() {
           <option>Independent</option>
         </select>
 
-        <button>Delete</button>
+        <button>
+          <a href="./Genre">Confirm</a>
+        </button>
+        <button>
+          <a href="./Genre">Cancel</a>
+        </button>
       </label>
     </form>
   );
