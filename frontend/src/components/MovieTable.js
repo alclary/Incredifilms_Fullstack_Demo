@@ -31,12 +31,8 @@ export default function MovieTable({ movies, onDelete, onEdit }) {
           <td className="">169</td>
           <td className="">PG-13</td>
           <td className="">2014</td>
-          <td className="">
-            <a href="">edit</a>
-          </td>
-          <td className="">
-            <a href="">del</a>
-          </td>
+          <td className=""><a href="./MovieUpdate">edit</a></td>
+          <td className=""><a href="./MovieConfirmDelete">del</a></td>
         </tr>
         <tr>
           <td className="">3</td>
@@ -44,12 +40,8 @@ export default function MovieTable({ movies, onDelete, onEdit }) {
           <td className="">122</td>
           <td className="">R</td>
           <td className="">2001</td>
-          <td className="">
-            <a href="">edit</a>
-          </td>
-          <td className="">
-            <a href="">del</a>
-          </td>
+          <td className=""><a href="./MovieUpdate">edit</a></td>
+          <td className=""><a href="./MovieConfirmDelete">del</a></td>
         </tr>
         <tr>
           <td className="">4</td>
@@ -57,12 +49,8 @@ export default function MovieTable({ movies, onDelete, onEdit }) {
           <td className="">146</td>
           <td className="">R</td>
           <td className="">1980</td>
-          <td className="">
-            <a href="">edit</a>
-          </td>
-          <td className="">
-            <a href="">del</a>
-          </td>
+          <td className=""><a href="./MovieUpdate">edit</a></td>
+          <td className=""><a href="./MovieConfirmDelete">del</a></td>
         </tr>
         <tr>
           <td className="">5</td>
@@ -70,12 +58,8 @@ export default function MovieTable({ movies, onDelete, onEdit }) {
           <td className="">139</td>
           <td className="">R</td>
           <td className="">2022</td>
-          <td className="">
-            <a href="">edit</a>
-          </td>
-          <td className="">
-            <a href="">del</a>
-          </td>
+          <td className=""><a href="./MovieUpdate">edit</a></td>
+          <td className=""><a href="./MovieConfirmDelete">del</a></td>
         </tr>
       </tbody>
       <tfoot></tfoot>

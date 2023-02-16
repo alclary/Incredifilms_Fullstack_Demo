@@ -22,12 +22,8 @@ export default function TicketTable({ tickets, onDelete, onEdit }) {
           <td className="">5</td>
           <td className="">9.00</td>
           <td className="">CREDIT</td>
-          <td className="">
-            <a href="">edit</a>
-          </td>
-          <td className="">
-            <a href="">del</a>
-          </td>
+          <td className=""><a href="./TicketUpdate">edit</a></td>
+          <td className=""><a href="./TicketConfirmDelete">del</a></td>
         </tr>
         <tr>
           <td className="">2</td>
@@ -35,12 +31,8 @@ export default function TicketTable({ tickets, onDelete, onEdit }) {
           <td className="">6</td>
           <td className="">5.00</td>
           <td className="">CREDIT</td>
-          <td className="">
-            <a href="">edit</a>
-          </td>
-          <td className="">
-            <a href="">del</a>
-          </td>
+          <td className=""><a href="./TicketUpdate">edit</a></td>
+          <td className=""><a href="./TicketConfirmDelete">del</a></td>
         </tr>
         <tr>
           <td className="">3</td>
@@ -48,12 +40,8 @@ export default function TicketTable({ tickets, onDelete, onEdit }) {
           <td className="">1</td>
           <td className="">9.00</td>
           <td className="">CASH</td>
-          <td className="">
-            <a href="">edit</a>
-          </td>
-          <td className="">
-            <a href="">del</a>
-          </td>
+          <td className=""><a href="./TicketUpdate">edit</a></td>
+          <td className=""><a href="./TicketConfirmDelete">del</a></td>
         </tr>
         <tr>
           <td className="">4</td>
@@ -61,12 +49,8 @@ export default function TicketTable({ tickets, onDelete, onEdit }) {
           <td className="">1</td>
           <td className="">9.00</td>
           <td className="">DEBIT</td>
-          <td className="">
-            <a href="">edit</a>
-          </td>
-          <td className="">
-            <a href="">del</a>
-          </td>
+          <td className=""><a href="./TicketUpdate">edit</a></td>
+          <td className=""><a href="./TicketConfirmDelete">del</a></td>
         </tr>
         <tr>
           <td className="">5</td>
@@ -74,12 +58,8 @@ export default function TicketTable({ tickets, onDelete, onEdit }) {
           <td className="">2</td>
           <td className="">9.00</td>
           <td className="">CREDIT</td>
-          <td className="">
-            <a href="">edit</a>
-          </td>
-          <td className="">
-            <a href="">del</a>
-          </td>
+          <td className=""><a href="./TicketUpdate">edit</a></td>
+          <td className=""><a href="./TicketConfirmDelete">del</a></td>
         </tr>
       </tbody>
       <tfoot></tfoot>

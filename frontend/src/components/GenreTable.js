@@ -17,50 +17,50 @@ export default function GenreTable({ genres, onDelete, onEdit }) {
           <td className="">1</td>
           <td className="">Documentary</td>
           <td className="">
-            <a href="">edit</a>
+            <a href="./GenreUpdate">edit</a>
           </td>
           <td className="">
-            <a href="">del</a>
+            <a href="./GenreConfirmDelete">del</a>
           </td>
         </tr>
         <tr>
           <td className="">2</td>
           <td className="">Kids</td>
           <td className="">
-            <a href="">edit</a>
+            <a href="./GenreUpdate">edit</a>
           </td>
           <td className="">
-            <a href="">del</a>
+            <a href="./GenreConfirmDelete">del</a>
           </td>
         </tr>
         <tr>
           <td className="">3</td>
           <td className="">Family</td>
           <td className="">
-            <a href="">edit</a>
+            <a href="./GenreUpdate">edit</a>
           </td>
           <td className="">
-            <a href="">del</a>
+            <a href="./GenreConfirmDelete">del</a>
           </td>
         </tr>
         <tr>
           <td className="">4</td>
           <td className="">Comedy</td>
           <td className="">
-            <a href="">edit</a>
+            <a href="./GenreUpdate">edit</a>
           </td>
           <td className="">
-            <a href="">del</a>
+            <a href="./GenreConfirmDelete">del</a>
           </td>
         </tr>
         <tr>
           <td className="">5</td>
           <td className="">Independent</td>
           <td className="">
-            <a href="">edit</a>
+            <a href="./GenreUpdate">edit</a>
           </td>
           <td className="">
-            <a href="">del</a>
+            <a href="./GenreConfirmDelete">del</a>
           </td>
         </tr>
       </tbody>

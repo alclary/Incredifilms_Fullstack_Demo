@@ -18,12 +18,8 @@ export default function TheaterTable({ theaters, onDelete, onEdit }) {
           <td className="">1</td>
           <td className="">IncrediFilms Rogers Park</td>
           <td className="">300</td>
-          <td className="">
-            <a href="">edit</a>
-          </td>
-          <td className="">
-            <a href="">del</a>
-          </td>
+          <td className=""><a href="./TheaterUpdate">edit</a></td>
+          <td className=""><a href="./TheaterConfirmDelete">del</a></td>
         </tr>
         <tr>
           <td className="">2</td>
@@ -40,34 +36,22 @@ export default function TheaterTable({ theaters, onDelete, onEdit }) {
           <td className="">3</td>
           <td className="">IncrediFilms Uptown</td>
           <td className="">300</td>
-          <td className="">
-            <a href="">edit</a>
-          </td>
-          <td className="">
-            <a href="">del</a>
-          </td>
+          <td className=""><a href="./TheaterUpdate">edit</a></td>
+          <td className=""><a href="./TheaterConfirmDelete">del</a></td>
         </tr>
         <tr>
           <td className="">4</td>
           <td className="">IncrediFilms Lincoln Square</td>
           <td className="">250</td>
-          <td className="">
-            <a href="">edit</a>
-          </td>
-          <td className="">
-            <a href="">del</a>
-          </td>
+          <td className=""><a href="./TheaterUpdate">edit</a></td>
+          <td className=""><a href="./TheaterConfirmDelete">del</a></td>
         </tr>
         <tr>
           <td className="">5</td>
           <td className="">IncrediFilms North Center</td>
           <td className="">250</td>
-          <td className="">
-            <a href="">edit</a>
-          </td>
-          <td className="">
-            <a href="">del</a>
-          </td>
+          <td className=""><a href="./TheaterUpdate">edit</a></td>
+          <td className=""><a href="./TheaterConfirmDelete">del</a></td>
         </tr>
       </tbody>
       <tfoot></tfoot>

@@ -34,9 +34,7 @@ export const TicketNew = () => {
         </form>
       </article>
 
-
       <a href="./Ticket">Return to all tickets</a>
-
     </>
   );
 };
