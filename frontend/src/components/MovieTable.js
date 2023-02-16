@@ -22,12 +22,8 @@ export default function MovieTable({ movies, onDelete, onEdit }) {
           <td className="">95</td>
           <td className="">PG</td>
           <td className="">1964</td>
-          <td className="">
-            <a href="">edit</a>
-          </td>
-          <td className="">
-            <a href="">del</a>
-          </td>
+          <td className=""><a href="./MovieUpdate">edit</a></td>
+          <td className=""><a href="./MovieConfirmDelete">del</a></td>
         </tr>
         <tr>
           <td className="">2</td>

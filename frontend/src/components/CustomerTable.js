@@ -24,7 +24,7 @@ export default function CustomerTable({ customers, onDelete, onEdit }) {
           <td className="">1977-06-02</td>
           <td className="">AJ.Styles@bmail.com</td>
           <td className=""><a href="./CustomerUpdate">edit</a></td>
-          <td className=""><a href="">del</a></td>
+          <td className=""><a href="./CustomerConfirmDelete">del</a></td>
         </tr>
         <tr>
         <td className="">2</td>
@@ -32,8 +32,8 @@ export default function CustomerTable({ customers, onDelete, onEdit }) {
           <td className="">Helmsley</td>
           <td className="">1976-09-24</td>
           <td className="">Stephanie.Helmsely@bmail.com</td>
-          <td className=""><a href="">edit</a></td>
-          <td className=""><a href="">del</a></td>
+          <td className=""><a href="./CustomerUpdate">edit</a></td>
+          <td className=""><a href="./CustomerConfirmDelete">del</a></td>
         </tr>
         <tr>
         <td className="">3</td>
@@ -41,8 +41,8 @@ export default function CustomerTable({ customers, onDelete, onEdit }) {
           <td className="">Bliss</td>
           <td className="">1991-08-09</td>
           <td className="">Alexa.Bliss@bmail.com</td>
-          <td className=""><a href="">edit</a></td>
-          <td className=""><a href="">del</a></td>
+          <td className=""><a href="./CustomerUpdate">edit</a></td>
+          <td className=""><a href="./CustomerConfirmDelete">del</a></td>
         </tr>
         <tr>
         <td className="">4</td>
@@ -50,8 +50,8 @@ export default function CustomerTable({ customers, onDelete, onEdit }) {
           <td className="">T</td>
           <td className="">1965-03-01</td>
           <td className="">NULL</td>
-          <td className=""><a href="">edit</a></td>
-          <td className=""><a href="">del</a></td>
+          <td className=""><a href="./CustomerUpdate">edit</a></td>
+          <td className=""><a href="./CustomerConfirmDelete">del</a></td>
         </tr>
         <tr>
         <td className="">5</td>
@@ -59,8 +59,8 @@ export default function CustomerTable({ customers, onDelete, onEdit }) {
           <td className="">Andrade</td>
           <td className="">1989-11-03</td>
           <td className="">Jenna.Andrade@bmail.com</td>
-          <td className=""><a href="">edit</a></td>
-          <td className=""><a href="">del</a></td>
+          <td className=""><a href="./CustomerUpdate">edit</a></td>
+          <td className=""><a href="./CustomerConfirmDelete">del</a></td>
         </tr>
 
       </tbody>

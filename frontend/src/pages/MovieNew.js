@@ -17,21 +17,14 @@ export const MovieNew = () => {
             Runtime (Mins):
             <input type="number" min="1" required />
           </label>
-
           <label>
-            MPA Rating --> dropdown menu
+            MPA Rating
             <input type="radio" id="" name="" value="PG-13" />
             <label>PG-13</label>
             <input type="radio" id="" name="" value="PG-13" />
             <label>PG</label>
             <input type="radio" id="" name="" value="PG-13" />
-            <label>NR</label>
-            <input type="radio" id="" name="" value="PG-13" />
-            <label>Other</label>
-            <input type="radio" id="" name="" value="PG-13" />
-            <label>Other-2</label>
-            <input type="radio" id="" name="" value="PG-13" />
-            <label>Other3</label>
+            <label>R</label>
           </label>
 
           <label>

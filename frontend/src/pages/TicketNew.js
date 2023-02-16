@@ -10,19 +10,23 @@ export const TicketNew = () => {
         <form>
           <label>
             Customer ID:
-            <input type="number" required />
+            <input type="number" min="0" required />
           </label>
           <label>
             Showtime ID:
-            <input type="number" required />
+            <input type="number" min="0" required />
           </label>
           <label>
             Price
-            <input type="number" required />
+            <input type="number" min="0" required />
           </label>
           <label>
             Payment method
-            <input type="email" />
+            <select>
+              <option>CASH</option>
+              <option>CREDIT</option>
+              <option>DEBIT</option>
+            </select>
           </label>
           <label>
             <input type="submit" />

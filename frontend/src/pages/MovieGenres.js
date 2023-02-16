@@ -6,7 +6,7 @@ export default function MovieGenres() {
     <div>
       <p>MovieGenres</p>
       <p>Needs capability to CREATE, RETRIEVE, UPDATE, DELETE</p>
-      <a href="./MovieGenreNew">New movie genre relationship to fixx</a>
+      <a href="./MovieGenreNew">New movie genre relationship</a>
 
       <MovieGenreTable />
     </div>

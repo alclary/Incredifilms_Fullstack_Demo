@@ -65,6 +65,64 @@ export default function App() {
               <Route exact path="/GenreNew" element={<GenreNew />} />
               <Route exact path="/TheaterNew" element={<TheaterNew />} />
               <Route exact path="/MovieNew" element={<MovieNew />} />
+              <Route exact path="/MovieGenreNew" element={<MovieGenreNew />} />
+
+              <Route exact path="/MovieUpdate" element={<MovieUpdate />} />
+              <Route
+                exact
+                path="/CustomerUpdate"
+                element={<CustomerUpdate />}
+              />
+              <Route exact path="/GenreUpdate" element={<GenreUpdate />} />
+              <Route
+                exact
+                path="/ShowtimeUpdate"
+                element={<ShowtimeUpdate />}
+              />
+              <Route exact path="/TicketUpdate" element={<TicketUpdate />} />
+              <Route exact path="/TheaterUpdate" element={<TheaterUpdate />} />
+              <Route
+                exact
+                path="/MovieGenreUpdate"
+                element={<MovieGenreUpdate />}
+              />
+
+              <Route
+                exact
+                path="CustomerConfirmDelete"
+                element={<CustomerConfirmDelete />}
+              />
+              <Route
+                exact
+                path="MovieConfirmDelete"
+                element={<MovieConfirmDelete />}
+              />
+              <Route
+                exact
+                path="GenreConfirmDelete"
+                element={<GenreConfirmDelete />}
+              />
+              <Route
+                exact
+                path="MovieGenreConfirmDelete"
+                element={<MovieGenreConfirmDelete />}
+              />
+              <Route
+                exact
+                path="TicketConfirmDelete"
+                element={<TicketConfirmDelete />}
+              />
+              <Route
+                exact
+                path="ShowtimeConfirmDelete"
+                element={<ShowtimeConfirmDelete />}
+              />
+              <Route
+                exact
+                path="TheaterConfirmDelete"
+                element={<TheaterConfirmDelete />}
+              />
+
               <Route exact path="*" element={<h1>Page not found</h1>} />
             </Routes>
           </Router>
