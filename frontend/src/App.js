@@ -47,7 +47,7 @@ export default function App() {
 
       <div className="main">
         <main>
-          <p>~~~~~~~~~~~~Dashboards~~~~~~~~~~~~</p>
+          <h1>IncrediFilms Admin Dashboards</h1>
           <Router>
             <Routes>
               <Route exact path="/" element={<HomePage />} />

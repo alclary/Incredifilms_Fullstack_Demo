@@ -1,5 +1,8 @@
 import React from "react";
 import MovieRow from "./MovieRow";
+import { MdEdit, MdDeleteForever } from 'react-icons/md';
+
+
 
 export default function MovieTable({ movies, onDelete, onEdit }) {
   return (
@@ -11,8 +14,8 @@ export default function MovieTable({ movies, onDelete, onEdit }) {
           <th className="">Runtime (Mins)</th>
           <th className="">MPA Rating</th>
           <th className="">Year</th>
-          <th className="">edit</th>
-          <th className="">del</th>
+          <th className="">Edit Record</th>
+          <th className="">Delete Record</th>
         </tr>
       </thead>
       <tbody>
@@ -22,8 +25,8 @@ export default function MovieTable({ movies, onDelete, onEdit }) {
           <td className="">95</td>
           <td className="">PG</td>
           <td className="">1964</td>
-          <td className=""><a href="./MovieUpdate">edit</a></td>
-          <td className=""><a href="./MovieConfirmDelete">del</a></td>
+          <td className=""><a href="./MovieUpdate" class="icons"><MdEdit/></a></td>
+          <td className=""><a href="./MovieConfirmDelete" class="icons"><MdDeleteForever/></a></td>
         </tr>
         <tr>
           <td className="">2</td>
@@ -31,8 +34,8 @@ export default function MovieTable({ movies, onDelete, onEdit }) {
           <td className="">169</td>
           <td className="">PG-13</td>
           <td className="">2014</td>
-          <td className=""><a href="./MovieUpdate">edit</a></td>
-          <td className=""><a href="./MovieConfirmDelete">del</a></td>
+          <td className=""><a href="./MovieUpdate" class="icons"><MdEdit/></a></td>
+          <td className=""><a href="./MovieConfirmDelete" class="icons"><MdDeleteForever/></a></td>
         </tr>
         <tr>
           <td className="">3</td>
@@ -40,8 +43,8 @@ export default function MovieTable({ movies, onDelete, onEdit }) {
           <td className="">122</td>
           <td className="">R</td>
           <td className="">2001</td>
-          <td className=""><a href="./MovieUpdate">edit</a></td>
-          <td className=""><a href="./MovieConfirmDelete">del</a></td>
+          <td className=""><a href="./MovieUpdate" class="icons"><MdEdit/></a></td>
+          <td className=""><a href="./MovieConfirmDelete" class="icons"><MdDeleteForever/></a></td>
         </tr>
         <tr>
           <td className="">4</td>
@@ -49,8 +52,8 @@ export default function MovieTable({ movies, onDelete, onEdit }) {
           <td className="">146</td>
           <td className="">R</td>
           <td className="">1980</td>
-          <td className=""><a href="./MovieUpdate">edit</a></td>
-          <td className=""><a href="./MovieConfirmDelete">del</a></td>
+          <td className=""><a href="./MovieUpdate" class="icons"><MdEdit/></a></td>
+          <td className=""><a href="./MovieConfirmDelete" class="icons"><MdDeleteForever/></a></td>
         </tr>
         <tr>
           <td className="">5</td>
@@ -58,8 +61,8 @@ export default function MovieTable({ movies, onDelete, onEdit }) {
           <td className="">139</td>
           <td className="">R</td>
           <td className="">2022</td>
-          <td className=""><a href="./MovieUpdate">edit</a></td>
-          <td className=""><a href="./MovieConfirmDelete">del</a></td>
+          <td className=""><a href="./MovieUpdate" class="icons"><MdEdit/></a></td>
+          <td className=""><a href="./MovieConfirmDelete" class="icons"><MdDeleteForever/></a></td>
         </tr>
       </tbody>
       <tfoot></tfoot>
