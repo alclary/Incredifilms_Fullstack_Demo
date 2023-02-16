@@ -5,7 +5,7 @@ import GenreNew from "./GenreNew";
 export default function Genres() {
   return (
     <div>
-      <p>Genre</p>
+      <p>Genres</p>
       <p>Needs capability to CREATE, RETRIEVE, UPDATE, DELETE</p>
       <a href="./GenreNew">New genre</a>
       <GenreTable />

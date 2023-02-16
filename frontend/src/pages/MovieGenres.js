@@ -1,13 +1,13 @@
 import React from "react";
 import MovieGenreTable from "../components/MovieGenreTable";
-// import GenreNew from "./GenreNew";
 
 export default function MovieGenres() {
   return (
     <div>
-      <p>Movie Genres</p>
+      <p>MovieGenres</p>
       <p>Needs capability to CREATE, RETRIEVE, UPDATE, DELETE</p>
-      {/* <a href="./GenreNew">New genre</a> */}
+      <a href="./MovieGenreNew">New movie genre relationship to fixx</a>
+
       <MovieGenreTable />
     </div>
   );

@@ -23,7 +23,7 @@ export default function CustomerTable({ customers, onDelete, onEdit }) {
           <td className="">Styles</td>
           <td className="">1977-06-02</td>
           <td className="">AJ.Styles@bmail.com</td>
-          <td className=""><a href="">edit</a></td>
+          <td className=""><a href="./CustomerUpdate">edit</a></td>
           <td className=""><a href="">del</a></td>
         </tr>
         <tr>

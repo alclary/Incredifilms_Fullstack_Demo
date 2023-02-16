@@ -50,4 +50,6 @@ td {
   width: 100%;
   border: 2px solid;
   border-collapse: collapse;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }

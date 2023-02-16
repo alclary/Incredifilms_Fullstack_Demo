@@ -4,6 +4,8 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
+import Sidebar from "./components/Sidebar";
+
 import Customers from "./pages/Customers";
 import Genres from "./pages/Genres";
 import Movies from "./pages/Movies";
@@ -11,7 +13,6 @@ import Showtimes from "./pages/Showtimes";
 import Theaters from "./pages/Theaters";
 import MovieGenres from "./pages/MovieGenres";
 
-import Sidebar from "./components/Sidebar";
 import Tickets from "./pages/Tickets";
 import CustomerNew from "./pages/CustomerNew";
 import MovieNew from "./pages/MovieNew";
@@ -19,6 +20,23 @@ import TheaterNew from "./pages/TheaterNew";
 import GenreNew from "./pages/GenreNew";
 import ShowtimeNew from "./pages/ShowtimeNew";
 import TicketNew from "./pages/TicketNew";
+import MovieGenreNew from "./pages/MovieGenreNew";
+
+import CustomerConfirmDelete from "./pages/CustomerConfirmDelete";
+import GenreConfirmDelete from "./pages/GenreConfirmDelete";
+import MovieConfirmDelete from "./pages/MovieConfirmDelete";
+import MovieGenreConfirmDelete from "./pages/MovieGenreConfirmDelete";
+import ShowtimeConfirmDelete from "./pages/ShowtimeConfirmDelete";
+import TheaterConfirmDelete from "./pages/TheaterConfirmDelete";
+import TicketConfirmDelete from "./pages/TicketConfirmDelete";
+
+import CustomerUpdate from "./pages/CustomerUpdate";
+import GenreUpdate from "./pages/GenreUpdate";
+import MovieUpdate from "./pages/MovieUpdate";
+import MovieGenreUpdate from "./pages/MovieGenreUpdate";
+import ShowtimeUpdate from "./pages/ShowtimeUpdate";
+import TheaterUpdate from "./pages/TheaterUpdate";
+import TicketUpdate from "./pages/TicketUpdate";
 
 export default function App() {
   return (
