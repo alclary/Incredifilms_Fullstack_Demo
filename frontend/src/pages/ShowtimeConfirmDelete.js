@@ -8,8 +8,8 @@ export default function ShowtimeConfirmDelete() {
         <tr>
           <td>Showtime ID</td>
           <td>Showtime Date & Time</td>
-          <td>Movie ID</td>
-          <td>Theater ID</td>
+          <td>Movie Name</td>
+          <td>Theater Name</td>
         </tr>
         <button>
           <a href="./Showtime">Confirm</a>

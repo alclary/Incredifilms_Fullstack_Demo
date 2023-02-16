@@ -1,6 +1,10 @@
 /* 
 LET'S PICK COOLLLLLLLLLLL COLORSSSSSSSSSSS EVENTUALLY
 
+RIGHT NOW:
+60% #FBF5F3
+30% #2D2845
+1-% #3E885B;
 
 
  */
@@ -13,10 +17,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background-color: #FcF5F3 ;
-  color: #2D2845;
+  background-color: #fcf5f3;
+  color: #2d2845;
 
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
 }
 
 code {
@@ -30,18 +34,19 @@ code {
   z-index: 1;
   top: 20px;
   left: 10px;
-  background: #2D2845;
+  background: #2d2845;
   overflow-x: hidden;
   padding: 8px 0;
   height: 100%;
   text-align: left;
+  border-radius: 5px;
 }
 
 .sidebar a {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 25px;
-  color: #FcF5F3;
+  color: #fcf5f3;
   display: block;
 }
 
@@ -55,48 +60,48 @@ code {
   padding: 0px 10px;
 }
 
+.table {
+  border-radius: 5px;
+}
+
 .table,
 tr,
 th,
 td {
   table-layout: fixed;
   width: 100%;
-  
+
   border: 0 solid;
   border-collapse: collapse;
   text-overflow: ellipsis;
   overflow: hidden;
 }
 
-
 table tr:nth-child(2n + 1) {
-  background: #2D284515;
+  background: #2d284515;
 }
 
 table tr:nth-child(2n) {
 }
 
 table th {
-  background-color: #2D2845;
-  color:#FcF5F3
+  background-color: #2d2845;
+  color: #fcf5f3;
 }
 
-
 h3 {
-  color:#3e885b
+  color: #3e885b;
 }
 
 .newPlus {
-float: right;
-text-align: right;
-text-decoration: none;
-color:#3e885b;
-font-weight: bold;
-padding-right: 3px;
+  float: right;
+  text-align: right;
+  text-decoration: none;
+  color: #3e885b;
+  font-weight: bold;
+  padding-right: 3px;
 }
 
 .icons {
-  color:#2D2845
-
+  color: #2d2845;
 }
-

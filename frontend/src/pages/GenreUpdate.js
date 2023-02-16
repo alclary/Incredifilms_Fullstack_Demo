@@ -9,14 +9,28 @@ export default function GenreUpdate() {
           <th>Genre ID</th>
           <th>Genre Name</th>
         </tr>
-        <button>
-          <a href="./Genre">Update</a>
-        </button>
+        <tr>
+          <td>
+            <select>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
 
-        <button>
-          <a href="./Genre">Cancel</a>
-        </button>
+            </select>
+          </td>
+          <td><input type="text" value="Documentary"></input></td>
+        </tr>
       </table>
+
+      <button>
+        <a href="./Genre">Update</a>
+      </button>
+
+      <button>
+        <a href="./Genre">Cancel</a>
+      </button>
     </div>
   );
 }
