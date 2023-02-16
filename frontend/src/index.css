@@ -1,3 +1,13 @@
+/* 
+LET'S PICK COOLLLLLLLLLLL COLORSSSSSSSSSSS EVENTUALLY
+
+
+
+ */
+
+
+
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -52,4 +62,9 @@ td {
   border-collapse: collapse;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+
+table tr:nth-child(2n+1) {
+    background: #e9fae375;
 }

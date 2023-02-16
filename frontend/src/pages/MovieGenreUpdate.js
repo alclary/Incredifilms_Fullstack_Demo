@@ -32,6 +32,8 @@ export default function MovieGenreUpdate() {
           <option>Comedy</option>
           <option>Independent</option>
         </select>
+
+        <button>Update</button>
       </label>
     </form>
   );
