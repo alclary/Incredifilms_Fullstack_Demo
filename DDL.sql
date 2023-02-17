@@ -79,7 +79,7 @@ CREATE TABLE `Movie` (
   `mpa_rating` varchar(5) NOT NULL,
   `movie_year` year NOT NULL,
    PRIMARY KEY (movie_id),
-   CONSTRAINT chk_map_rating CHECK (mpa_rating in ('G','PG','PG-13','R','NR','NC-17'))
+   CONSTRAINT chk_movie_mpa_rating CHECK (mpa_rating in ('G','PG','PG-13','R','NR','NC-17'))
 );
 
 -- Populate Movie Table
@@ -117,8 +117,8 @@ CREATE TABLE `Movie_Genre` (
   `movie_id` int NOT NULL,
   `genre_id` int NOT NULL,
   PRIMARY KEY (movie_genre_id),
-  CONSTRAINT fk_movie_id FOREIGN KEY (movie_id) REFERENCES Movie(movie_id) ON DELETE CASCADE,
-  CONSTRAINT fk_genre_id FOREIGN KEY (genre_id) REFERENCES Genre(genre_id) ON DELETE CASCADE
+  CONSTRAINT fk_movie_genre_movie_id FOREIGN KEY (movie_id) REFERENCES Movie(movie_id) ON DELETE CASCADE,
+  CONSTRAINT fk_movie_genre_genre_id FOREIGN KEY (genre_id) REFERENCES Genre(genre_id) ON DELETE CASCADE
 );
 
 -- Populate Movie_Genre Table
@@ -154,8 +154,8 @@ CREATE TABLE `Showtime` (
   `movie_id` int NOT NULL,
   `theater_id` int NOT NULL,
   PRIMARY KEY (showtime_id),
-  CONSTRAINT fk_movie_id FOREIGN KEY (movie_id) REFERENCES Movie(movie_id) ON DELETE CASCADE,
-  CONSTRAINT fk_theater_id FOREIGN KEY (theater_id) REFERENCES Theater(theater_id) ON DELETE CASCADE
+  CONSTRAINT fk_showtime_movie_id FOREIGN KEY (movie_id) REFERENCES Movie(movie_id),
+  CONSTRAINT fk_showtime_theater_id FOREIGN KEY (theater_id) REFERENCES Theater(theater_id)
 );
 
 -- Populate Showtime Table
@@ -178,9 +178,9 @@ CREATE TABLE `Ticket` (
   `price` decimal(5,2) NOT NULL,
   `payment_method` varchar(45),
   PRIMARY KEY (ticket_id),
-  CONSTRAINT fk_customer_id FOREIGN KEY (customer_id) REFERENCES Customer(customer_id) ON DELETE SET NULL,
-  CONSTRAINT fk_showtime_id FOREIGN KEY (showtime_id) REFERENCES Showtime(showtime_id) ON DELETE SET NULL,
-  CONSTRAINT chk_payment_method CHECK (payment_method in ('CASH', 'CREDIT', 'DEBIT', NULL))
+  CONSTRAINT fk_ticket_customer_id FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
+  CONSTRAINT fk_ticket_showtime_id FOREIGN KEY (showtime_id) REFERENCES Showtime(showtime_id),
+  CONSTRAINT chk_ticket_payment_method CHECK (payment_method in ('CASH', 'CREDIT', 'DEBIT', NULL))
 );
  
 -- Populate Ticket Table
