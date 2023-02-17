@@ -151,6 +151,10 @@ UPDATE Theater
 SET theater_name = :theaterNameInput, no_of_seats = :noOfSeatsInput
 WHERE theater_id = :theaterIdFromListOrControlledInput
 
+-- Update a ticket
+UPDATE Ticket
+SET 
+
 -- Update a showtime date/time ONLY
 UPDATE Showtime
 SET showtime_date_time = :dateTimeInput
