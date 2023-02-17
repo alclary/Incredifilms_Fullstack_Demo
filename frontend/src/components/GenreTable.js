@@ -1,5 +1,7 @@
 import React from "react";
 import GenreRow from "./GenreRow";
+import { MdEdit, MdDeleteForever } from 'react-icons/md';
+
 
 export default function GenreTable({ genres, onDelete, onEdit }) {
   return (
@@ -8,8 +10,8 @@ export default function GenreTable({ genres, onDelete, onEdit }) {
         <tr>
           <th className="">Genre ID</th>
           <th className="">Genre Name</th>
-          <th className="">edit</th>
-          <th className="">del</th>
+          <th className="">Edit Record</th>
+          <th className="">Delete Record</th>
         </tr>
       </thead>
       <tbody>
@@ -17,50 +19,50 @@ export default function GenreTable({ genres, onDelete, onEdit }) {
           <td className="">1</td>
           <td className="">Documentary</td>
           <td className="">
-            <a href="">edit</a>
+            <a href="./GenreUpdate"  class="icons"><MdEdit/></a>
           </td>
           <td className="">
-            <a href="">del</a>
+            <a href="./GenreConfirmDelete" class="icons"><MdDeleteForever/></a>
           </td>
         </tr>
         <tr>
           <td className="">2</td>
           <td className="">Kids</td>
           <td className="">
-            <a href="">edit</a>
+            <a href="./GenreUpdate" class="icons"><MdEdit/></a>
           </td>
           <td className="">
-            <a href="">del</a>
+            <a href="./GenreConfirmDelete" class="icons"><MdDeleteForever/></a>
           </td>
         </tr>
         <tr>
           <td className="">3</td>
           <td className="">Family</td>
           <td className="">
-            <a href="">edit</a>
+            <a href="./GenreUpdate" class="icons"><MdEdit/></a>
           </td>
           <td className="">
-            <a href="">del</a>
+            <a href="./GenreConfirmDelete" class="icons"><MdDeleteForever/></a>
           </td>
         </tr>
         <tr>
           <td className="">4</td>
           <td className="">Comedy</td>
           <td className="">
-            <a href="">edit</a>
+            <a href="./GenreUpdate" class="icons"><MdEdit/></a>
           </td>
           <td className="">
-            <a href="">del</a>
+            <a href="./GenreConfirmDelete" class="icons"><MdDeleteForever/></a>
           </td>
         </tr>
         <tr>
           <td className="">5</td>
           <td className="">Independent</td>
           <td className="">
-            <a href="">edit</a>
+            <a href="./GenreUpdate" class="icons"><MdEdit/></a>
           </td>
           <td className="">
-            <a href="">del</a>
+            <a href="./GenreConfirmDelete" class="icons"><MdDeleteForever/></a>
           </td>
         </tr>
       </tbody>

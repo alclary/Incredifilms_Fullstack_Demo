@@ -1,10 +1,26 @@
+/* 
+LET'S PICK COOLLLLLLLLLLL COLORSSSSSSSSSSS EVENTUALLY
+
+RIGHT NOW:
+60% #FBF5F3
+30% #2D2845
+1-% #3E885B;
+
+
+ */
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+  /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-color: #fcf5f3;
+  color: #2d2845;
+
+  font-family: "Poppins", sans-serif;
 }
 
 code {
@@ -13,33 +29,39 @@ code {
 }
 
 .sidebar {
-  width: 180px;
+  width: 185px;
   position: fixed;
   z-index: 1;
   top: 20px;
   left: 10px;
-  background: #eee;
+  background: #2d2845;
   overflow-x: hidden;
   padding: 8px 0;
   height: 100%;
+  text-align: left;
+  border-radius: 5px;
 }
 
 .sidebar a {
   padding: 6px 8px 6px 16px;
   text-decoration: none;
   font-size: 25px;
-  color: #2196f3;
+  color: #fcf5f3;
   display: block;
 }
 
 .sidebar a:hover {
-  color: #064579;
+  color: #3e885b;
 }
 
 .main {
-  margin-left: 190px; /* Same width as the sidebar + left position in px */
-  font-size: 28px; /* Increased text to enable scrolling */
+  margin-left: 195px; /* Same width as the sidebar + left position in px */
+  font-size: 24px; /* Increased text to enable scrolling */
   padding: 0px 10px;
+}
+
+.table {
+  border-radius: 5px;
 }
 
 .table,
@@ -48,6 +70,38 @@ th,
 td {
   table-layout: fixed;
   width: 100%;
-  border: 2px solid;
+
+  border: 0 solid;
   border-collapse: collapse;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+
+table tr:nth-child(2n + 1) {
+  background: #2d284515;
+}
+
+table tr:nth-child(2n) {
+}
+
+table th {
+  background-color: #2d2845;
+  color: #fcf5f3;
+}
+
+h3 {
+  color: #3e885b;
+}
+
+.newPlus {
+  float: right;
+  text-align: right;
+  text-decoration: none;
+  color: #3e885b;
+  font-weight: bold;
+  padding-right: 3px;
+}
+
+.icons {
+  color: #2d2845;
 }

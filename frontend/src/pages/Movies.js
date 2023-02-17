@@ -5,9 +5,9 @@ import MovieNew from "./MovieNew";
 export default function Movies() {
   return (
     <div>
-      <p>Movies</p>
+      <h3>Movies</h3>
       <p>Needs capability to CREATE, RETRIEVE, UPDATE, DELETE</p>
-      <a href="./MovieNew">New movie</a>
+      <a href="./MovieNew" class="newPlus">Add new movie</a>
       <MovieTable />
 
 

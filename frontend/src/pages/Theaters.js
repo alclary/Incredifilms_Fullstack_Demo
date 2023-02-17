@@ -5,9 +5,9 @@ import TheaterNew from "./TheaterNew";
 export default function Theaters() {
   return (
     <div>
-      <p>Theaters</p>
+      <h3>Theaters</h3>
       <p>Needs capability to CREATE, RETRIEVE, UPDATE, DELETE</p>
-      <a href="./TheaterNew">New theater</a>
+      <a href="./TheaterNew" class="newPlus"> Add new theater</a>
       <TheaterTable />
 
 

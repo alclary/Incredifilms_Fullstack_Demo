@@ -9,7 +9,7 @@ import Schema from "../components/Schema";
 function HomePage({ entities }) {
   return (
     <div>
-        <h2>Welcomeeeeeeeeeeee</h2>
+        <h3>Welcomeeeeeeeeeeee</h3>
         <Description/>
         <EntityTable/> 
         <ERD/>

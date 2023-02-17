@@ -5,11 +5,12 @@ import TicketNew from "./TicketNew";
 export default function Tickets() {
   return (
     <div>
-      <p>Tickets</p>
+      <h3>Tickets</h3>
       <p>Needs capability to CREATE, RETRIEVE, UPDATE, DELETE</p>
-      <a href="./TicketNew">New ticket</a>
+      <a href="./TicketNew" class="newPlus">
+        Add new ticket
+      </a>
       <TicketTable />
-
     </div>
   );
 }

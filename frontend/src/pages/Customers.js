@@ -5,9 +5,9 @@ import CustomerNew from "./CustomerNew";
 export default function Customers() {
   return (
     <div>
-      <p>Customer</p>
+      <h3>Customers</h3>
       <p>Needs capability to CREATE, RETRIEVE, UPDATE, DELETE</p>
-      <a href="./CustomerNew">New customer</a>
+      <a href="./CustomerNew" class="newPlus">Add new customer</a>
       <CustomerTable />
 
     </div>
