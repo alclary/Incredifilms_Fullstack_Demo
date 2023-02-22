@@ -7,11 +7,13 @@ export const GenreNew = () => {
       <article>
         <h2>New genre form</h2>
         <p>New genre alert</p>
-        <form>
+        <form className="form">
           <label>
-            Genre Name:
+            Genre Name
             <input type="text" required />
           </label>
+          <br/>
+
           <label>
             <input type="submit" />
           </label>

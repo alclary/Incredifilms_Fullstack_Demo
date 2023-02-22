@@ -1,43 +1,56 @@
 import React, { useState } from "react";
+import { MdLocalActivity } from "react-icons/md";
 import { useHistory } from "react-router-dom";
-
 
 export const MovieGenreNew = () => {
   return (
     <>
-    <form>
-      <label>
-        Add a new movie-genre:
-      </label>
+      <p>Assign a Movie to its Genre(s)</p>
 
-      <label>
-        Select a Movie:
-        <select>
-          <option>
-            Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb
-          </option>
-          <option>Interstellar</option>
-          <option>Amélie</option>
-          <option>The Shining</option>
-          <option>Everything Everywhere All at Once</option>
-        </select>
-      </label>
+      <form className="form">
+        <label>
+          Select a Movie:
+          <select>
+            <option>
+              Dr. Strangelove or: How I Learned to Stop Worrying and Love the
+              Bomb
+            </option>
+            <option>Interstellar</option>
+            <option>Amélie</option>
+            <option>The Shining</option>
+            <option>Everything Everywhere All at Once</option>
+          </select>
+        </label>
+        <br />
+        <label>
+          Genre Name
+          <br />
+          <input className="" type="checkbox" value="" name="" id="genreID1" />
+          <label for="genreID1">Documentary</label>
+          <br/>
+          <input className="" type="checkbox" value="" name="" id="genreID1" />
+          <label for="genreID1">Kids</label>
+          <br/>
 
-      <label>
-        Genre Name
-        <select>
-          <option>Documentary</option>
-          <option>Kids</option>
-          <option>Family</option>
-          <option>Comedy</option>
-          <option>Independent</option>
-        </select>
-      </label>
-    </form>
+          <input className="" type="checkbox" value="" name="" id="genreID1" />
+          <label for="genreID1">Family</label>
+          <br/>
 
-<a href="./MovieGenre">Return to all movie genres</a>
-</>
+          <input className="" type="checkbox" value="" name="" id="genreID1" />
+          <label for="genreID1">Comedy</label>
+          <br/>
+          <input className="" type="checkbox" value="" name="" id="genreID1" />
+          <label for="genreID1">Independent</label>
+        </label>
+        <br />
+        <label>
+          <input type="submit" />
+        </label>
+      </form>
+
+      <a href="./MovieGenre">Return to all movie genres</a>
+    </>
   );
-}
+};
 
 export default MovieGenreNew;

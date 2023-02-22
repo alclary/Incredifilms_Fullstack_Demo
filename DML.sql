@@ -224,7 +224,7 @@ DELETE FROM Ticket WHERE ticket_id = :ticketIdFromListOrControlledInput
 
 -- JOINS to make FK user friendly ---------------------------------------
 
--- For Customer UI: Display Ticket ID, Customer name (first + last name), Movie Name, Theater Name, Price, Payment Method
+-- For Ticket UI: Display Ticket ID, Customer name (first + last name), Movie Name, Theater Name, Price, Payment Method
 
 SELECT Ticket.ticket_id as "Ticket ID", 
 CONCAT(Customer.first_name, ' ', Customer.last_name) as "Customer Name",

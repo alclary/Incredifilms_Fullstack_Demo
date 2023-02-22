@@ -7,18 +7,23 @@ export const TheaterNew = () => {
       <article>
         <h2>New theater form</h2>
         <p>New theater alert</p>
-        <form>
+        <form className="form">
           <label>
-            Theater Name:
+            Theater Name
             <input type="text" required />
           </label>
+          <br/>
           <label>
-            Capacity:
+            Number of Seats
             <input type="number" min="0" required />
           </label>
+          <br/>
+
           <label>
             <input type="submit" />
           </label>
+                    <br/>
+
         </form>
       </article>
 

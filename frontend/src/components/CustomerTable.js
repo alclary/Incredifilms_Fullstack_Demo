@@ -8,8 +8,7 @@ export default function CustomerTable({ customers, onDelete, onEdit }) {
       <thead>
         <tr>
           <th className="">Customer ID</th>
-          <th className="">First Name</th>
-          <th className="">Last Name</th>
+          <th className="">Customer Name</th>
           <th className="">Date of Birth</th>
           <th className="">Email</th>
           <th className="">Edit Record</th>
