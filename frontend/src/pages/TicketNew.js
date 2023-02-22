@@ -5,7 +5,7 @@ export const TicketNew = () => {
   return (
     <>
       <article>
-        <h3>Add a new ticket below</h3>
+        <h3>Add a new ticket</h3>
         <form className="form">
           <label>
             Customer ID

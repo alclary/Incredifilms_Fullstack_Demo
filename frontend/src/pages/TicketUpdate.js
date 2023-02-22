@@ -3,7 +3,7 @@ import React from "react";
 export default function TicketUpdate() {
   return (
     <div>
-      <p>Edit this record below</p>
+      <p>Edit this ticket record below</p>
       <table>
         <tr>
           <th>Ticket ID</th>
@@ -25,19 +25,28 @@ export default function TicketUpdate() {
               <option>5</option>
             </select>
           </td>
-
+        <td className="">
           <select>
             <option>AJ Styles</option>
             <option>Stephanie Helmsley</option>
             <option>Booker T</option>
             <option>Alexa Bliss</option>
-            <option>5</option>
           </select>
+</td>
+<td className="">
 
-          <td className="">
-            <select>
+          <select>
               <option>1</option>
               <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+            </td>
+          <td className="">
+            <select>
+              <option>Bee Movie</option>
+              <option>Everything Everywhere All At Once</option>
               <option>3</option>
               <option>4</option>
               <option>5</option>
@@ -45,16 +54,7 @@ export default function TicketUpdate() {
           </td>
           <td className="">
             <select>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </td>
-          <td className="">
-            <select>
-              <option>1</option>
+              <option>IncrediFilms Rogers Park	</option>
               <option>2</option>
               <option>3</option>
               <option>4</option>

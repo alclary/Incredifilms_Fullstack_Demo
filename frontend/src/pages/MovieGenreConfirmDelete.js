@@ -2,9 +2,11 @@ import React from "react";
 
 export default function MovieGenreConfirmDelete() {
   return (
+    <>
+          <p>Are you sure you want to delete this movie genre relationship?</p>
+
     <form className="form">
       {/* this page needs updating */}
-      <p>Are you sure you want to delete this movie?</p>
       <label>
         Select a Movie
         <select>
@@ -39,5 +41,7 @@ export default function MovieGenreConfirmDelete() {
         </button>
       </label>
     </form>
+    </>
+
   );
 }

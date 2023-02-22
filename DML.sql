@@ -117,7 +117,8 @@ IN (
     
     JOIN Genre
     ON Genre.genre_id = Movie_Genre.genre_id
-    AND Genre.genre_name = "Kids"
+    AND (Genre.genre_name = "Kids" 
+    OR Genre.genre_name = "Family")
 )
 
 OR Movie.mpa_rating = "PG"

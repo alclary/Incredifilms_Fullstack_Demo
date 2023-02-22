@@ -3,7 +3,7 @@ import React from "react";
 export default function GenreUpdate() {
   return (
     <div>
-      <p>Edit this genre below</p>
+      <p>Edit this genre record below</p>
       <table>
         <tr>
           <th>Genre ID</th>
