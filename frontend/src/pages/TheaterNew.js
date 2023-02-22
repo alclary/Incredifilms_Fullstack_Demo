@@ -5,25 +5,23 @@ export const TheaterNew = () => {
   return (
     <>
       <article>
-        <h2>New theater form</h2>
-        <p>New theater alert</p>
+        <h3>Add a new theater</h3>
         <form className="form">
           <label>
             Theater Name
             <input type="text" required />
           </label>
-          <br/>
+          <br />
           <label>
             Number of Seats
             <input type="number" min="0" required />
           </label>
-          <br/>
+          <br />
 
           <label>
             <input type="submit" />
           </label>
-                    <br/>
-
+          <br />
         </form>
       </article>
 

@@ -3,7 +3,7 @@ import React from "react";
 export default function GenreConfirmDelete() {
   return (
     <div>
-      <p>Are you sure you want to delete this record?</p>
+      <p>Are you sure you want to delete this genre?</p>
       <table>
         <tr>
           <td>Genre ID</td>

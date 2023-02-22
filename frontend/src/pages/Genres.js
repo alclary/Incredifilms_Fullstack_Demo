@@ -7,8 +7,10 @@ export default function Genres() {
     <div>
       <h3>Genres</h3>
       <p>Create, Retrieve, Update or Delete a Genre</p>
-      <a href="./GenreNew" class="newPlus">Add new genre</a>
-      <input type="text" value="Search..." className="search" ></input>
+      <a href="./GenreNew" class="newPlus">
+        Add new genre
+      </a>
+      <input type="text" value="Search..." className="search"></input>
 
       <GenreTable />
     </div>

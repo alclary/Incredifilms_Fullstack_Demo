@@ -115,12 +115,11 @@ h3 {
   text-align: left;
 }
 
-.description{
+.description {
   text-align: left;
-
 }
 
 .search {
-float: left;
-margin-bottom: 0;
-background-color: ;}
+  float: left;
+  margin-bottom: 0;
+}

@@ -3,7 +3,7 @@ import React from "react";
 export default function TheaterConfirmDelete() {
   return (
     <div>
-      <p>Are you sure you want to delete this record?</p>
+      <p>Are you sure you want to delete this theater?</p>
       <table>
         <tr>
           <td>Theater ID</td>

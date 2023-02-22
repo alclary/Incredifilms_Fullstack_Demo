@@ -5,8 +5,7 @@ export const ShowtimeNew = () => {
   return (
     <>
       <article>
-        <h2>New showtime form</h2>
-        <p>New showtime alert</p>
+        <h3>Add a showtime</h3>
         <form className="form">
           <label>
             Date & Time

@@ -2,42 +2,51 @@ import React from "react";
 
 export default function MovieGenreUpdate() {
   return (
-    <form>
-      <label>
-        Update a movie-genre relationship:
-      </label>
+    <>
+      <p>Edit a movie genre relationship below</p>
+      <form className="form">
+        <label>
+          Select a Movie:
+          <select>
+            <option>None</option>
+            <option>
+              Dr. Strangelove or: How I Learned to Stop Worrying and Love the
+              Bomb
+            </option>
+            <option>Interstellar</option>
+            <option>Amélie</option>
+            <option>The Shining</option>
+            <option>Everything Everywhere All at Once</option>
+          </select>
+        </label>
+        <br />
+        <label>
+          Genre Name
+          <br />
+          <input className="" type="checkbox" value="" name="" id="genreID1" />
+          <label for="genreID1">Documentary</label>
+          <br />
+          <input className="" type="checkbox" value="" name="" id="genreID1" />
+          <label for="genreID1">Kids</label>
+          <br />
+          <input className="" type="checkbox" value="" name="" id="genreID1" />
+          <label for="genreID1">Family</label>
+          <br />
+          <input className="" type="checkbox" value="" name="" id="genreID1" />
+          <label for="genreID1">Comedy</label>
+          <br />
+          <input className="" type="checkbox" value="" name="" id="genreID1" />
+          <label for="genreID1">Independent</label>
+        </label>
+        <br />
 
-      <label>
-        Select a Movie:
-        <select>
-          <option>None</option>
-          <option>
-            Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb
-          </option>
-          <option>Interstellar</option>
-          <option>Amélie</option>
-          <option>The Shining</option>
-          <option>Everything Everywhere All at Once</option>
-        </select>
-      </label>
-
-      <label>
-        Genre Name
-        <select>
-        <option>None</option>
-          <option>Documentary</option>
-          <option>Kids</option>
-          <option>Family</option>
-          <option>Comedy</option>
-          <option>Independent</option>
-        </select>
-
-        <button><a href="./MovieGenre">Update</a></button>
-
+        <button>
+          <a href="./MovieGenre">Update</a>
+        </button>
         <button>
           <a href="./MovieGenre">Cancel</a>
         </button>
-      </label>
-    </form>
+      </form>
+    </>
   );
 }

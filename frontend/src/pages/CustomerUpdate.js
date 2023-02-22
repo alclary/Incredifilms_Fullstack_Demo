@@ -3,7 +3,7 @@ import React from "react";
 export default function CustomerUpdate() {
   return (
     <div>
-      <p>Edit this record below</p>
+      <p>Edit this record customer below</p>
       <table>
         <tr>
           <th>Customer ID</th>

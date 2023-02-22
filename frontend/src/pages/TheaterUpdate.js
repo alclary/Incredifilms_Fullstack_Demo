@@ -17,7 +17,6 @@ export default function TheaterUpdate() {
         <button>
           <a href="./Theater">Cancel</a>
         </button>
-
       </table>
     </div>
   );

@@ -3,7 +3,7 @@ import React from "react";
 export default function MovieConfirmDelete() {
   return (
     <div>
-      <p>Are you sure you want to delete this record?</p>
+      <p>Are you sure you want to delete this movie?</p>
       <table>
         <tr>
           <td>Movie ID</td>

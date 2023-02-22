@@ -5,24 +5,23 @@ export const TicketNew = () => {
   return (
     <>
       <article>
-        {/* <h2>Add a new ticket belowticket form</h2> */}
-        <p>Add a new ticket below</p>
+        <h3>Add a new ticket below</h3>
         <form className="form">
           <label>
             Customer ID
             <input type="number" min="0" required />
           </label>
-          <br/>
+          <br />
           <label>
             Showtime ID
             <input type="number" min="0" required />
           </label>
-          <br/>
+          <br />
           <label>
             Price
             <input type="number" min="0" required />
           </label>
-          <br/>
+          <br />
           <label>
             Payment method
             <select>
@@ -31,7 +30,7 @@ export const TicketNew = () => {
               <option>DEBIT</option>
             </select>
           </label>
-          <br/>
+          <br />
           <label>
             <input type="submit" />
           </label>

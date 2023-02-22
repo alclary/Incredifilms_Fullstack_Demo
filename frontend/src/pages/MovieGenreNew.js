@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 export const MovieGenreNew = () => {
   return (
     <>
-      <p>Assign a Movie to its Genre(s)</p>
+      <h3>Assign a Movie to its Genre(s)</h3>
 
       <form className="form">
         <label>
@@ -27,18 +27,16 @@ export const MovieGenreNew = () => {
           <br />
           <input className="" type="checkbox" value="" name="" id="genreID1" />
           <label for="genreID1">Documentary</label>
-          <br/>
+          <br />
           <input className="" type="checkbox" value="" name="" id="genreID1" />
           <label for="genreID1">Kids</label>
-          <br/>
-
+          <br />
           <input className="" type="checkbox" value="" name="" id="genreID1" />
           <label for="genreID1">Family</label>
-          <br/>
-
+          <br />
           <input className="" type="checkbox" value="" name="" id="genreID1" />
           <label for="genreID1">Comedy</label>
-          <br/>
+          <br />
           <input className="" type="checkbox" value="" name="" id="genreID1" />
           <label for="genreID1">Independent</label>
         </label>

@@ -10,7 +10,7 @@ export default function Tickets() {
       <a href="./TicketNew" class="newPlus">
         Add new ticket
       </a>
-      <input type="text" value="Search..." className="search" ></input>
+      <input type="text" value="Search..." className="search"></input>
 
       <TicketTable />
     </div>

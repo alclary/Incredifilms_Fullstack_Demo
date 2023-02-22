@@ -7,12 +7,13 @@ export default function Theaters() {
     <div>
       <h3>Theaters</h3>
       <p>Create, Retrieve, Update or Delete a Theater</p>
-      <a href="./TheaterNew" class="newPlus"> Add new theater</a>
-      <input type="text" value="Search..." className="search" ></input>
+      <a href="./TheaterNew" class="newPlus">
+        {" "}
+        Add new theater
+      </a>
+      <input type="text" value="Search..." className="search"></input>
 
       <TheaterTable />
-
-
     </div>
   );
 }
