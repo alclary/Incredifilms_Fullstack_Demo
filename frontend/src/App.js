@@ -39,95 +39,160 @@ import TheaterUpdate from "./pages/TheaterUpdate";
 import TicketUpdate from "./pages/TicketUpdate";
 
 export default function App() {
-  return (
-    <div className="App">
-      <div className="sidebar">
-        <Sidebar />
-      </div>
+    return (
+        <Router>
+            <div className="App">
+                <div className="sidebar">
+                    <Sidebar />
+                </div>
 
-      <div className="main">
-        <main>
-          <h1>IncrediFilms Admin Dashboards</h1>
-          <Router>
-            <Routes>
-              <Route exact path="/" element={<HomePage />} />
-              <Route exact path="/customer" element={<Customers />} />
-              <Route exact path="/movie" element={<Movies />} />
-              <Route exact path="/showtime" element={<Showtimes />} />
-              <Route exact path="/theater" element={<Theaters />} />
-              <Route exact path="/ticket" element={<Tickets />} />
-              <Route exact path="/genre" element={<Genres />} />
-              <Route exact path="/moviegenre" element={<MovieGenres />} />
+                <div className="main">
+                    <main>
+                        <h1>IncrediFilms Admin Dashboards</h1>
 
-              <Route exact path="/CustomerNew" element={<CustomerNew />} />
-              <Route exact path="/ShowtimeNew" element={<ShowtimeNew />} />
-              <Route exact path="/TicketNew" element={<TicketNew />} />
-              <Route exact path="/GenreNew" element={<GenreNew />} />
-              <Route exact path="/TheaterNew" element={<TheaterNew />} />
-              <Route exact path="/MovieNew" element={<MovieNew />} />
-              <Route exact path="/MovieGenreNew" element={<MovieGenreNew />} />
+                        <Routes>
+                            <Route exact path="/" element={<HomePage />} />
+                            <Route
+                                exact
+                                path="/customer"
+                                element={<Customers />}
+                            />
+                            <Route exact path="/movie" element={<Movies />} />
+                            <Route
+                                exact
+                                path="/showtime"
+                                element={<Showtimes />}
+                            />
+                            <Route
+                                exact
+                                path="/theater"
+                                element={<Theaters />}
+                            />
+                            <Route exact path="/ticket" element={<Tickets />} />
+                            <Route exact path="/genre" element={<Genres />} />
+                            <Route
+                                exact
+                                path="/moviegenre"
+                                element={<MovieGenres />}
+                            />
 
-              <Route exact path="/MovieUpdate" element={<MovieUpdate />} />
-              <Route
-                exact
-                path="/CustomerUpdate"
-                element={<CustomerUpdate />}
-              />
-              <Route exact path="/GenreUpdate" element={<GenreUpdate />} />
-              <Route
-                exact
-                path="/ShowtimeUpdate"
-                element={<ShowtimeUpdate />}
-              />
-              <Route exact path="/TicketUpdate" element={<TicketUpdate />} />
-              <Route exact path="/TheaterUpdate" element={<TheaterUpdate />} />
-              <Route
-                exact
-                path="/MovieGenreUpdate"
-                element={<MovieGenreUpdate />}
-              />
+                            <Route
+                                exact
+                                path="/CustomerNew"
+                                element={<CustomerNew />}
+                            />
+                            <Route
+                                exact
+                                path="/ShowtimeNew"
+                                element={<ShowtimeNew />}
+                            />
+                            <Route
+                                exact
+                                path="/TicketNew"
+                                element={<TicketNew />}
+                            />
+                            <Route
+                                exact
+                                path="/GenreNew"
+                                element={<GenreNew />}
+                            />
+                            <Route
+                                exact
+                                path="/TheaterNew"
+                                element={<TheaterNew />}
+                            />
+                            <Route
+                                exact
+                                path="/MovieNew"
+                                element={<MovieNew />}
+                            />
+                            <Route
+                                exact
+                                path="/MovieGenreNew"
+                                element={<MovieGenreNew />}
+                            />
 
-              <Route
-                exact
-                path="CustomerConfirmDelete"
-                element={<CustomerConfirmDelete />}
-              />
-              <Route
-                exact
-                path="MovieConfirmDelete"
-                element={<MovieConfirmDelete />}
-              />
-              <Route
-                exact
-                path="GenreConfirmDelete"
-                element={<GenreConfirmDelete />}
-              />
-              <Route
-                exact
-                path="MovieGenreConfirmDelete"
-                element={<MovieGenreConfirmDelete />}
-              />
-              <Route
-                exact
-                path="TicketConfirmDelete"
-                element={<TicketConfirmDelete />}
-              />
-              <Route
-                exact
-                path="ShowtimeConfirmDelete"
-                element={<ShowtimeConfirmDelete />}
-              />
-              <Route
-                exact
-                path="TheaterConfirmDelete"
-                element={<TheaterConfirmDelete />}
-              />
+                            <Route
+                                exact
+                                path="/MovieUpdate"
+                                element={<MovieUpdate />}
+                            />
+                            <Route
+                                exact
+                                path="/CustomerUpdate"
+                                element={<CustomerUpdate />}
+                            />
+                            <Route
+                                exact
+                                path="/GenreUpdate"
+                                element={<GenreUpdate />}
+                            />
+                            <Route
+                                exact
+                                path="/ShowtimeUpdate"
+                                element={<ShowtimeUpdate />}
+                            />
+                            <Route
+                                exact
+                                path="/TicketUpdate"
+                                element={<TicketUpdate />}
+                            />
+                            <Route
+                                exact
+                                path="/TheaterUpdate"
+                                element={<TheaterUpdate />}
+                            />
+                            <Route
+                                exact
+                                path="/MovieGenreUpdate"
+                                element={<MovieGenreUpdate />}
+                            />
 
-              <Route exact path="*" element={<h1>Page not found</h1>} />
-            </Routes>
-          </Router>
-        </main>
-      </div>
-    </div>
-  );
+                            <Route
+                                exact
+                                path="CustomerConfirmDelete"
+                                element={<CustomerConfirmDelete />}
+                            />
+                            <Route
+                                exact
+                                path="MovieConfirmDelete"
+                                element={<MovieConfirmDelete />}
+                            />
+                            <Route
+                                exact
+                                path="GenreConfirmDelete"
+                                element={<GenreConfirmDelete />}
+                            />
+                            <Route
+                                exact
+                                path="MovieGenreConfirmDelete"
+                                element={<MovieGenreConfirmDelete />}
+                            />
+                            <Route
+                                exact
+                                path="TicketConfirmDelete"
+                                element={<TicketConfirmDelete />}
+                            />
+                            <Route
+                                exact
+                                path="ShowtimeConfirmDelete"
+                                element={<ShowtimeConfirmDelete />}
+                            />
+                            <Route
+                                exact
+                                path="TheaterConfirmDelete"
+                                element={<TheaterConfirmDelete />}
+                            />
+
+                            <Route
+                                exact
+                                path="*"
+                                element={<h1>Page not found</h1>}
+                            />
+                        </Routes>
+                    </main>
+                </div>
+            </div>
+        </Router>
+    );
 }

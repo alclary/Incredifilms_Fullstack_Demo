@@ -1,24 +1,17 @@
-import Customers from "../pages/Customers";
-import Movies from "../pages/Movies";
-import Tickets from "../pages/Tickets";
-import Theaters from "../pages/Theaters";
-import Showtimes from "../pages/Showtimes";
-import Genres from "../pages/Genres";
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Sidebar() {
-  return (
-    <div>
-        <a href="/" className="">IncrediFilms</a>
-        <a href="/movie" className="">Movies</a>
-        <a href="/genre" className="">Genres</a>
-        <a href="/theater" className="">Theaters</a>
-        <a href="/showtime" className="">Showtimes</a>
-        <a href="/ticket" className="">Tickets</a>
-        <a href="/customer" className="">Customers</a>
-        <a href="/moviegenre">MovieGenres</a>
-       
-
-    </div>
-  );
+    return (
+        <div>
+            <Link to="/">IncrediFilms</Link>
+            <Link to="/movie">Movies</Link>
+            <Link to="/genre">Genres</Link>
+            <Link to="/theater">Theaters</Link>
+            <Link to="/showtime">Showtimes</Link>
+            <Link to="/ticket">Tickets</Link>
+            <Link to="/customer">Customers</Link>
+            <Link to="/moviegenre">MovieGenres</Link>
+        </div>
+    );
 }
