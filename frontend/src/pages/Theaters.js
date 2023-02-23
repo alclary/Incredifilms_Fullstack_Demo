@@ -1,19 +1,25 @@
 import React from "react";
-import TheaterTable from "../components/TheaterTable";
-import TheaterNew from "./TheaterNew";
+import { Grid, _ } from "gridjs-react";
 
 export default function Theaters() {
-  return (
-    <div>
-      <h3>Theaters</h3>
-      <p>Create, Retrieve, Update or Delete a Theater</p>
-      <a href="./TheaterNew" class="newPlus">
-        {" "}
-        Add new theater
-      </a>
-      <input type="text" value="Search..." className="search"></input>
-
-      <TheaterTable />
-    </div>
-  );
+    return (
+        <div>
+            <h3>Theaters</h3>
+            <p>Create, Retrieve, Update or Delete a Theater</p>
+            <a href="./TheaterNew" class="newPlus">
+                {" "}
+                Add new theater
+            </a>
+            <Grid
+                data={[]}
+                columns={[
+                    { name: "Theater ID", sort: true },
+                    { name: "Theater Name", sort: true },
+                    { name: "Number of seats", sort: true },
+                ]}
+                search={true}
+                pagination={{ limit: 25 }}
+            />
+        </div>
+    );
 }
