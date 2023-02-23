@@ -5,13 +5,14 @@ export const GenreNew = () => {
   return (
     <>
       <article>
-        <h2>New genre form</h2>
-        <p>New genre alert</p>
-        <form>
+        <h3>Add a new genre</h3>
+        <form className="form">
           <label>
-            Genre Name:
+            Genre Name
             <input type="text" required />
           </label>
+          <br />
+
           <label>
             <input type="submit" />
           </label>

@@ -11,7 +11,6 @@ export default function MovieGenreTable({ moviegenres, onDelete, onEdit }) {
           <th className="">Movie Genre ID</th>
           <th className="">Movie Name</th>
           <th className="">Genre Name </th>
-
           <th className="">Edit Record</th>
           <th className="">Delete Record</th>
         </tr>

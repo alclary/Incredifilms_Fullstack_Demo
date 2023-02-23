@@ -3,7 +3,7 @@ import React from "react";
 export default function TheaterUpdate() {
   return (
     <div>
-      <p>Edit this record below</p>
+      <p>Edit this theater record below</p>
       <table>
         <tr>
           <th>Theater ID</th>
@@ -17,7 +17,6 @@ export default function TheaterUpdate() {
         <button>
           <a href="./Theater">Cancel</a>
         </button>
-
       </table>
     </div>
   );

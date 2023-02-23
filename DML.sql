@@ -8,13 +8,27 @@ Jesseline Velazquez, Anthony Logan Clary
 
 -- SIMPLE LISTS ------------------------------------------------------------------------
 -- Get list of all genres
-SELECT genre_name FROM genre;
+SELECT genre_name FROM Genre;
 
 -- Get list of all movies
-SELECT movie_name FROM movie;
+SELECT movie_name FROM Movie;
 
 -- Get list of all theaters
-SELECT theater_name FROM theater;
+SELECT theater_name FROM Theater;
+
+-- Get list of all customers by full name
+SELECT CONCAT(Customer.first_name, ' ', Customer.last_name) 
+AS "Customer Name"
+FROM Customer; 
+
+-- Get list of all tickets
+SELECT * FROM Ticket;
+
+-- Get list of all showtimes
+SELECT * FROM Showtime;
+
+-- Get list of all Movie_Genre intersection table
+SELECT * FROM Movie_Genre;
 
 
 -- SELECTS -----------------------------------------------------------------------------
@@ -83,6 +97,33 @@ FROM Showtime
 JOIN Theater ON Showtime.theater_id = Theater.theater_id
 JOIN Movie ON Showtime.movie_id = Movie.movie_id
 ORDER BY Theater, Showtime.showtime_date_time;
+
+-- Get list of all movies appropriate for Kids (PG rating and/or "Kids" Genre)
+
+SELECT DISTINCT Movie.movie_name, Movie.runtime_min, Movie.mpa_rating, Movie.movie_year
+FROM Movie
+
+JOIN Movie_Genre
+ON Movie.movie_id = Movie_Genre.movie_genre_id
+
+AND Movie.movie_id
+
+IN (
+	SELECT Movie.movie_id
+    FROM Movie
+    
+    JOIN Movie_Genre
+    ON Movie_Genre.movie_id = Movie.movie_id
+    
+    JOIN Genre
+    ON Genre.genre_id = Movie_Genre.genre_id
+    AND (Genre.genre_name = "Kids" 
+    OR Genre.genre_name = "Family")
+)
+
+OR Movie.mpa_rating = "PG"
+
+ORDER BY Movie.movie_name;
 
 
 -- INSERTS -----------------------------------------------------------------------------
@@ -180,3 +221,71 @@ DELETE FROM Showtime WHERE showtime_id = :showtimeIdFromListOrControlledInput
 
 -- Delete a ticket
 DELETE FROM Ticket WHERE ticket_id = :ticketIdFromListOrControlledInput
+
+
+-- JOINS to make FK user friendly ---------------------------------------
+
+-- For Ticket UI: Display Ticket ID, Customer name (first + last name), Movie Name, Theater Name, Price, Payment Method
+
+SELECT Ticket.ticket_id as "Ticket ID", 
+CONCAT(Customer.first_name, ' ', Customer.last_name) as "Customer Name",
+Movie.movie_name as "Movie Name", 
+Theater.theater_name as "Theater Name", 
+Ticket.price as "Price", 
+Ticket.payment_method as "Payment Method"
+FROM Ticket
+INNER JOIN Customer
+ON Customer.customer_id = Ticket.customer_id
+INNER JOIN Showtime
+ON Ticket.showtime_id = Showtime.showtime_id
+INNER JOIN Movie
+ON Movie.movie_id = Showtime.movie_id
+INNER JOIN Theater
+ON Theater.theater_id = Showtime.showtime_id
+ORDER BY Ticket.ticket_id;
+
+-- For Movie_Genre UI: Display Movie Name, Genre Name
+
+SELECT Movie_Genre.movie_genre_id AS "Movie Genre ID",
+Movie.movie_name AS "Movie Name",
+Genre.genre_name AS "Genre Name"
+FROM Movie_Genre
+INNER JOIN Movie
+ON Movie.movie_id = Movie_Genre.movie_id
+INNER JOIN Genre
+ON Genre.genre_id = Movie_Genre.genre_id
+ORDER BY Movie.movie_name;
+
+--  For Showtime UI: Display Showtime ID, Showtime Date & Time, Movie Name, Theater Name
+
+SELECT Showtime.showtime_id as "Showtime ID", Showtime.showtime_date_time as "Showtime Date & Time", Movie.movie_name as "Movie Name", Theater.theater_name as "Theater Name"
+FROM Showtime
+JOIN Movie
+ON Movie.movie_id = Showtime.showtime_id
+JOIN Theater
+on Theater.theater_id = Showtime.theater_id
+ORDER BY showtime_date_time ASC;
+
+-- For Ticket UI: Display Ticket ID, Customer Name, Movie Name, Theater Name, Price, Payment Method
+
+SELECT Ticket.ticket_id AS "Ticket ID", 
+CONCAT(Customer.first_name, ' ', Customer.last_name) as "Customer Name", Showtime.showtime_date_time AS "Showtime Date & Time", 
+Movie.movie_name as "Movie Name", 
+Theater.theater_name as "Theater Name", 
+Ticket.price as "Price", Ticket.payment_method as "Payment Method"
+
+FROM Ticket
+
+JOIN Customer
+ON Customer.customer_id = Ticket.customer_id
+
+JOIN Showtime
+ON Showtime.showtime_id = Ticket.showtime_id
+
+JOIN Movie
+ON Movie.movie_id = Showtime.movie_id
+
+JOIN Theater 
+ON Theater.theater_id = Showtime.theater_id
+
+ORDER BY Ticket.ticket_id;

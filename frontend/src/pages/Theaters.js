@@ -6,11 +6,14 @@ export default function Theaters() {
   return (
     <div>
       <h3>Theaters</h3>
-      <p>Needs capability to CREATE, RETRIEVE, UPDATE, DELETE</p>
-      <a href="./TheaterNew" class="newPlus"> Add new theater</a>
+      <p>Create, Retrieve, Update or Delete a Theater</p>
+      <a href="./TheaterNew" class="newPlus">
+        {" "}
+        Add new theater
+      </a>
+      <input type="text" value="Search..." className="search"></input>
+
       <TheaterTable />
-
-
     </div>
   );
 }

@@ -5,21 +5,26 @@ export const ShowtimeNew = () => {
   return (
     <>
       <article>
-        <h2>New showtime form</h2>
-        <p>New showtime alert</p>
-        <form>
+        <h3>Add a new showtime</h3>
+        <form className="form">
           <label>
-            Date & Time:
+            Date & Time
             <input type="datetime-local" required />
           </label>
+          <br />
+
           <label>
-            Movie:
+            Movie
             <input type="text" required />
           </label>
+          <br />
+
           <label>
             Theater
             <input type="text" required />
           </label>
+          <br />
+
           <label>
             <input type="submit" />
           </label>
@@ -27,8 +32,6 @@ export const ShowtimeNew = () => {
       </article>
 
       <a href="./Showtime">Return to all showtimes</a>
-
-
     </>
   );
 };

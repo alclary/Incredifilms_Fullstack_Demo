@@ -2,13 +2,13 @@ import React from "react";
 
 export default function MovieGenreConfirmDelete() {
   return (
-    <form>
-      <label>
-        Update a movie-genre relationship:
-      </label>
+    <>
+          <p>Are you sure you want to delete this movie genre relationship?</p>
 
+    <form className="form">
+      {/* this page needs updating */}
       <label>
-        Select a Movie:
+        Select a Movie
         <select>
           <option>None</option>
           <option>
@@ -20,18 +20,19 @@ export default function MovieGenreConfirmDelete() {
           <option>Everything Everywhere All at Once</option>
         </select>
       </label>
+      <br />
 
       <label>
         Genre Name
         <select>
-        <option>None</option>
+          <option>None</option>
           <option>Documentary</option>
           <option>Kids</option>
           <option>Family</option>
           <option>Comedy</option>
           <option>Independent</option>
         </select>
-
+        <br />
         <button>
           <a href="./Genre">Confirm</a>
         </button>
@@ -40,7 +41,7 @@ export default function MovieGenreConfirmDelete() {
         </button>
       </label>
     </form>
+    </>
+
   );
 }
-
-

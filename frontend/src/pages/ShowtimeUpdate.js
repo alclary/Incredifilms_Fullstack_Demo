@@ -3,7 +3,7 @@ import React from "react";
 export default function ShowtimeUpdate() {
   return (
     <div>
-      <p>Edit this record below</p>
+      <p>Edit this showtime record below</p>
       <table>
         <tr>
           <th>Showtime ID</th>

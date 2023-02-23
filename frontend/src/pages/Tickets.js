@@ -6,10 +6,12 @@ export default function Tickets() {
   return (
     <div>
       <h3>Tickets</h3>
-      <p>Needs capability to CREATE, RETRIEVE, UPDATE, DELETE</p>
+      <p>Create, Retrieve, Update or Delete a Ticket</p>
       <a href="./TicketNew" class="newPlus">
         Add new ticket
       </a>
+      <input type="text" value="Search..." className="search"></input>
+
       <TicketTable />
     </div>
   );

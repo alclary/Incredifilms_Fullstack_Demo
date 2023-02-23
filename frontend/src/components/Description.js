@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Description() {
   return (
-    <article className="">
+    <article className="description">
       <p>
         IncrediFilms™ is a burgeoning player in the world of movie-goer
         experience. IncrediFilms theaters seek to celebrate a fusion between the

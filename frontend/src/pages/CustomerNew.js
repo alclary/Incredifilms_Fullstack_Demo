@@ -5,24 +5,30 @@ export const CustomerNew = () => {
   return (
     <>
       <article>
-        <h2>New customer form</h2>
-        <form>
+        <h3>Add a new customer</h3>
+        <form className="form">
           <label>
-            First name:
+            First name
             <input type="text" required />
           </label>
+          <br />
           <label>
-            Last name:
+            Last name
             <input type="text" required />
           </label>
+          <br />
           <label>
             Date of Birth
             <input type="date" required />
           </label>
+          <br />
+
           <label>
             Email
             <input type="email" />
           </label>
+          <br />
+
           <label>
             <input type="submit" />
           </label>
@@ -30,7 +36,6 @@ export const CustomerNew = () => {
       </article>
 
       <a href="./Customer">Return to all customers</a>
-
     </>
   );
 };
