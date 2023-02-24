@@ -12,19 +12,54 @@ export default function Showtimes() {
             </a>
             <Grid
                 data={[
-                    [1, "2023-02-10 16:00:00", 1, 1],
-                    [2, "2023-02-10 15:00:00", 2, 4],
-                    [3, "2023-02-14 17:00:00", 2, 4],
-                    [4, "2023-02-14 18:00:00", 7, 2],
-                    [5, "2023-02-14 18:00:00", 7, 1],
-                    [6, "2023-02-16 12:00:00", 3, 5],
-                    [7, "2023-02-16 15:30:00", 4, 1],
+                    [
+                        1,
+                        "2023-02-10 16:00:00",
+                        "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",
+                        "IncrediFilms Rogers Park",
+                    ],
+                    [
+                        2,
+                        "2023-02-10 15:00:00",
+                        "Interstellar",
+                        "IncrediFilms Lincoln Square",
+                    ],
+                    [
+                        3,
+                        "2023-02-14 17:00:00",
+                        "Interstellar",
+                        "IncrediFilms Lincoln Square",
+                    ],
+                    [
+                        4,
+                        "2023-02-14 18:00:00",
+                        "Bee Movie",
+                        "IncrediFilms Wicker Park",
+                    ],
+                    [
+                        5,
+                        "2023-02-14 18:00:00",
+                        "Bee Movie",
+                        "IncrediFilms Rogers Park",
+                    ],
+                    [
+                        6,
+                        "2023-02-16 12:00:00",
+                        "Amélie",
+                        "IncrediFilms North Center",
+                    ],
+                    [
+                        7,
+                        "2023-02-16 15:30:00",
+                        "The Shining",
+                        "IncrediFilms Rogers Park",
+                    ],
                 ]}
                 columns={[
                     { name: "Showtime ID", sort: true },
                     { name: "Datetime", sort: true },
-                    { name: "Movie ID", sort: true },
-                    { name: "Theater ID" },
+                    { name: "Movie", sort: true },
+                    { name: "Theater" },
                     {
                         name: "Edit Item",
                         data: _(<MdEdit onClick={() => alert("clicked!")} />),
