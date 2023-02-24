@@ -7,6 +7,14 @@ export default function Showtimes() {
         <div>
             <h3>Showtimes</h3>
             <p>Create, Retrieve, Update or Delete a Showtime</p>
+            <p>
+                To display only showtimes between two given dates please
+                indicate a start and end date:
+            </p>
+            <label for="start">Start date:</label>
+            <input type="date" id="start" name="start-input"></input>
+            <label for="end">End date:</label>
+            <input type="date" id="end" name="end-input"></input>
             <a href="./ShowtimeNew" class="newPlus">
                 Add new showtime
             </a>
