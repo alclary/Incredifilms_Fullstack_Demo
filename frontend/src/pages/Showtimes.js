@@ -23,8 +23,8 @@ export default function Showtimes() {
                 columns={[
                     { name: "Showtime ID", sort: true },
                     { name: "Datetime", sort: true },
-                    { name: "Movie Name", sort: true },
-                    { name: "Theater Name" },
+                    { name: "Movie ID", sort: true },
+                    { name: "Theater ID" },
                     {
                         name: "Edit Item",
                         data: _(<MdEdit onClick={() => alert("clicked!")} />),

@@ -11,7 +11,38 @@ export default function MovieGenres() {
                 Add new movie genre relationship
             </a>
             <Grid
-                data={[]}
+                data={[
+                    [
+                        1,
+                        "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",
+                        "Comedy",
+                    ],
+                    [
+                        2,
+                        "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",
+                        "Action",
+                    ],
+                    [3, "Interstellar", "Sci-Fi"],
+                    [4, "Interstellar", "Action"],
+                    [5, "Interstellar", "Adventure"],
+                    [6, "Interstellar", "Thriller"],
+                    [7, "Amélie", "Romance"],
+                    [8, "Amélie", "Comedy"],
+                    [9, "The Shining", "Horror"],
+                    [10, "The Shining", "Mystery"],
+                    [11, "Everything Everywhere All at Once", "Sci-Fi"],
+                    [12, "Everything Everywhere All at Once", "Comedy"],
+                    [13, "Everything Everywhere All at Once", "Mystery"],
+                    [14, "Encanto", "Kids"],
+                    [15, "Encanto", "Family"],
+                    [16, "Encanto", "Musical"],
+                    [17, "Encanto", "Adventure"],
+                    [18, "Bee Movie", "Family"],
+                    [19, "Bee Movie", "Comedy"],
+                    [20, "Bee Movie", "Action"],
+                    [21, "Bee Movie", "Adventure"],
+                    [22, "Bee Movie", "Cult Classic"],
+                ]}
                 columns={[
                     { name: "Movie Genre ID", sort: true },
                     { name: "Movie", sort: true },
