@@ -1,6 +1,6 @@
-/* 
-CS 340 - Project Step 2 
-Data Definition Query (DDL) 
+/*
+CS 340 - Project Step 2
+Data Definition Query (DDL)
 Group #25
 Jesseline Velazquez, Anthony Logan Clary
 */
@@ -41,7 +41,7 @@ INSERT INTO `Customer` (`first_name`, `last_name`, `dob`, `email`) VALUES
 DROP TABLE IF EXISTS Genre;
 CREATE TABLE `Genre` (
   `genre_id` int NOT NULL AUTO_INCREMENT UNIQUE,
-  `genre_name` varchar(45) NOT NULL,
+  `genre_name` varchar(45) NOT NULL UNIQUE,
   PRIMARY KEY (genre_id)
 );
 
@@ -96,7 +96,7 @@ INSERT INTO `Movie` (`movie_name`, `runtime_min`, `mpa_rating`, `movie_year`) VA
 DROP TABLE IF EXISTS Theater;
 CREATE TABLE `Theater` (
   `theater_id` int NOT NULL AUTO_INCREMENT UNIQUE,
-  `theater_name` varchar(50) NOT NULL,
+  `theater_name` varchar(50) NOT NULL UNIQUE,
   `no_of_seats` int NOT NULL,
   PRIMARY KEY (theater_id)
 );
@@ -182,7 +182,7 @@ CREATE TABLE `Ticket` (
   CONSTRAINT fk_ticket_showtime_id FOREIGN KEY (showtime_id) REFERENCES Showtime(showtime_id),
   CONSTRAINT chk_ticket_payment_method CHECK (payment_method in ('CASH', 'CREDIT', 'DEBIT', NULL))
 );
- 
+
 -- Populate Ticket Table
 INSERT INTO `Ticket` (`customer_id`, `showtime_id`, `price`, `payment_method`) VALUES
   ((SELECT customer_id FROM Customer WHERE first_name = 'Stephanie' AND last_name = 'Helmsley'), (SELECT showtime_id from Showtime WHERE showtime_date_time = '2023-02-14 18:00:00' AND theater_id = '1'), 9, 'CREDIT'),
