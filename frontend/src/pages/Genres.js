@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, _ } from "gridjs-react";
+import { MdEdit, MdDeleteForever } from "react-icons/md";
 
 export default function Genres() {
     return (
@@ -37,6 +38,18 @@ export default function Genres() {
                 columns={[
                     { name: "Genre ID", sort: true },
                     { name: "Genre Name", sort: true },
+                    {
+                        name: "Edit Item",
+                        data: _(<MdEdit onClick={() => alert("clicked!")} />),
+                    },
+                    {
+                        name: "Delete Item",
+                        data: _(
+                            <MdDeleteForever
+                                onClick={() => alert("clicked!")}
+                            />
+                        ),
+                    },
                 ]}
                 search={true}
                 pagination={{ limit: 25 }}

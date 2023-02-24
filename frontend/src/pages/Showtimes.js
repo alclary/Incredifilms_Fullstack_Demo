@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, _ } from "gridjs-react";
+import { MdEdit, MdDeleteForever } from "react-icons/md";
 
 export default function Showtimes() {
     return (
@@ -24,6 +25,18 @@ export default function Showtimes() {
                     { name: "Datetime", sort: true },
                     { name: "Movie Name", sort: true },
                     { name: "Theater Name" },
+                    {
+                        name: "Edit Item",
+                        data: _(<MdEdit onClick={() => alert("clicked!")} />),
+                    },
+                    {
+                        name: "Delete Item",
+                        data: _(
+                            <MdDeleteForever
+                                onClick={() => alert("clicked!")}
+                            />
+                        ),
+                    },
                 ]}
                 search={true}
                 pagination={{ limit: 25 }}

@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, _ } from "gridjs-react";
+import { MdEdit, MdDeleteForever } from "react-icons/md";
 
 export default function Theaters() {
     return (
@@ -23,6 +24,18 @@ export default function Theaters() {
                     { name: "Theater ID", sort: true },
                     { name: "Theater Name", sort: true },
                     { name: "Number of seats", sort: true },
+                    {
+                        name: "Edit Item",
+                        data: _(<MdEdit onClick={() => alert("clicked!")} />),
+                    },
+                    {
+                        name: "Delete Item",
+                        data: _(
+                            <MdDeleteForever
+                                onClick={() => alert("clicked!")}
+                            />
+                        ),
+                    },
                 ]}
                 search={true}
                 pagination={{ limit: 25 }}
