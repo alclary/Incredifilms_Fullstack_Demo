@@ -18,8 +18,32 @@ export default function Customers() {
                         "Stephanie",
                         "Helmsley",
                         "1976-09-24",
-                        "Steph.Helmsley@bmail.com",
+                        "Stephanie.Helmsely@bmail.com",
                     ],
+                    [
+                        3,
+                        "Alexa",
+                        "Bliss",
+                        "1991-08-09",
+                        "Alexa.Bliss@bmail.com",
+                    ],
+                    [4, "Booker", "T", "1965-03-01", "NULL"],
+                    [
+                        5,
+                        "Jenna",
+                        "Andrade",
+                        "1989-11-03",
+                        "Jenna.Andrade@bmail.com",
+                    ],
+                    [6, "Andre", "Giant", "1946-05-19", "NULL"],
+                    [
+                        7,
+                        "Michaela",
+                        "Hargrove",
+                        "2001-05-30",
+                        "Michaela.Hargrove@bmail.com",
+                    ],
+                    [8, "Em", "Patterson", "2017-12-02", "NULL"],
                 ]}
                 columns={[
                     { name: "Customer ID", sort: true },
@@ -41,7 +65,7 @@ export default function Customers() {
                     },
                 ]}
                 search={true}
-                pagination={{ limit: 25 }}
+                pagination={{ limit: 5 }}
             />
         </div>
     );
