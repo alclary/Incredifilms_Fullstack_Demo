@@ -2,7 +2,23 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 export const TicketNew = () => {
+
+  const [] = useState("");
+  const [] = useState("");
+  const [] = useState("");
+  const [] = useState("");
+  const [] = useState("");
+
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // TODO implement POST request to API
+};
+
   return (
+
+    
     <>
       <article>
         <h3>Add a new ticket</h3>
@@ -31,9 +47,9 @@ export const TicketNew = () => {
             </select>
           </label>
           <br />
-          <label>
-            <input type="submit" />
-          </label>
+          <button type="submit" className="pure-button pure-button-primary">
+                    Submit
+                </button>
         </form>
       </article>
 
