@@ -15,8 +15,11 @@ export const CustomerNew = () => {
     return (
         <div>
             <h3>Add a new customer</h3>
-            <form onSubmit={handleSubmit} class="pure-form pure-form-stacked">
-                <label for="stacked-fname">First name</label>
+            <form
+                onSubmit={handleSubmit}
+                className="pure-form pure-form-stacked"
+            >
+                <label>First name</label>
                 <input
                     type="text"
                     id="stacked-fname"
@@ -24,21 +27,21 @@ export const CustomerNew = () => {
                     value={fname}
                     onChange={(e) => setFname(e.target.value)}
                 />
-                <label for="stacked-lname">Last name</label>
+                <label>Last name</label>
                 <input
                     type="text"
                     required
                     value={lname}
                     onChange={(e) => setLname(e.target.value)}
                 />
-                <label for="stacked-dob">Date of Birth</label>
+                <label>Date of Birth</label>
                 <input
                     type="date"
                     required
                     value={dob}
                     onChange={(e) => setDob(e.target.value)}
                 />
-                <label for="stacked-email">Email</label>
+                <label>Email</label>
                 <input
                     type="email"
                     value={email}
