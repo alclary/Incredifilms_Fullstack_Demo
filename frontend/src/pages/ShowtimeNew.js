@@ -2,6 +2,18 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
 export const ShowtimeNew = () => {
+
+  const [] = useState("");
+  const [] = useState("");
+  const [] = useState("");
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // TODO implement POST request to API
+};
+
+
   return (
     <>
       <article>
@@ -25,9 +37,9 @@ export const ShowtimeNew = () => {
           </label>
           <br />
 
-          <label>
-            <input type="submit" />
-          </label>
+          <button type="submit" className="pure-button pure-button-primary">
+                    Submit
+                </button>
         </form>
       </article>
 

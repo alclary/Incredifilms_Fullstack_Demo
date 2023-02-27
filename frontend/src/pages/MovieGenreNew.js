@@ -3,6 +3,13 @@ import { MdLocalActivity } from "react-icons/md";
 import { useHistory } from "react-router-dom";
 
 export const MovieGenreNew = () => {
+
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // TODO implement POST request to API
+};
+
   return (
     <>
       <h3>Assign a Movie to its Genre(s)</h3>
@@ -41,9 +48,9 @@ export const MovieGenreNew = () => {
           <label for="genreID1">Independent</label>
         </label>
         <br />
-        <label>
-          <input type="submit" />
-        </label>
+        <button type="submit" className="pure-button pure-button-primary">
+                    Submit
+                </button>
       </form>
 
       <a href="./MovieGenre">Return to all movie genres</a>
