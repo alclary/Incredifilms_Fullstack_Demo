@@ -56,7 +56,7 @@ code {
 
 .main {
     margin-left: 195px; /* Same width as the sidebar + left position in px */
-    font-size: 24px; /* Increased text to enable scrolling */
+    font-size: 1.4em; /* Increased text to enable scrolling */
     padding: 0px 10px;
 }
 
