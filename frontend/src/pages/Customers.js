@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Grid, _ } from "gridjs-react";
 import { MdEdit, MdDeleteForever } from "react-icons/md";
 
@@ -7,9 +8,9 @@ export default function Customers() {
         <div>
             <h3>Customers</h3>
             <p>Create, Retrieve, Update or Delete a Customer</p>
-            <a href="./CustomerNew" class="newPlus">
+            <Link to="/CustomerNew" className="newPlus">
                 Add new customer
-            </a>
+            </Link>
             <Grid
                 data={[
                     [1, "AJ", "Styles", "1977-06-02", "AJ.Styles@bmail.com"],
