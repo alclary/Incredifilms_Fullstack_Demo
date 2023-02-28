@@ -1,4 +1,7 @@
-const db = require("./db.js");
+// Import Routes
+const customerRoutes = require("./routes/customerRoutes.js");
+
+// Import CORS middleware for express
 const cors = require("cors");
 
 // Express configuration
@@ -11,37 +14,8 @@ app.use(cors({ origin: "http://localhost:3000" }));
 // Enable express json middleware
 app.use(express.json());
 
-app.get("/customers", (req, res) => {
-    console.log(req);
-    db.query("SELECT * FROM Customer;", (err, data, fields) => {
-        if (err) console.error(err);
-        res.status(200).json({
-            fields,
-            data,
-        });
-    });
-});
-
-// i didn't make any changes above this line
-
-app.post("/customers", (req, res) => {
-    console.log("POST request received.");
-    db.query(
-        "INSERT INTO `Customer` (`first_name`, `last_name`, `dob`, `email`) VALUES (?,?,?,?);",
-        [req.body.fname, req.body.lname, req.body.dob, req.body.email],
-        (err, data, fields) => {
-            if (err) {
-                console.error(err);
-                res.status();
-            }
-            res.status(200).json({
-                fields,
-                data,
-            });
-            console.log("POST request successful.");
-        }
-    );
-});
+// Enable routes as defined in their respective routes files
+app.use("/customers", customerRoutes);
 
 // app.get("/theaters", (req, res) => {
 //     db.query("SELECT * FROM Theater;", (err, data, fields) => {

@@ -66,7 +66,7 @@ export default function Customers() {
                     },
                 ]}
                 search={true}
-                pagination={{ limit: 5 }}
+                pagination={{ limit: 25 }}
             />
         </div>
     );
