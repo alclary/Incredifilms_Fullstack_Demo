@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 export const CustomerNew = () => {
@@ -7,9 +8,21 @@ export const CustomerNew = () => {
     const [dob, setDob] = useState("");
     const [email, setEmail] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // TODO implement POST request to API
+        try {
+            const res = await axios.post("http://localhost:3001/customers", {
+                fname,
+                lname,
+                dob,
+                email,
+            });
+            console.log(res);
+            // TODO replace with feedback of success and redirect to customers table
+        } catch (error) {
+            console.error(error);
+            // TODO add user feedback of failure
+        }
     };
 
     return (
