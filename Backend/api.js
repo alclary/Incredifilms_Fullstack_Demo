@@ -1,5 +1,6 @@
 // Import Routes
 const customerRoutes = require("./routes/customerRoutes.js");
+const theaterRoutes = require("./routes/theaterRoutes.js");
 
 // Import CORS middleware for express
 const cors = require("cors");
@@ -11,11 +12,14 @@ const port = 3001;
 
 // Enable CORS for localhost origin
 app.use(cors({ origin: "http://localhost:3000" }));
+
 // Enable express json middleware
 app.use(express.json());
 
 // Enable routes as defined in their respective routes files
 app.use("/customers", customerRoutes);
+
+app.use("/theaters", theaterRoutes);
 
 // app.get("/theaters", (req, res) => {
 //     db.query("SELECT * FROM Theater;", (err, data, fields) => {
@@ -111,6 +115,10 @@ app.use("/customers", customerRoutes);
 
 // i didn't make any changes below this line
 
+app.get("/", (req, res) => {
+  res.json("Welcome");
+});
+
 app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+  console.log(`Server running on port ${port}`);
 });
