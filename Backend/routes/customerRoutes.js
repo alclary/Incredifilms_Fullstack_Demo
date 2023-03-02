@@ -23,9 +23,9 @@ router.post("/", (req, res) => {
         (err, data, fields) => {
             if (err) {
                 console.error(err);
-                res.status();
             }
             res.status(200).json({
+                // TODO decide if appropriate response
                 fields,
                 data,
             });
@@ -35,6 +35,24 @@ router.post("/", (req, res) => {
 });
 
 // TODO UPDATE functionality for customers table record, at '/customers' endpoint
-// TODO DELETE functionality for customers table record, at '/customers' endpoint
+
+// DELETE functionality for customers table record, at '/customers/{id}' endpoint
+router.delete("/:id", (req, res) => {
+    console.log("DELETE request received.");
+    db.query(
+        `DELETE FROM Customer WHERE customer_id = ?`,
+        [req.params.id],
+        (err, data, fields) => {
+            if (err) {
+                console.error(err);
+            } // TODO Better error handling
+            res.status(200).json({
+                fields,
+                data,
+            });
+            console.log("DELETE request successful.");
+        }
+    );
+});
 
 module.exports = router;
