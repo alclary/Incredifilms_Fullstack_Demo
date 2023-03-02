@@ -151,11 +151,11 @@ DROP TABLE IF EXISTS Showtime;
 CREATE TABLE `Showtime` (
   `showtime_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `showtime_date_time` datetime NOT NULL,
-  `movie_id` int NOT NULL,
-  `theater_id` int NOT NULL,
+  `movie_id` int,
+  `theater_id` int,
   PRIMARY KEY (showtime_id),
-  CONSTRAINT fk_showtime_movie_id FOREIGN KEY (movie_id) REFERENCES Movie(movie_id),
-  CONSTRAINT fk_showtime_theater_id FOREIGN KEY (theater_id) REFERENCES Theater(theater_id)
+  CONSTRAINT fk_showtime_movie_id FOREIGN KEY (movie_id) REFERENCES Movie(movie_id) ON DELETE SET NULL,
+  CONSTRAINT fk_showtime_theater_id FOREIGN KEY (theater_id) REFERENCES Theater(theater_id) ON DELETE SET NULL
 );
 
 -- Populate Showtime Table
@@ -174,12 +174,12 @@ DROP TABLE IF EXISTS Ticket;
 CREATE TABLE `Ticket` (
   `ticket_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `customer_id` int,
-  `showtime_id` int NOT NULL,
+  `showtime_id` int,
   `price` decimal(5,2) NOT NULL,
   `payment_method` varchar(45),
   PRIMARY KEY (ticket_id),
-  CONSTRAINT fk_ticket_customer_id FOREIGN KEY (customer_id) REFERENCES Customer(customer_id),
-  CONSTRAINT fk_ticket_showtime_id FOREIGN KEY (showtime_id) REFERENCES Showtime(showtime_id),
+  CONSTRAINT fk_ticket_customer_id FOREIGN KEY (customer_id) REFERENCES Customer(customer_id) ON DELETE SET NULL,
+  CONSTRAINT fk_ticket_showtime_id FOREIGN KEY (showtime_id) REFERENCES Showtime(showtime_id) ON DELETE SET NULL,
   CONSTRAINT chk_ticket_payment_method CHECK (payment_method in ('CASH', 'CREDIT', 'DEBIT', NULL))
 );
 
