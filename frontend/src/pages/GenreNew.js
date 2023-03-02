@@ -12,7 +12,7 @@ export const GenreNew = () => {
         genre_name,
       });
       console.log(res);
-      // TODO replace with feedback of success and redirect to theaters table
+      // TODO replace with feedback of success and redirect to genres table
     } catch (error) {
       console.error(error);
       // TODO add user feedback of failure

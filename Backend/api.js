@@ -3,6 +3,13 @@ const customerRoutes = require("./routes/customerRoutes.js");
 const theaterRoutes = require("./routes/theaterRoutes.js");
 const genreRoutes = require("./routes/genreRoutes.js");
 
+
+const movieGenreRoutes = require("./routes/movieGenreRoutes");
+const moviesRoutes = require("./routes/moviesRoutes");
+const ticketRoutes = require("./routes/ticketRoutes");
+const showtimeRoutes = require("./routes/showtimeRoutes");
+
+
 // Import CORS middleware for express
 const cors = require("cors");
 
@@ -24,7 +31,13 @@ app.use("/theaters", theaterRoutes);
 
 app.use("/genres", genreRoutes)
 
+app.use("/movies", moviesRoutes)
 
+app.use("/tickets", ticketRoutes)
+
+app.use("/showtimes", showtimeRoutes)
+
+app.use("/moviegenres", movieGenreRoutes)
 
 
 // app.post("/MovieNew", (req, res) => {
