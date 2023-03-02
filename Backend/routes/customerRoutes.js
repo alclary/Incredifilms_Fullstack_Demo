@@ -6,7 +6,9 @@ const db = require("../db.js");
 router.get("/", (req, res) => {
     console.log(req);
     db.query("SELECT * FROM Customer;", (err, data, fields) => {
-        if (err) console.error(err);
+        if (err) {
+            console.error(err);
+        } // TODO Better error handling
         res.status(200).json({
             fields,
             data,
@@ -14,7 +16,7 @@ router.get("/", (req, res) => {
     });
 });
 
-// CREATE functionality for entries to customers table, at '/customers' endpoint
+// CREATE functionality for customers table records, at '/customers' endpoint
 router.post("/", (req, res) => {
     console.log("POST request received.");
     db.query(
@@ -23,7 +25,7 @@ router.post("/", (req, res) => {
         (err, data, fields) => {
             if (err) {
                 console.error(err);
-            }
+            } // TODO Better error handling
             res.status(200).json({
                 // TODO decide if appropriate response
                 fields,
@@ -34,7 +36,32 @@ router.post("/", (req, res) => {
     );
 });
 
-// TODO UPDATE functionality for customers table record, at '/customers' endpoint
+// UPDATE functionality for customers table record, at '/customers/{id}' endpoint
+router.put("/:id", (req, res) => {
+    console.log("UPDATE request received.");
+    db.query(
+        `UPDATE Customer
+        SET first_name = ?, last_name = ?, dob = ?, email = ?
+        WHERE customer_id = ?`,
+        [
+            req.body.fname,
+            req.body.lname,
+            req.body.dob,
+            req.body.email,
+            req.params.id,
+        ],
+        (err, data, fields) => {
+            if (err) {
+                console.error(err);
+            } // TODO Better error handling
+            res.status(200).json({
+                fields,
+                data,
+            });
+            console.log("UPDATE request successful.");
+        }
+    );
+});
 
 // DELETE functionality for customers table record, at '/customers/{id}' endpoint
 router.delete("/:id", (req, res) => {
