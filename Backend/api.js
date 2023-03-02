@@ -1,6 +1,7 @@
 // Import Routes
 const customerRoutes = require("./routes/customerRoutes.js");
 const theaterRoutes = require("./routes/theaterRoutes.js");
+const genreRoutes = require("./routes/genreRoutes.js");
 
 // Import CORS middleware for express
 const cors = require("cors");
@@ -21,31 +22,10 @@ app.use("/customers", customerRoutes);
 
 app.use("/theaters", theaterRoutes);
 
-// app.get("/theaters", (req, res) => {
-//     db.query("SELECT * FROM Theater;", (err, data, fields) => {
-//         if (err) console.error(err);
-//         res.status(200).json({
-//             fields,
-//             data,
-//         });
-//     });
-// });
+app.use("/genres", genreRoutes)
 
-// app.post("/TheaterNew", (req, res) => {
-//     db.query(
-//         "INSERT INTO `Theater` (`theater_name`, `no_of_seats`) VALUES(?,?);"
-//     );
-// });
 
-// app.get("/movies", (req, res) => {
-//     db.query("SELECT * FROM Movie;", (err, data, fields) => {
-//         if (err) console.error(err);
-//         res.status(200).json({
-//             fields,
-//             data,
-//         });
-//     });
-// });
+
 
 // app.post("/MovieNew", (req, res) => {
 //     db.query(
@@ -53,15 +33,6 @@ app.use("/theaters", theaterRoutes);
 //     );
 // });
 
-// app.get("/genres", (req, res) => {
-//     db.query("SELECT * FROM Genre;", (err, data, fields) => {
-//         if (err) console.error(err);
-//         res.status(200).json({
-//             fields,
-//             data,
-//         });
-//     });
-// });
 
 // app.post("/GenreNew", (req, res) => {
 //     db.query("INSERT INTO `Genre` (`genre_name`) VALUES(?);");

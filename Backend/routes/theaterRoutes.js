@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
   });
 });
 
-// CREATE functionality for entries to customers table, at '/customers' endpoint
+// CREATE functionality for entries to theaters table, at '/theaters' endpoint
 router.post("/", (req, res) => {
   console.log("POST request received.");
   db.query(
