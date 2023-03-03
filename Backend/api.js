@@ -3,12 +3,10 @@ const customerRoutes = require("./routes/customerRoutes.js");
 const theaterRoutes = require("./routes/theaterRoutes.js");
 const genreRoutes = require("./routes/genreRoutes.js");
 
-
 const movieGenreRoutes = require("./routes/movieGenreRoutes");
 const moviesRoutes = require("./routes/moviesRoutes");
 const ticketRoutes = require("./routes/ticketRoutes");
 const showtimeRoutes = require("./routes/showtimeRoutes");
-
 
 // Import CORS middleware for express
 const cors = require("cors");
@@ -16,10 +14,10 @@ const cors = require("cors");
 // Express configuration
 const express = require("express");
 const app = express();
-const port = 3001;
+const port = 40594;
 
 // Enable CORS for localhost origin
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({ origin: "http://flip1.engr.oregonstate.edu:40594/" }));
 
 // Enable express json middleware
 app.use(express.json());
@@ -29,23 +27,21 @@ app.use("/customers", customerRoutes);
 
 app.use("/theaters", theaterRoutes);
 
-app.use("/genres", genreRoutes)
+app.use("/genres", genreRoutes);
 
-app.use("/movies", moviesRoutes)
+app.use("/movies", moviesRoutes);
 
-app.use("/tickets", ticketRoutes)
+app.use("/tickets", ticketRoutes);
 
-app.use("/showtimes", showtimeRoutes)
+app.use("/showtimes", showtimeRoutes);
 
-app.use("/moviegenres", movieGenreRoutes)
-
+app.use("/moviegenres", movieGenreRoutes);
 
 // app.post("/MovieNew", (req, res) => {
 //     db.query(
 //         "INSERT INTO `Movie` (`movie_name`, `runtime_min`, `mpa_rating`, `movie_year`) VALUES(?,?,?,?);"
 //     );
 // });
-
 
 // app.post("/GenreNew", (req, res) => {
 //     db.query("INSERT INTO `Genre` (`genre_name`) VALUES(?);");
@@ -100,9 +96,9 @@ app.use("/moviegenres", movieGenreRoutes)
 // i didn't make any changes below this line
 
 app.get("/", (req, res) => {
-  res.json("Welcome");
+    res.json("Welcome");
 });
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+    console.log(`Server running on port ${port}`);
 });

@@ -11,12 +11,15 @@ export const CustomerNew = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:3001/customers", {
-                fname,
-                lname,
-                dob,
-                email,
-            });
+            const res = await axios.post(
+                "http://flip1.engr.oregonstate.edu:40594/customers",
+                {
+                    fname,
+                    lname,
+                    dob,
+                    email,
+                }
+            );
             console.log(res);
             // TODO replace with feedback of success and redirect to customers table
         } catch (error) {

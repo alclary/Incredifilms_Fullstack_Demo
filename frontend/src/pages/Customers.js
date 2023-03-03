@@ -7,7 +7,9 @@ import { CustomerForm } from "./CustomerForm";
 
 // Fetch and return data array of customers from API
 async function fetchCustomers() {
-    const customers = await axios.get("http://localhost:3001/customers");
+    const customers = await axios.get(
+        "http://flip1.engr.oregonstate.edu:40594/customers"
+    );
     return customers.data.data;
 }
 
@@ -35,7 +37,7 @@ export default function Customers() {
             ) === true
         ) {
             let deleted = await axios.delete(
-                `http://localhost:3001/customers/${row.customer_id}`
+                `http://flip1.engr.oregonstate.edu:40594/customers/${row.customer_id}`
             );
             if (deleted.status === 200) {
                 fetchAndSetCustomers();
