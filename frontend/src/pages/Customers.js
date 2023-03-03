@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Grid, _ } from "gridjs-react";
 import { MdEdit, MdDeleteForever } from "react-icons/md";
 import axios from "axios";
+import { CustomerForm } from "./CustomerForm";
 
 // Fetch and return data array of customers from API
 async function fetchCustomers() {
@@ -17,6 +18,14 @@ export default function Customers() {
         async () => await fetchCustomers()
     );
 
+    function fetchAndSetCustomers() {
+        setCustomers(async () => await fetchCustomers());
+    }
+
+    // State definition for whether or not to hide form
+    const [showForm, setShowForm] = useState(false);
+    const [formData, setFormData] = useState(null);
+
     // Function to confirm and handle deletion of table record, via the delete
     //   icon in the delete column.
     async function handleDelete(row) {
@@ -29,9 +38,14 @@ export default function Customers() {
                 `http://localhost:3001/customers/${row.customer_id}`
             );
             if (deleted.status === 200) {
-                setCustomers(async () => await fetchCustomers());
+                fetchAndSetCustomers();
             }
         }
+    }
+
+    function handleEdit(row) {
+        setFormData(row);
+        setShowForm(true);
     }
 
     // Customer Component Contents
@@ -48,7 +62,8 @@ export default function Customers() {
                     { name: "Email", id: "email" },
                     {
                         name: "Edit Item",
-                        data: (row) => _(<MdEdit onClick={() => {}} />),
+                        data: (row) =>
+                            _(<MdEdit onClick={() => handleEdit(row)} />),
                     },
                     {
                         name: "Delete Item",
@@ -67,6 +82,13 @@ export default function Customers() {
             <Link to="/CustomerNew" className="newPlus">
                 Add new customer
             </Link>
+            {showForm ? (
+                <CustomerForm
+                    row={formData}
+                    showForm={setShowForm}
+                    parentRerender={() => fetchAndSetCustomers()}
+                ></CustomerForm>
+            ) : null}
         </div>
     );
 }
