@@ -4,7 +4,7 @@ const db = require("../db.js");
 
 // READ functionality for customers table, at '/customers' endpoint
 router.get("/", (req, res) => {
-    console.log(req);
+    console.log("GET request received.");
     db.query("SELECT * FROM Customer;", (err, data, fields) => {
         if (err) {
             console.error(err);
