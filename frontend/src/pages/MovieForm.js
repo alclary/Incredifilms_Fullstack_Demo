@@ -86,7 +86,7 @@ export const MovieForm = (props) => {
         <label>MPA rating</label>
         <input
           // TODO DATA VALIDATION
-          type="text"
+          type="radio"
           required
           value={mpa_rating}
           onChange={(e) => set_mpa_rating(e.target.value)}

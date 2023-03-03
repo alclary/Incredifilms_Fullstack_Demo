@@ -77,6 +77,13 @@ export default function Movies() {
       <Link to="/MovieNew" class="newPlus">
         Add new movie
       </Link>
+      {showForm ? (
+        <MovieForm
+          row={formData}
+          showForm={setShowForm}
+          parentRerender={() => fetchAndSetMovies()}
+        ></MovieForm>
+      ) : null}
     </div>
   );
 }

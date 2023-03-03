@@ -54,18 +54,18 @@ export const MovieNew = () => {
           <div>
           <label >
             <p>MPA Rating</p>
-
-            <input type="radio" id="PG-13" name="rating" value="PG-13" onChange={(e) => mpa_rating(e.target.value)}/>
+          {/* DATA VALIDATION NEEDED */}
+            <input type="radio" id="PG-13" name="rating" value="PG-13" />
             <label>PG-13</label>
-            <input type="radio" id="PG" name="rating" value="PG" onChange={(e) => mpa_rating(e.target.value)}/>
+            <input type="radio" id="PG" name="rating" value="PG"/>
             <label>PG</label>
-            <input type="radio" id="R" name="rating" value="R" onChange={(e) => mpa_rating(e.target.value)}/>
+            <input type="radio" id="R" name="rating" value="R"/>
             <label>R</label>
-            <input type="radio" id="G" name="rating" value="G" onChange={(e) => mpa_rating(e.target.value)}/>
+            <input type="radio" id="G" name="rating" value="G"/>
             <label>G</label>
-            <input type="radio" id="NR" name="rating" value="NR" onChange={(e) => mpa_rating(e.target.value)}/>
+            <input type="radio" id="NR" name="rating" value="NR"/>
             <label>NR</label>
-            <input type="radio" id="NC-17" name="rating" value="NC-17" onChange={(e) => mpa_rating(e.target.value)} />
+            <input type="radio" id="NC-17" name="rating" value="NC-17"/>
             <label>NC-17</label>
           </label>
           </div>
