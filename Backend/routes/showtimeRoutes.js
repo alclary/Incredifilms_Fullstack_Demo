@@ -5,7 +5,7 @@ const db = require("../db.js");
 // READ functionality for showtimes table, at '/showtimes' endpoint
 router.get("/", (req, res) => {
     console.log("GET request received.");
-    db.query("SELECT * FROM Showtime ORDER BY ASC;", (err, data, fields) => {
+    db.query("SELECT * FROM Showtime ORDER BY showtime_id ASC;", (err, data, fields) => {
         if (err) {
             console.error(err);
         } // TODO Better error handling

@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
         });
     });
 });
-
+3
 // CREATE functionality for customers table records, at '/customers' endpoint
 router.post("/", (req, res) => {
     console.log("POST request received.");

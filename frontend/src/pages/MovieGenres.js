@@ -7,7 +7,7 @@ export default function MovieGenres() {
         <div>
             <h3>MovieGenres</h3>
             <p>Create, Retrieve, Update or Delete a Movie Genre relationship</p>
-            <a href="./MovieGenreNew" class="newPlus">
+            <a href="/MovieGenreNew" class="newPlus">
                 Add new movie genre relationship
             </a>
             <Grid
