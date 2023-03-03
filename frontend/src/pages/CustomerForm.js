@@ -50,7 +50,9 @@ export const CustomerForm = (props) => {
     const [lname, setLname] = useState(
         props.row.last_name ? props.row.last_name : ""
     );
-    const [dob, setDob] = useState(props.row.dob ? props.row.dob : "");
+    const [dob, setDob] = useState(
+        props.row.dob ? props.row.dob.split("T")[0] : ""
+    );
     const [email, setEmail] = useState(props.row.email ? props.row.email : "");
 
     const handleSubmit = async (e) => {

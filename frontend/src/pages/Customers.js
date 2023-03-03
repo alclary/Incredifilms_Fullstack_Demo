@@ -58,7 +58,13 @@ export default function Customers() {
                     { name: "Customer ID", id: "customer_id", sort: true },
                     { name: "First Name", id: "first_name", sort: true },
                     { name: "Last Name", id: "last_name", sort: true },
-                    { name: "Date of Birth", id: "dob" },
+                    {
+                        name: "Date of Birth",
+                        id: "dob",
+                        formatter: (cell) => {
+                            return cell.split("T")[0];
+                        },
+                    },
                     { name: "Email", id: "email" },
                     {
                         name: "Edit Item",
