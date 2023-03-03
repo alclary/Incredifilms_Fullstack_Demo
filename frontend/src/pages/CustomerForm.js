@@ -103,6 +103,15 @@ export const CustomerForm = (props) => {
                 <button type="submit" class="pure-button pure-button-primary">
                     Submit
                 </button>
+                <button
+                    type="button"
+                    class="pure-button pure-button"
+                    onClick={() => {
+                        props.showForm(false);
+                    }}
+                >
+                    Cancel
+                </button>
             </form>
         </div>
     );
