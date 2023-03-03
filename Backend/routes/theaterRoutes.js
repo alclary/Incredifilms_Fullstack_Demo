@@ -4,14 +4,19 @@ const db = require("../db.js");
 
 // READ functionality for theaters table, at '/theater' endpoint
 router.get("/", (req, res) => {
-  console.log(req);
-  db.query("SELECT * FROM Theater;", (err, data, fields) => {
-    if (err) console.error(err);
-    res.status(200).json({
-      fields,
-      data,
-    });
-  });
+  console.log("GET request received.");
+  db.query(
+    "SELECT * FROM Theater ORDER BY theater_id ASC;",
+    (err, data, fields) => {
+      if (err) {
+        console.error(err);
+      } // TODO Better error handling
+      res.status(200).json({
+        fields,
+        data,
+      });
+    }
+  );
 });
 
 // CREATE functionality for entries to theaters table, at '/theaters' endpoint
@@ -23,9 +28,9 @@ router.post("/", (req, res) => {
     (err, data, fields) => {
       if (err) {
         console.error(err);
-        res.status();
-      }
+      } // TODO Better error handling
       res.status(200).json({
+        // TODO decide if appropriate response
         fields,
         data,
       });
@@ -34,26 +39,49 @@ router.post("/", (req, res) => {
   );
 });
 
-// app.post("/TheaterNew", (req,res) => {
-//     const theater_name = req.body.theater_name;
-//     const no_of_seats = req.body.no_of_seats;
+// UPDATE functionality for theaters table record, at '/theaters/{id}' endpoint
+router.put("/:id", (req, res) => {
+  console.log("UPDATE request received.");
+  db.query(
+    `UPDATE Theater
+      SET theater_name = ?, no_of_seats = ?
+      WHERE theater_id = ?`,
+    [
+      req.body.theater_name,
+      req.body.no_of_seats,
+      req.body.theater_id,
+      req.params.id,
+    ],
+    (err, data, fields) => {
+      if (err) {
+        console.error(err);
+      } // TODO Better error handling
+      res.status(200).json({
+        fields,
+        data,
+      });
+      console.log("UPDATE request successful.");
+    }
+  );
+});
 
-//     (db.query(
-//         "INSERT INTO `Theater` (`theater_name`, `no_of_seats`) VALUES(?,?)",
-//         [theater_name, no_of_seats],
-//         (err,result) => {
-
-//         if (err) {
-//             console.log(err); }
-//         else {
-//             console.log(result);
-//             }
-//         }
-//         );
-//  });
-
-// TODO CREATE functionality for entries to XXXX table, at '/XXXX' endpoint
-// TODO UPDATE functionality for XXXX table record, at '/XXXX' endpoint
-// TODO DELETE functionality for XXXX table record, at '/XXXX' endpoint
+// DELETE functionality for theaters table record, at '/theaters/{id}' endpoint
+router.delete("/:id", (req, res) => {
+  console.log("DELETE request received.");
+  db.query(
+    `DELETE FROM Theater WHERE theater_id = ?`,
+    [req.params.id],
+    (err, data, fields) => {
+      if (err) {
+        console.error(err);
+      } // TODO Better error handling
+      res.status(200).json({
+        fields,
+        data,
+      });
+      console.log("DELETE request successful.");
+    }
+  );
+});
 
 module.exports = router;
