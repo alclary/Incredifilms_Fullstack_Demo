@@ -1,7 +1,7 @@
-const { Router } = require("express");
 const express = require("express");
-const router = express(Router);
+const router = express.Router();
 const db = require("../db.js");
+
 
 // READ functionality for movies table, at '/movies' endpoint
 router.get("/", (req, res) => {

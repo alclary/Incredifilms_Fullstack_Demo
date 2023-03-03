@@ -11,7 +11,7 @@ async function fetchCustomers() {
     return customers.data.data;
 }
 
-// Functional Component Defintion for Customers Component
+// Functional Component Definition for Customers Component
 export default function Customers() {
     // State definition for the customers data array
     const [customers, setCustomers] = useState(
