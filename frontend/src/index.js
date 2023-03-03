@@ -1,13 +1,12 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import "./css/custom.css";
 import "./css/grid-min.css";
 import "./css/normalize.css";
 import "./css/pure-min.css";
 import App from "./App";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+createRoot(document.getElementById("root")).render(
     <React.StrictMode>
         <App />
     </React.StrictMode>
