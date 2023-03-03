@@ -55,7 +55,12 @@ export default function Customers() {
             <p>Create, Retrieve, Update or Delete a Customer</p>
             <Grid
                 columns={[
-                    { name: "Customer ID", id: "customer_id", sort: true },
+                    {
+                        name: "Customer ID",
+                        id: "customer_id",
+                        sort: true,
+                        width: "8%",
+                    },
                     { name: "First Name", id: "first_name", sort: true },
                     { name: "Last Name", id: "last_name", sort: true },
                     {
@@ -70,6 +75,7 @@ export default function Customers() {
                         name: "Edit Item",
                         data: (row) =>
                             _(<MdEdit onClick={() => handleEdit(row)} />),
+                        width: "6%",
                     },
                     {
                         name: "Delete Item",
@@ -79,6 +85,7 @@ export default function Customers() {
                                     onClick={() => handleDelete(row)}
                                 />
                             ),
+                        width: "6%",
                     },
                 ]}
                 data={async () => await customers}
