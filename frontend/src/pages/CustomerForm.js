@@ -66,7 +66,8 @@ export const CustomerForm = (props) => {
 
     return (
         <div>
-            <h3>Add a new customer</h3>
+            {props.row ? <h3>Update customer</h3> : <h3>Add a new customer</h3>}
+
             <form
                 onSubmit={handleSubmit}
                 className="pure-form pure-form-stacked"
