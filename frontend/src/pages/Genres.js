@@ -14,8 +14,8 @@ export default function Genres() {
             </Link>
             <Grid
                 columns={[
-                    { name: "Genre ID", id:"genre_id", sort: true },
-                    { name: "Genre Name", id:"genre_name", sort: true },
+                    { name: "Genre ID", id: "genre_id", sort: true },
+                    { name: "Genre Name", id: "genre_name", sort: true },
                     {
                         name: "Edit Item",
                         data: _(<MdEdit onClick={() => alert("clicked!")} />),
@@ -29,16 +29,12 @@ export default function Genres() {
                         ),
                     },
                 ]}
-
-                data={
-                    async () => {
+                data={async () => {
                     const genres = await axios.get(
-                        "http://localhost:3001/genres"
+                        "http://flip1.engr.oregonstate.edu:40594/genres"
                     );
                     return genres.data.data;
-                }
-              }
-
+                }}
                 search={true}
                 pagination={{ limit: 25 }}
             />

@@ -14,11 +14,11 @@ export default function Movies() {
             </Link>
             <Grid
                 columns={[
-                    { name: "Movie ID", id:"movie_id", sort: true },
-                    { name: "Movie Name", id:"movie_name", sort: true },
-                    { name: "Runtime (mins)", id:"runtime_min", sort: true },
-                    { name: "MPA Rating", id:"mpa_rating", },
-                    { name: "Year", id:"movie_year", sort: true },
+                    { name: "Movie ID", id: "movie_id", sort: true },
+                    { name: "Movie Name", id: "movie_name", sort: true },
+                    { name: "Runtime (mins)", id: "runtime_min", sort: true },
+                    { name: "MPA Rating", id: "mpa_rating" },
+                    { name: "Year", id: "movie_year", sort: true },
                     {
                         name: "Edit Item",
                         data: _(<MdEdit onClick={() => alert("clicked!")} />),
@@ -32,18 +32,12 @@ export default function Movies() {
                         ),
                     },
                 ]}
-
-                
-        data={
-            async () => {
-            const movies = await axios.get(
-                "http://localhost:3001/movies"
-            );
-            return movies.data.data;
-        }
-      }
-
-
+                data={async () => {
+                    const movies = await axios.get(
+                        "http://flip1.engr.oregonstate.edu:40594/movies"
+                    );
+                    return movies.data.data;
+                }}
                 search={true}
                 pagination={{ limit: 25 }}
             />
