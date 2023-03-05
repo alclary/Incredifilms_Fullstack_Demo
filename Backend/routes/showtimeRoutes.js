@@ -20,7 +20,33 @@ router.get("/", (req, res) => {
 });
 
 // TODO CREATE functionality for entries to XXXX table, at '/XXXX' endpoint
+
 // TODO UPDATE functionality for XXXX table record, at '/XXXX' endpoint
+// UPDATE functionality for showtimes table record, at '/showtimes/{id}' endpoint
+router.put("/:id", (req, res) => {
+  console.log("UPDATE request received.");
+  db.query(
+    `UPDATE Showtime
+      SET showtime_date_time = ?, movie_id = ?, theater_id = ?
+      WHERE showtime_id = ?`,
+    [
+      req.body.showtime_date_time,
+      req.body.movie_id,
+      req.body.theater_id,
+      req.params.id,
+    ],
+    (err, data, fields) => {
+      if (err) {
+        console.error(err);
+      } // TODO Better error handling
+      res.status(200).json({
+        fields,
+        data,
+      });
+      console.log("UPDATE request successful.");
+    }
+  );
+});
 
 // DELETE functionality for showtimes table record, at '/showtimes/{id}' endpoint
 router.delete("/:id", (req, res) => {

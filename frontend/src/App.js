@@ -20,13 +20,6 @@ import ShowtimeNew from "./pages/ShowtimeNew";
 import TicketNew from "./pages/TicketNew";
 import MovieGenreNew from "./pages/MovieGenreNew";
 
-import GenreUpdate from "./pages/GenreUpdate";
-import MovieUpdate from "./pages/MovieUpdate";
-import MovieGenreUpdate from "./pages/MovieGenreUpdate";
-import ShowtimeUpdate from "./pages/ShowtimeUpdate";
-import TheaterUpdate from "./pages/TheaterUpdate";
-import TicketUpdate from "./pages/TicketUpdate";
-
 export default function App() {
     return (
         <Router>
@@ -99,37 +92,6 @@ export default function App() {
                                 exact
                                 path="/MovieGenreNew"
                                 element={<MovieGenreNew />}
-                            />
-
-                            <Route
-                                exact
-                                path="/MovieUpdate"
-                                element={<MovieUpdate />}
-                            />
-                            <Route
-                                exact
-                                path="/GenreUpdate"
-                                element={<GenreUpdate />}
-                            />
-                            <Route
-                                exact
-                                path="/ShowtimeUpdate"
-                                element={<ShowtimeUpdate />}
-                            />
-                            <Route
-                                exact
-                                path="/TicketUpdate"
-                                element={<TicketUpdate />}
-                            />
-                            <Route
-                                exact
-                                path="/TheaterUpdate"
-                                element={<TheaterUpdate />}
-                            />
-                            <Route
-                                exact
-                                path="/MovieGenreUpdate"
-                                element={<MovieGenreUpdate />}
                             />
 
                             <Route

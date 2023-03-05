@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Grid, _ } from "gridjs-react";
 import { MdEdit, MdDeleteForever } from "react-icons/md";
 import axios from "axios";
-// import { ShowtimeForm } from "./ShowtimeForm";
+import { ShowtimeForm } from "./ShowtimeForm";
 
 // Fetch and return data array of showtimes from API
 async function fetchShowtimes() {
@@ -61,9 +61,6 @@ export default function Showtimes() {
       <input type="date" id="start" name="start-input"></input>
       <label for="end">End date:</label>
       <input type="date" id="end" name="end-input"></input>
-      <a href="./ShowtimeNew" class="newPlus">
-        Add new showtime
-      </a>
       <Grid
         columns={[
           { name: "Showtime ID", id: "showtime_id", sort: true },
@@ -89,13 +86,13 @@ export default function Showtimes() {
       <Link to="/ShowtimeNew" className="newPlus">
         Add new showtime
       </Link>
-      {/* {showForm ? (
-                    <TicketForm
-                      row={formData}
-                      showForm={setShowForm}
-                      parentRerender={() => fetchAndSetTickets()}
-                    ></TicketForm>
-                  ) : null} */}
+      {showForm ? (
+        <ShowtimeForm
+          row={formData}
+          showForm={setShowForm}
+          parentRerender={() => fetchAndSetShowtimes()}
+        ></ShowtimeForm>
+      ) : null}
     </div>
   );
 }
