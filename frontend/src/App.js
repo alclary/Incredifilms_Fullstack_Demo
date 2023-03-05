@@ -20,15 +20,6 @@ import ShowtimeNew from "./pages/ShowtimeNew";
 import TicketNew from "./pages/TicketNew";
 import MovieGenreNew from "./pages/MovieGenreNew";
 
-import CustomerConfirmDelete from "./pages/CustomerConfirmDelete";
-import GenreConfirmDelete from "./pages/GenreConfirmDelete";
-import MovieConfirmDelete from "./pages/MovieConfirmDelete";
-import MovieGenreConfirmDelete from "./pages/MovieGenreConfirmDelete";
-import ShowtimeConfirmDelete from "./pages/ShowtimeConfirmDelete";
-import TheaterConfirmDelete from "./pages/TheaterConfirmDelete";
-import TicketConfirmDelete from "./pages/TicketConfirmDelete";
-
-import CustomerUpdate from "./pages/CustomerUpdate";
 import GenreUpdate from "./pages/GenreUpdate";
 import MovieUpdate from "./pages/MovieUpdate";
 import MovieGenreUpdate from "./pages/MovieGenreUpdate";
@@ -117,11 +108,6 @@ export default function App() {
                             />
                             <Route
                                 exact
-                                path="/CustomerUpdate"
-                                element={<CustomerUpdate />}
-                            />
-                            <Route
-                                exact
                                 path="/GenreUpdate"
                                 element={<GenreUpdate />}
                             />
@@ -144,42 +130,6 @@ export default function App() {
                                 exact
                                 path="/MovieGenreUpdate"
                                 element={<MovieGenreUpdate />}
-                            />
-
-                            <Route
-                                exact
-                                path="CustomerConfirmDelete"
-                                element={<CustomerConfirmDelete />}
-                            />
-                            <Route
-                                exact
-                                path="MovieConfirmDelete"
-                                element={<MovieConfirmDelete />}
-                            />
-                            <Route
-                                exact
-                                path="GenreConfirmDelete"
-                                element={<GenreConfirmDelete />}
-                            />
-                            <Route
-                                exact
-                                path="MovieGenreConfirmDelete"
-                                element={<MovieGenreConfirmDelete />}
-                            />
-                            <Route
-                                exact
-                                path="TicketConfirmDelete"
-                                element={<TicketConfirmDelete />}
-                            />
-                            <Route
-                                exact
-                                path="ShowtimeConfirmDelete"
-                                element={<ShowtimeConfirmDelete />}
-                            />
-                            <Route
-                                exact
-                                path="TheaterConfirmDelete"
-                                element={<TheaterConfirmDelete />}
                             />
 
                             <Route

@@ -66,9 +66,7 @@ export const GenreForm = (props) => {
                     required
                     value={genre_name}
                     onChange={(e) => set_genre_name(e.target.value)}
-                />
-                <label>Last name</label>
- 
+                /> 
 
                 <button type="submit" class="pure-button pure-button-primary">
                     Submit
