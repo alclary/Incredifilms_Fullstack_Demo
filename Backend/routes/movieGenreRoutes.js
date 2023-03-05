@@ -26,7 +26,7 @@ router.get("/", (req, res) => {
 router.delete("/:id", (req, res) => {
   console.log("DELETE request received.");
   db.query(
-    `DELETE FROM Customer WHERE movie_genre_id = ?`,
+    `DELETE FROM Movie_Genre WHERE movie_genre_id = ?`,
     [req.params.id],
     (err, data, fields) => {
       if (err) {
