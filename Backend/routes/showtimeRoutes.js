@@ -5,7 +5,7 @@ const db = require("../db.js");
 // READ functionality for showtimes table, at '/showtimes' endpoint
 router.get("/", (req, res) => {
     console.log("GET request received.");
-    db.query("SELECT Showtime.showtime_id AS showtime_id, Showtime.showtime_date_time AS showtime_date_time, Movie.movie_name AS movie_id, Theater.theater_name AS theater_id FROM Showtime JOIN Movie ON Showtime.movie_id = Movie.movie_id JOIN Theater ON Showtime.theater_id = Theater.theater_id ORDER BY showtime_id ASC;", (err, data, fields) => {
+    db.query("SELECT Showtime.showtime_id AS showtime_id, Showtime.showtime_date_time AS date_time, Movie.movie_name AS movie_id, Theater.theater_name AS theater_id FROM Showtime JOIN Movie ON Showtime.movie_id = Movie.movie_id JOIN Theater ON Showtime.theater_id = Theater.theater_id ORDER BY showtime_id ASC;", (err, data, fields) => {
         if (err) {
             console.error(err);
         } // TODO Better error handling

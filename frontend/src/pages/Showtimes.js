@@ -67,7 +67,7 @@ export default function Showtimes() {
       <Grid
         columns={[
           { name: "Showtime ID",  id:"showtime_id", sort: true },
-          { name: "Datetime",  id:"showtime_date_time",  sort: true },
+          { name: "Datetime",  id:"date_time",  sort: true },
           { name: "Movie",   id:"movie_id", sort: true },
           { name: "Theater",  id:"theater_id" },
           {
