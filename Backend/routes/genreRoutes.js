@@ -5,15 +5,18 @@ const db = require("../db.js");
 // READ functionality for genre table, at '/genre' endpoint
 router.get("/", (req, res) => {
   console.log("GET request received.");
-  db.query("SELECT * FROM Genre ORDER BY genre_id ASC;", (err, data, fields) => {
-    if (err) {
-      console.error(err);
-    } // TODO Better error handling
-    res.status(200).json({
-      fields,
-      data,
-    });
-  });
+  db.query(
+    "SELECT * FROM Genre ORDER BY genre_id ASC;",
+    (err, data, fields) => {
+      if (err) {
+        console.error(err);
+      } // TODO Better error handling
+      res.status(200).json({
+        fields,
+        data,
+      });
+    }
+  );
 });
 
 // CREATE functionality for entries to genres table, at '/genres' endpoint
@@ -43,7 +46,7 @@ router.put("/:id", (req, res) => {
     `UPDATE Genre
       SET genre_name = ?
       WHERE genre_id = ?`,
-    [req.body.genre_name, req.params.genre_id],
+    [req.body.genre_name, req.params.id],
     (err, data, fields) => {
       if (err) {
         console.error(err);

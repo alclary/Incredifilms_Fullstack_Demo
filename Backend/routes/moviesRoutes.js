@@ -56,7 +56,7 @@ router.put("/:id", (req, res) => {
       req.body.runtime_min,
       req.body.mpa_rating,
       req.body.movie_year,
-      req.params.movie_id,
+      req.params.id,
     ],
     (err, data, fields) => {
       if (err) {

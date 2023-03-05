@@ -47,11 +47,7 @@ router.put("/:id", (req, res) => {
     `UPDATE Theater
       SET theater_name = ?, no_of_seats = ?
       WHERE theater_id = ?`,
-    [
-      req.body.theater_name,
-      req.body.no_of_seats,
-      req.params.theater_id,
-    ],
+    [req.body.theater_name, req.body.no_of_seats, req.params.id],
     (err, data, fields) => {
       if (err) {
         console.error(err);
