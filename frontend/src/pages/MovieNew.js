@@ -52,34 +52,51 @@ export const MovieNew = () => {
           </label>
           <br />
           <div>
-          <label >
-            <p>MPA Rating</p>
-          {/* DATA VALIDATION NEEDED */}
-            <input type="radio" id="PG-13" name="rating" value="PG-13" 
-                        onSubmit={(e) => set_mpa_rating(e.target.value)}
-                        />
-            <label>PG-13</label>
-            <input type="radio" id="PG" name="rating" value="PG"
-                        onSubmit={(e) => set_mpa_rating(e.target.value)}
-                        />
-            <label>PG</label>
-            <input type="radio" id="R" name="rating" value="R"
-                        onSubmit={(e) => set_mpa_rating(e.target.value)}
-                        />
-            <label>R</label>
-            <input type="radio" id="G" name="rating" value="G"
-                        onSubmit={(e) => set_mpa_rating(e.target.value)}
-                        />
-            <label>G</label>
-            <input type="radio" id="NR" name="rating" value="NR"
-                        onSubmit={(e) => set_mpa_rating(e.target.value)}
-                        />
-            <label>NR</label>
-            <input type="radio" id="NC-17" name="rating" value="NC-17"
-                        onSubmit={(e) => set_mpa_rating(e.target.value)}
-                        />
-            <label>NC-17</label>
-          </label>
+            <label>
+              <p>MPA Rating</p>
+              <input
+                type="radio"
+                id="PG-13"
+                name="mpa_rating"
+                value={mpa_rating}
+                onChange={(e) => set_mpa_rating(e.target.value)}
+              />PG-13
+              <input
+                type="radio"
+                id="PG"
+                name="mpa_rating"
+                value={mpa_rating}
+                onChange={(e) => set_mpa_rating(e.target.value)}
+              />PG
+              <input
+                type="radio"
+                id="R"
+                name="mpa_rating"
+                value={mpa_rating}
+                onChange={(e) => set_mpa_rating(e.target.value)}
+              />R
+              <input
+                type="radio"
+                id="G"
+                name="mpa_rating"
+                value={mpa_rating}
+                onChange={(e) => set_mpa_rating(e.target.value)}
+              />G
+              <input
+                type="radio"
+                id="NR"
+                name="mpa_rating"
+                value={mpa_rating}
+                onChange={(e) => set_mpa_rating(e.target.value)}
+              />NR
+              <input
+                type="radio"
+                id="NC-17"
+                name="mpa_rating"
+                value={mpa_rating}
+                onChange={(e) => set_mpa_rating(e.target.value)}
+              />NC-17
+            </label>
           </div>
           <br />
           <label>

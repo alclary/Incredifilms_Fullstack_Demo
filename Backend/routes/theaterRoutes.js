@@ -39,6 +39,7 @@ router.post("/", (req, res) => {
   );
 });
 
+// TODO
 // UPDATE functionality for theaters table record, at '/theaters/{id}' endpoint
 router.put("/:id", (req, res) => {
   console.log("UPDATE request received.");
@@ -49,8 +50,7 @@ router.put("/:id", (req, res) => {
     [
       req.body.theater_name,
       req.body.no_of_seats,
-      req.body.theater_id,
-      req.params.id,
+      req.params.theater_id,
     ],
     (err, data, fields) => {
       if (err) {

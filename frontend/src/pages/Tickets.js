@@ -1,96 +1,91 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Grid, _ } from "gridjs-react";
 import { MdEdit, MdDeleteForever } from "react-icons/md";
+import axios from "axios";
+// import { TicketForm } from "./TicketForm";
 
+// Fetch and return data array of tickets from API
+async function fetchTickets() {
+  const tickets = await axios.get("http://localhost:3001/tickets");
+  return tickets.data.data;
+}
+
+// Functional Component Definition for Tickets Component
 export default function Tickets() {
-    return (
-        <div>
-            <h3>Tickets</h3>
-            <p>Create, Retrieve, Update or Delete a Ticket</p>
-            <a href="./TicketNew" class="newPlus">
-                Add new ticket
-            </a>
-            <Grid
-                data={[
-                    [
-                        1,
-                        "Stephanie Helmsley",
-                        "2023-02-14 18:00:00",
-                        "Bee Movie",
-                        "IncrediFilms Rogers Park",
-                        9,
-                        "CREDIT",
-                    ],
-                    [
-                        2,
-                        "Stephanie Helmsley",
-                        "2023-02-16 12:00:00",
-                        "Amélie",
-                        "IncrediFilms North Center",
-                        5,
-                        "CREDIT",
-                    ],
-                    [
-                        3,
-                        "Em Patterson",
-                        "2023-02-10 16:00:00",
-                        "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",
-                        "IncrediFilms Rogers Park",
-                        9,
-                        "CASH",
-                    ],
-                    [
-                        4,
-                        null,
-                        "2023-02-10 16:00:00",
-                        "Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb",
-                        "IncrediFilms Rogers Park",
-                        9,
-                        "DEBIT",
-                    ],
-                    [
-                        5,
-                        "Alexa Bliss",
-                        "2023-02-10 15:00:00",
-                        "Interstellar",
-                        "IncrediFilms Lincoln Square",
-                        9,
-                        "CREDIT",
-                    ],
-                    [
-                        6,
-                        "Booker T",
-                        "2023-02-14 18:00:00",
-                        "Bee Movie",
-                        "IncrediFilms Wicker Park",
-                        9,
-                        null,
-                    ],
-                ]}
-                columns={[
-                    { name: "Ticket ID", sort: true },
-                    { name: "Customer Name", sort: true },
-                    { name: "Showtime Datetime", sort: true },
-                    { name: "Movie" },
-                    { name: "Theater" },
-                    { name: "Price" },
-                    { name: "Payment Method" },
-                    {
-                        name: "Edit Item",
-                        data: _(<MdEdit onClick={() => alert("clicked!")} />),
-                    },
-                    {
-                        name: "Delete Item",
-                        data: _(
-                            <MdDeleteForever
-                                onClick={() => alert("clicked!")}
-                            />
-                        ),
-                    },
-                ]}
-                search={true}
-                pagination={{ limit: 25 }}
-            />
-        </div>
-    );
+  // State definition for the tickets data array
+  const [tickets, setTickets] = useState(async () => await fetchTickets());
+
+  function fetchAndSetTickets() {
+    setTickets(async () => await fetchTickets());
+  }
+
+  // State definition for whether or not to hide form
+  const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState(null);
+
+  // Function to confirm and handle deletion of table record, via the delete
+  //   icon in the delete column.
+  async function handleDelete(row) {
+    if (
+      window.confirm(
+        `Are you sure you want to DELETE the record for ticket ID = ${row.ticket_id}?`
+      ) === true
+    ) {
+      let deleted = await axios.delete(
+        `http://localhost:3001/tickets/${row.ticket_id}`
+      );
+      if (deleted.status === 200) {
+        fetchAndSetTickets();
+      }
+    }
+  }
+
+  function handleEdit(row) {
+    setFormData(row);
+    setShowForm(true);
+  }
+
+  // Ticket Component Contents
+  return (
+    <div>
+      <h3>Tickets</h3>
+      <p>Create, Retrieve, Update or Delete a Ticket</p>
+      <Grid
+        columns={[
+          { name: "Ticket ID", id: "ticket_id", sort: true },
+          { name: "Customer Name", id: "customer_id", sort: true },
+          { name: "Showtime Datetime", id: "showtime_id", sort: true },
+          { name: "Movie", id: "movie_id" },
+          { name: "Theater", id: "theater_id" },
+          { name: "Price", id: "price" },
+          { name: "Payment Method", id: "payment_method" },
+          {
+            name: "Edit Item",
+            data: (row) => _(<MdEdit onClick={() => handleEdit(row)} />),
+            width: "6%",
+          },
+          {
+            name: "Delete Item",
+            data: (row) =>
+              _(<MdDeleteForever onClick={() => handleDelete(row)} />),
+            width: "6%",
+          },
+        ]}
+        data={async () => await tickets}
+        search={true}
+        pagination={{ limit: 25 }}
+      />
+      <Link to="/TicketNew" className="newPlus">
+        Add new ticket
+      </Link>
+      {/* {showForm ? (
+        <TicketForm
+          row={formData}
+          showForm={setShowForm}
+          parentRerender={() => fetchAndSetTickets()}
+        ></TicketForm>
+      ) : null} */}
+    </div>
+  );
 }

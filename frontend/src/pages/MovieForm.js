@@ -83,14 +83,57 @@ export const MovieForm = (props) => {
           value={runtime_min}
           onChange={(e) => set_runtime_min(e.target.value)}
         />
-        <label>MPA rating</label>
-        <input
-          // TODO DATA VALIDATION
-          type="radio"
-          required
-          value={mpa_rating}
-          onChange={(e) => set_mpa_rating(e.target.value)}
-        />
+        <label>
+          <p>MPA Rating</p>
+          <input
+            type="radio"
+            id="PG-13"
+            name="rating"
+            value={mpa_rating}
+            onChange={(e) => set_mpa_rating(e.target.value)}
+          />
+          <label>PG-13</label>
+          <input
+            type="radio"
+            id="PG"
+            name="rating"
+            value={mpa_rating}
+            onChange={(e) => set_mpa_rating(e.target.value)}
+          />
+          <label>PG</label>
+          <input
+            type="radio"
+            id="R"
+            name="rating"
+            value={mpa_rating}
+            onChange={(e) => set_mpa_rating(e.target.value)}
+          />
+          <label>R</label>
+          <input
+            type="radio"
+            id="G"
+            name="rating"
+            value={mpa_rating}
+            onChange={(e) => set_mpa_rating(e.target.value)}
+          />
+          <label>G</label>
+          <input
+            type="radio"
+            id="NR"
+            name="rating"
+            value={mpa_rating}
+            onChange={(e) => set_mpa_rating(e.target.value)}
+          />
+          <label>NR</label>
+          <input
+            type="radio"
+            id="NC-17"
+            name="rating"
+            value={mpa_rating}
+            onChange={(e) => set_mpa_rating(e.target.value)}
+          />
+          <label>NC-17</label>
+        </label>
         <label>Year</label>
         <input
           // TODO DATA VALIDATION

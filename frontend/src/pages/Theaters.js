@@ -54,8 +54,6 @@ export default function Theaters() {
     <div>
       <h3>Theaters</h3>
       <p>Create, Retrieve, Update or Delete a Theater</p>
-
-
       <Grid
         columns={[
           { name: "Theater ID", id: "theater_id", sort: true },
