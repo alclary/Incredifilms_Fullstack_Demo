@@ -14,12 +14,10 @@ async function fetchTheaters() {
 // Functional Component Definition for Theaters Component
 export default function Theaters() {
   // State definition for the theaters data array
-  const [theaters, setTheaters] = useState(
-      async () => await fetchTheaters()
-  );
+  const [theaters, setTheaters] = useState(async () => await fetchTheaters());
 
   function fetchAndSetTheaters() {
-      setTheaters(async () => await fetchTheaters());
+    setTheaters(async () => await fetchTheaters());
   }
 
   // State definition for whether or not to hide form
@@ -29,26 +27,26 @@ export default function Theaters() {
   // Function to confirm and handle deletion of table record, via the delete
   //   icon in the delete column.
   async function handleDelete(row) {
-      if (
-          window.confirm(
-              `Are you sure you want to DELETE the record for theater ID = ${row.theater_id}?`
-          ) === true
-      ) {
-          let deleted = await axios.delete(
-              `http://localhost:3001/theaters/${row.theater_id}`
-          );
-          if (deleted.status === 200) {
-              fetchAndSetTheaters();
-          }
+    if (
+      window.confirm(
+        `Are you sure you want to DELETE the record for theater ID = ${row.theater_id}?`
+      ) === true
+    ) {
+      let deleted = await axios.delete(
+        `http://localhost:3001/theaters/${row.theater_id}`
+      );
+      if (deleted.status === 200) {
+        fetchAndSetTheaters();
       }
+    }
   }
 
   function handleEdit(row) {
-      setFormData(row);
-      setShowForm(true);
+    setFormData(row);
+    setShowForm(true);
   }
 
-      // Theater Component Contents
+  // Theater Component Contents
 
   return (
     <div>
@@ -58,43 +56,36 @@ export default function Theaters() {
         columns={[
           { name: "Theater ID", id: "theater_id", sort: true },
           { name: "Theater Name", id: "theater_name", sort: true },
-          { name: "Number of seats", id:"no_of_seats", sort: true },
+          { name: "Number of seats", id: "no_of_seats", sort: true },
           {
             name: "Edit Item",
-            data: (row) =>
-                _(<MdEdit onClick={() => handleEdit(row)} />),
+            data: (row) => _(<MdEdit onClick={() => handleEdit(row)} />),
             width: "6%",
-        },
-        {
+          },
+          {
             name: "Delete Item",
             data: (row) =>
-                _(
-                    <MdDeleteForever
-                        onClick={() => handleDelete(row)}
-                    />
-                ),
+              _(<MdDeleteForever onClick={() => handleDelete(row)} />),
             width: "6%",
-        },
-    ]}
-    data={async () => await theaters}
-    search={true}
-    pagination={{ limit: 25 }}
-/>
+          },
+        ]}
+        data={async () => await theaters}
+        search={true}
+        pagination={{ limit: 25 }}
+      />
 
-<Link to="/TheaterNew" class="newPlus">
+      <Link to="/TheaterNew" class="newPlus">
         {" "}
         Add new theater
       </Link>
 
       {showForm ? (
-                <TheaterForm
-                    row={formData}
-                    showForm={setShowForm}
-                    parentRerender={() => fetchAndSetTheaters()}
-                ></TheaterForm>
-            ) : null}
-
-
+        <TheaterForm
+          row={formData}
+          showForm={setShowForm}
+          parentRerender={() => fetchAndSetTheaters()}
+        ></TheaterForm>
+      ) : null}
     </div>
   );
-};
+}

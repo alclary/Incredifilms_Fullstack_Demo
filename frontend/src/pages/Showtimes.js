@@ -66,10 +66,10 @@ export default function Showtimes() {
       </a>
       <Grid
         columns={[
-          { name: "Showtime ID",  id:"showtime_id", sort: true },
-          { name: "Datetime",  id:"date_time",  sort: true },
-          { name: "Movie",   id:"movie_id", sort: true },
-          { name: "Theater",  id:"theater_id" },
+          { name: "Showtime ID", id: "showtime_id", sort: true },
+          { name: "Datetime", id: "date_time", sort: true },
+          { name: "Movie", id: "movie_id", sort: true },
+          { name: "Theater", id: "theater_id" },
           {
             name: "Edit Item",
             data: (row) => _(<MdEdit onClick={() => handleEdit(row)} />),
