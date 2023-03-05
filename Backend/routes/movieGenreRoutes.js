@@ -6,7 +6,7 @@ const db = require("../db.js");
 router.get("/", (req, res) => {
   console.log("GET request received.");
   db.query(
-    "SELECT movie_genre_id, Movie.movie_name, Genre.genre_name FROM `Movie_Genre` JOIN Movie on Movie.movie_id = Movie_Genre.movie_id AS movie_id JOIN Genre on Genre.genre_id = Movie_Genre.genre_id AS genre_id ORDER BY movie_genre_id ASC;",
+    "SELECT movie_genre_id, Movie.movie_name AS movie_id, Genre.genre_name AS genre_id FROM `Movie_Genre` JOIN Movie on Movie.movie_id = Movie_Genre.movie_id  JOIN Genre on Genre.genre_id = Movie_Genre.genre_id ORDER BY movie_genre_id ASC;",
     (err, data, fields) => {
       if (err) {
         console.error(err);
