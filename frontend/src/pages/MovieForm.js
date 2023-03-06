@@ -83,57 +83,30 @@ export const MovieForm = (props) => {
           value={runtime_min}
           onChange={(e) => set_runtime_min(e.target.value)}
         />
-        <label>
-          <p>MPA Rating</p>
-          <input
-            type="radio"
-            id="PG-13"
-            name="rating"
-            value={mpa_rating}
-            onChange={(e) => set_mpa_rating(e.target.value)}
-          />
-          <label>PG-13</label>
-          <input
-            type="radio"
-            id="PG"
-            name="rating"
-            value={mpa_rating}
-            onChange={(e) => set_mpa_rating(e.target.value)}
-          />
-          <label>PG</label>
-          <input
-            type="radio"
-            id="R"
-            name="rating"
-            value={mpa_rating}
-            onChange={(e) => set_mpa_rating(e.target.value)}
-          />
-          <label>R</label>
-          <input
-            type="radio"
-            id="G"
-            name="rating"
-            value={mpa_rating}
-            onChange={(e) => set_mpa_rating(e.target.value)}
-          />
-          <label>G</label>
-          <input
-            type="radio"
-            id="NR"
-            name="rating"
-            value={mpa_rating}
-            onChange={(e) => set_mpa_rating(e.target.value)}
-          />
-          <label>NR</label>
-          <input
-            type="radio"
-            id="NC-17"
-            name="rating"
-            value={mpa_rating}
-            onChange={(e) => set_mpa_rating(e.target.value)}
-          />
-          <label>NC-17</label>
-        </label>
+        <label>MPA Rating</label>
+        <select
+          name="mpa_rating"
+          onChange={(e) => set_mpa_rating(e.target.value)}
+        >
+          <option type="radio" id="PG-13" name="mpa_rating" value={mpa_rating}>
+            PG-13
+          </option>
+          <option type="radio" id="PG" name="mpa_rating" value={mpa_rating}>
+            PG
+          </option>
+          <option type="radio" id="R" name="mpa_rating" value={mpa_rating}>
+            R
+          </option>
+          <option type="radio" id="G" name="mpa_rating" value={mpa_rating}>
+            G
+          </option>
+          <option type="radio" id="NR" name="mpa_rating" value={mpa_rating}>
+            NR
+          </option>
+          <option type="radio" id="NC-17" name="mpa_rating" value={mpa_rating}>
+            NC-17
+          </option>
+        </select>
         <label>Year</label>
         <input
           // TODO DATA VALIDATION
