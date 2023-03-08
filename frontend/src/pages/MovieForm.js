@@ -5,6 +5,16 @@ import { ReactWrapper } from "gridjs-react";
 export const MovieForm = (props) => {
   console.log(props);
 
+  const ratings = [
+    {rating: "R", label: "R"},
+    {rating: "NR", label: "NR"},
+    {rating: "NC-17", label: "NC-17"},
+    {rating: "G", label: "G"},
+    {rating: "PG", label: "PG"},
+    {rating: "PG-13", label: "PG-13"},
+
+  ]
+
   async function newSubmit() {
     try {
       const res = await axios.post("http://localhost:3001/movies", {});
@@ -61,6 +71,10 @@ export const MovieForm = (props) => {
     }
   };
 
+  const handleRatingChange = async (e) => {
+    set_mpa_rating(e.target.value)
+  }
+
   return (
     <div>
       {props.row ? <h3>Update movie</h3> : <h3>Add a new movie</h3>}
@@ -84,28 +98,9 @@ export const MovieForm = (props) => {
           onChange={(e) => set_runtime_min(e.target.value)}
         />
         <label>MPA Rating</label>
-        <select
-          name="mpa_rating"
-          onChange={(e) => set_mpa_rating(e.target.value)}
-        >
-          <option type="radio" id="PG-13" name="mpa_rating" value={mpa_rating}>
-            PG-13
-          </option>
-          <option type="radio" id="PG" name="mpa_rating" value={mpa_rating}>
-            PG
-          </option>
-          <option type="radio" id="R" name="mpa_rating" value={mpa_rating}>
-            R
-          </option>
-          <option type="radio" id="G" name="mpa_rating" value={mpa_rating}>
-            G
-          </option>
-          <option type="radio" id="NR" name="mpa_rating" value={mpa_rating}>
-            NR
-          </option>
-          <option type="radio" id="NC-17" name="mpa_rating" value={mpa_rating}>
-            NC-17
-          </option>
+        <select onChange={handleRatingChange}>
+          <option type="radio" id="PG-13" name="mpa_rating" value={mpa_rating.value}>{mpa_rating.label}</option>
+          {ratings.map((mpa_rating) => <option value={mpa_rating.value}>{mpa_rating.label}</option>)}
         </select>
         <label>Year</label>
         <input
