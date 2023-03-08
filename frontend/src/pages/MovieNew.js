@@ -25,6 +25,19 @@ export const MovieNew = () => {
     }
   };
 
+  const ratings = [
+    { rating: "R", label: "R" },
+    { rating: "NR", label: "NR" },
+    { rating: "NC-17", label: "NC-17" },
+    { rating: "G", label: "G" },
+    { rating: "PG", label: "PG" },
+    { rating: "PG-13", label: "PG-13" },
+  ];
+
+  const handleRatingChange = async (e) => {
+    set_mpa_rating(e.target.value);
+  };
+
   return (
     <>
       <article>
@@ -52,51 +65,20 @@ export const MovieNew = () => {
           </label>
           <br />
           <div>
-            <label>
-              <p>MPA Rating</p>
-              <input
+            <label>MPA Rating</label>
+            <select onChange={handleRatingChange}>
+              <option
                 type="radio"
                 id="PG-13"
                 name="mpa_rating"
-                value={mpa_rating}
-                onChange={(e) => set_mpa_rating(e.target.value)}
-              />PG-13
-              <input
-                type="radio"
-                id="PG"
-                name="mpa_rating"
-                value={mpa_rating}
-                onChange={(e) => set_mpa_rating(e.target.value)}
-              />PG
-              <input
-                type="radio"
-                id="R"
-                name="mpa_rating"
-                value={mpa_rating}
-                onChange={(e) => set_mpa_rating(e.target.value)}
-              />R
-              <input
-                type="radio"
-                id="G"
-                name="mpa_rating"
-                value={mpa_rating}
-                onChange={(e) => set_mpa_rating(e.target.value)}
-              />G
-              <input
-                type="radio"
-                id="NR"
-                name="mpa_rating"
-                value={mpa_rating}
-                onChange={(e) => set_mpa_rating(e.target.value)}
-              />NR
-              <input
-                type="radio"
-                id="NC-17"
-                name="mpa_rating"
-                value={mpa_rating}
-                onChange={(e) => set_mpa_rating(e.target.value)}
-              />NC-17
-            </label>
+                value={mpa_rating.value}
+              >
+                {mpa_rating.label}
+              </option>
+              {ratings.map((mpa_rating) => (
+                <option value={mpa_rating.value}>{mpa_rating.label}</option>
+              ))}
+            </select>
           </div>
           <br />
           <label>
