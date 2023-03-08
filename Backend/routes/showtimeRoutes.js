@@ -19,7 +19,25 @@ router.get("/", (req, res) => {
   );
 });
 
-// TODO CREATE functionality for entries to XXXX table, at '/XXXX' endpoint
+// TODO CREATE functionality for entries to showtimes table, at '/showtimes' endpoint
+router.post("/", (req, res) => {
+  console.log("POST request received.");
+  db.query(
+    "INSERT INTO `Customer` (`showtime_date_time`, `movie_id`, `theatre_id`) VALUES (?, (SELECT movie_id FROM Movie WHERE movie_name = ?), (SELECT theater_id FROM Theater WHERE theater_name = ?));",
+    [req.body.showtime_date_time, req.body.movie_id, req.body.theatre_id],
+    (err, data, fields) => {
+      if (err) {
+        console.error(err);
+      } // TODO Better error handling
+      res.status(200).json({
+        // TODO decide if appropriate response
+        fields,
+        data,
+      });
+      console.log("POST request successful.");
+    }
+  );
+});
 
 // TODO UPDATE functionality for XXXX table record, at '/XXXX' endpoint
 // UPDATE functionality for showtimes table record, at '/showtimes/{id}' endpoint

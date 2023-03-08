@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export const TheaterNew = () => {
+  const navigate = useNavigate();
+
   const [theater_name, set_theater_name] = useState("");
   const [no_of_seats, set_no_of_seats] = useState("");
-
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,12 +21,11 @@ export const TheaterNew = () => {
       console.error(error);
       // TODO add user feedback of failure
     }
+    navigate("/Theater");
   };
 
   return (
     <>
-
-
       <article>
         <h3>Add a new theater</h3>
         <form onSubmit={handleSubmit} className="pure-form pure-form-stacked">

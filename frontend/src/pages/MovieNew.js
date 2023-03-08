@@ -1,8 +1,10 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import axios from "axios";
+import { useHistory, useNavigate } from "react-router-dom";
 
 export const MovieNew = () => {
+  const navigate = useNavigate();
+
   const [movie_name, set_movie_name] = useState("");
   const [runtime_min, set_runtime_min] = useState("");
   const [mpa_rating, set_mpa_rating] = useState("");
@@ -23,6 +25,7 @@ export const MovieNew = () => {
       console.error(error);
       // TODO add user feedback of failure
     }
+    navigate("/Movie");
   };
 
   const ratings = [
@@ -67,12 +70,7 @@ export const MovieNew = () => {
           <div>
             <label>MPA Rating</label>
             <select onChange={handleRatingChange}>
-              <option
-                type="radio"
-                id="PG-13"
-                name="mpa_rating"
-                value={mpa_rating.value}
-              >
+              <option type="radio" name="mpa_rating" value={mpa_rating.value}>
                 {mpa_rating.label}
               </option>
               {ratings.map((mpa_rating) => (

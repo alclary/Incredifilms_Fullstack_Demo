@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 export const GenreNew = () => {
+  const navigate = useNavigate();
   const [genre_name, set_genre_name] = useState("");
 
   const handleSubmit = async (e) => {
@@ -17,6 +18,8 @@ export const GenreNew = () => {
       console.error(error);
       // TODO add user feedback of failure
     }
+
+    navigate("/Genre");
   };
 
   return (

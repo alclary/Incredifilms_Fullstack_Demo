@@ -74,7 +74,7 @@ export default function MovieGenres() {
         pagination={{ limit: 25 }}
       />
       <Link to="/MovieGenreNew" className="newPlus">
-        Add new movie_genre
+        Add new Movie Genre relationship
       </Link>
       {/* {showForm ? (
                     <MovieGenreForm

@@ -6,7 +6,7 @@ import Schema from "../components/Schema";
 
 // renders on start up
 
-function HomePage({ entities }) {
+function HomePage({}) {
   return (
     <div>
       <h3>Welcome</h3>
@@ -19,5 +19,3 @@ function HomePage({ entities }) {
 }
 
 export default HomePage;
-
-//<EntityTable entities = {entities}/>

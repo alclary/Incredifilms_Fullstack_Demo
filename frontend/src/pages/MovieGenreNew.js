@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import { MdLocalActivity } from "react-icons/md";
-import { useHistory } from "react-router-dom";
+import { useHistory, useNavigate } from "react-router-dom";
 
 export const MovieGenreNew = () => {
+  const navigate = useNavigate();
+  const [genre_name, set_genre_name] = useState("");
+  const [movie_name, set_movie_name] = useState("");
+
+
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
     // TODO implement POST request to API
-};
+
+    navigate("/MovieGenre");
+  };
 
   return (
     <>
@@ -48,9 +55,13 @@ export const MovieGenreNew = () => {
           <label for="genreID1">Independent</label>
         </label>
         <br />
-        <button type="submit" className="pure-button pure-button-primary">
-                    Submit
-                </button>
+        <button
+            type="submit"
+            className="pure-button pure-button-primary"
+            onClick={handleSubmit}
+          >
+            Submit
+          </button>
       </form>
 
       <a href="./MovieGenre">Return to all movie genres</a>
