@@ -39,7 +39,6 @@ router.post("/", (req, res) => {
   );
 });
 
-// TODO UPDATE functionality for XXXX table record, at '/XXXX' endpoint
 // UPDATE functionality for showtimes table record, at '/showtimes/{id}' endpoint
 router.put("/:id", (req, res) => {
   console.log("UPDATE request received.");
