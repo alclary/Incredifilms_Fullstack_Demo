@@ -16,7 +16,7 @@ const app = express();
 const port = 3001;
 
 // Enable CORS for localhost origin
-app.use(cors({ origin: "http://localhost:3000" }));
+app.use(cors({ origin: "*" }));
 
 // Enable express json middleware
 app.use(express.json());
@@ -37,9 +37,9 @@ app.use("/showtimes", showtimeRoutes);
 app.use("/moviegenres", movieGenreRoutes);
 
 app.get("/", (req, res) => {
-  res.json("Welcome");
+    res.json("Welcome");
 });
 
 app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+    console.log(`Server running on port ${port}`);
 });
