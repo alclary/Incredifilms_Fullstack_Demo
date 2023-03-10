@@ -5,18 +5,18 @@ import { MdEdit, MdDeleteForever } from "react-icons/md";
 import axios from "axios";
 import { GenreForm } from "./GenreForm";
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 // Fetch and return data array of genres from API
 async function fetchGenres() {
-    const genres = await axios.get("http://localhost:3001/genres");
+    const genres = await axios.get(API_URL + "/genres");
     return genres.data.data;
 }
 
 // Functional Component Definition for Genres Component
 export default function Genres() {
     // State definition for the genres data array
-    const [genres, setGenres] = useState(
-        async () => await fetchGenres()
-    );
+    const [genres, setGenres] = useState(async () => await fetchGenres());
 
     function fetchAndSetGenres() {
         setGenres(async () => await fetchGenres());
@@ -35,7 +35,7 @@ export default function Genres() {
             ) === true
         ) {
             let deleted = await axios.delete(
-                `http://localhost:3001/genres/${row.genre_id}`
+                API_URL + `/genres/${row.genre_id}`
             );
             if (deleted.status === 200) {
                 fetchAndSetGenres();
@@ -56,8 +56,8 @@ export default function Genres() {
 
             <Grid
                 columns={[
-                    { name: "Genre ID", id:"genre_id", sort: true },
-                    { name: "Genre Name", id:"genre_name", sort: true },
+                    { name: "Genre ID", id: "genre_id", sort: true },
+                    { name: "Genre Name", id: "genre_name", sort: true },
                     {
                         name: "Edit Item",
                         data: (row) =>
@@ -75,12 +75,11 @@ export default function Genres() {
                         width: "6%",
                     },
                 ]}
-
                 data={async () => await genres}
                 search={true}
                 pagination={{ limit: 25 }}
             />
-                        <Link to="/GenreNew" class="newPlus">
+            <Link to="/GenreNew" class="newPlus">
                 Add new genre
             </Link>
             {showForm ? (
