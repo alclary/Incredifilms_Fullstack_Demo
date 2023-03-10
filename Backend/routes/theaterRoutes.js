@@ -84,7 +84,7 @@ router.delete("/:id", (req, res) => {
 router.get("/locations", (req, res) => {
     console.log("GET request received.");
     db.query(
-        "SELECT theater_name FROM Theater ORDER BY theater_name ASC;",
+        "SELECT theater_id, theater_name FROM Theater ORDER BY theater_name ASC;",
         (err, data, fields) => {
             if (err) {
                 console.error(err);

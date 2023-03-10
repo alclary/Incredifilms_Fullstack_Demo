@@ -94,7 +94,7 @@ router.delete("/:id", (req, res) => {
 router.get("/titles", (req, res) => {
     console.log("GET request received.");
     db.query(
-        "SELECT movie_name FROM Movie ORDER BY movie_name ASC;",
+        "SELECT movie_id, movie_name FROM Movie ORDER BY movie_name ASC;",
         (err, data, fields) => {
             if (err) {
                 console.error(err);
