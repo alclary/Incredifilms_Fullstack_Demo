@@ -19,25 +19,33 @@ export default function Customers() {
     const [customers, setCustomers] = useState(
         async () => await fetchCustomers()
     );
+    // State definition for modal form
+    const [formData, setFormData] = useState("");
+    const [formType, setFormType] = useState("new");
+    const [key, setKey] = useState(Math.random());
 
+    // Resets the modal form (new and update) to a fresh "new" form
+    function resetForm() {
+        setFormData("");
+        setFormType("new");
+        setKey(Math.random());
+    }
+
+    // Forces customers data to be refetched from API, updates customers state
     function fetchAndSetCustomers() {
         setCustomers(async () => await fetchCustomers());
     }
 
-    // State definition for whether or not to hide form
-    const [showForm, setShowForm] = useState(false);
-    const [formData, setFormData] = useState(null);
-
     // Function to confirm and handle deletion of table record, via the delete
     //   icon in the delete column.
-    async function handleDelete(row) {
+    async function handleDelete(rowData) {
         if (
             window.confirm(
-                `Are you sure you want to DELETE the record for customer ID = ${row.customer_id}?`
+                `Are you sure you want to DELETE the record for customer ID = ${rowData.customer_id}?`
             ) === true
         ) {
             let deleted = await axios.delete(
-                API_URL + `/customers/${row.customer_id}`
+                API_URL + `/customers/${rowData.customer_id}`
             );
             if (deleted.status === 200) {
                 fetchAndSetCustomers();
@@ -45,9 +53,10 @@ export default function Customers() {
         }
     }
 
-    function handleEdit(row) {
-        setFormData(row);
-        setShowForm(true);
+    function handleEdit(rowData) {
+        setFormType("edit");
+        setFormData(rowData);
+        setKey(Math.random());
     }
 
     // Customer Component Contents
@@ -75,16 +84,16 @@ export default function Customers() {
                     { name: "Email", id: "email" },
                     {
                         name: "Edit Item",
-                        data: (row) =>
-                            _(<MdEdit onClick={() => handleEdit(row)} />),
+                        data: (rowData) =>
+                            _(<MdEdit onClick={() => handleEdit(rowData)} />),
                         width: "6%",
                     },
                     {
                         name: "Delete Item",
-                        data: (row) =>
+                        data: (rowData) =>
                             _(
                                 <MdDeleteForever
-                                    onClick={() => handleDelete(row)}
+                                    onClick={() => handleDelete(rowData)}
                                 />
                             ),
                         width: "6%",
@@ -92,18 +101,15 @@ export default function Customers() {
                 ]}
                 data={async () => await customers}
                 search={true}
-                pagination={{ limit: 25 }}
+                pagination={{ limit: 10 }}
             />
-            <Link to="/CustomerNew" className="newPlus">
-                Add new customer
-            </Link>
-            {showForm ? (
-                <CustomerForm
-                    row={formData}
-                    showForm={setShowForm}
-                    parentRerender={() => fetchAndSetCustomers()}
-                ></CustomerForm>
-            ) : null}
+            <CustomerForm
+                key={key}
+                formType={formType}
+                resetForm={resetForm}
+                rowData={formData}
+                parentRerender={() => fetchAndSetCustomers()}
+            ></CustomerForm>
         </div>
     );
 }

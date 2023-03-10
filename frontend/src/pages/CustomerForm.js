@@ -3,8 +3,24 @@ import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
+const sleep = (m) => new Promise((r) => setTimeout(r, m));
+
 export const CustomerForm = (props) => {
     console.log(props);
+
+    // State definitions
+    const [fname, setFname] = useState(
+        props.formType === "edit" ? props.rowData.first_name : ""
+    );
+    const [lname, setLname] = useState(
+        props.formType === "edit" ? props.rowData.last_name : ""
+    );
+    const [dob, setDob] = useState(
+        props.formType === "edit" ? props.rowData.dob.split("T")[0] : ""
+    );
+    const [email, setEmail] = useState(
+        props.formType === "edit" ? props.rowData.email : ""
+    );
 
     async function newSubmit() {
         try {
@@ -14,18 +30,22 @@ export const CustomerForm = (props) => {
                 dob,
                 email,
             });
+            if (res === 200) {
+            }
             console.log(res);
             // TODO replace with feedback of success and redirect to customers table
         } catch (error) {
             console.error(error);
             // TODO add user feedback of failure
         }
+        props.parentRerender();
+        props.resetForm();
     }
 
     async function updateSubmit() {
         try {
             const res = await axios.put(
-                API_URL + `/customers/${props.row.customer_id}`,
+                API_URL + `/customers/${props.rowData.customer_id}`,
                 {
                     fname,
                     lname,
@@ -34,31 +54,19 @@ export const CustomerForm = (props) => {
                 }
             );
             if (res.status === 200) {
-                props.parentRerender();
             }
             // TODO replace with feedback of success and redirect to customers table
         } catch (error) {
             console.error(error);
             // TODO add user feedback of failure
         }
-        props.showForm(false);
+        props.parentRerender();
+        props.resetForm();
     }
-
-    // State definitions
-    const [fname, setFname] = useState(
-        props.row.first_name ? props.row.first_name : ""
-    );
-    const [lname, setLname] = useState(
-        props.row.last_name ? props.row.last_name : ""
-    );
-    const [dob, setDob] = useState(
-        props.row.dob ? props.row.dob.split("T")[0] : ""
-    );
-    const [email, setEmail] = useState(props.row.email ? props.row.email : "");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (props.row) {
+        if (props.formType === "edit") {
             updateSubmit();
         } else {
             newSubmit();
@@ -67,7 +75,11 @@ export const CustomerForm = (props) => {
 
     return (
         <div>
-            {props.row ? <h3>Update customer</h3> : <h3>Add a new customer</h3>}
+            {props.formType === "edit" ? (
+                <h3>Update customer</h3>
+            ) : (
+                <h3>Add a new customer</h3>
+            )}
 
             <form
                 onSubmit={handleSubmit}
@@ -104,15 +116,17 @@ export const CustomerForm = (props) => {
                 <button type="submit" class="pure-button pure-button-primary">
                     Submit
                 </button>
-                <button
-                    type="button"
-                    class="pure-button pure-button"
-                    onClick={() => {
-                        props.showForm(false);
-                    }}
-                >
-                    Cancel
-                </button>
+                {props.formType === "edit" ? (
+                    <button
+                        type="button"
+                        class="pure-button pure-button"
+                        onClick={() => {
+                            props.resetForm();
+                        }}
+                    >
+                        Cancel
+                    </button>
+                ) : undefined}
             </form>
         </div>
     );

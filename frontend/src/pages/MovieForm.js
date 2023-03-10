@@ -103,12 +103,8 @@ export const MovieForm = (props) => {
                 />
                 <label>MPA Rating</label>
                 <select onChange={handleRatingChange}>
-                    <option
-                        type="radio"
-                        name="mpa_rating"
-                        value={mpa_rating.value}
-                    >
-                        {mpa_rating.label}
+                    <option type="radio" name="mpa_rating" value={mpa_rating}>
+                        {mpa_rating}
                     </option>
                     {ratings.map((mpa_rating) => (
                         <option value={mpa_rating.value}>
