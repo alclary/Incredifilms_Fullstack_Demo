@@ -49,7 +49,7 @@ SELECT Showtime.showtime_id AS showtime_id, Showtime.showtime_date_time AS date_
 FROM Showtime 
 JOIN Movie ON Showtime.movie_id = Movie.movie_id 
 JOIN Theater ON Showtime.theater_id = Theater.theater_id 
-ORDER BY showtime_id ASC;
+ORDER BY showtime_id ASC; 
 
 -- Get full Ticket table, with readable customer, movie, theater
   SELECT Ticket.ticket_id AS 'ticket_id', CONCAT(Customer.first_name, ' ', Customer.last_name) AS customer_id, Showtime.showtime_date_time AS 'showtime_id', Movie.movie_name AS movie_id, Theater.theater_name AS theater_id, Ticket.price AS price, Ticket.payment_method AS payment_method 
