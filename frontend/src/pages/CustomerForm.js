@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { ReactWrapper } from "gridjs-react";
+
+const API_URL = process.env.REACT_APP_API_URL;
 
 export const CustomerForm = (props) => {
     console.log(props);
 
     async function newSubmit() {
         try {
-            const res = await axios.post("http://localhost:3001/customers", {
+            const res = await axios.post(API_URL + "/customers", {
                 fname,
                 lname,
                 dob,
@@ -24,7 +25,7 @@ export const CustomerForm = (props) => {
     async function updateSubmit() {
         try {
             const res = await axios.put(
-                `http://localhost:3001/customers/${props.row.customer_id}`,
+                API_URL + `/customers/${props.row.customer_id}`,
                 {
                     fname,
                     lname,
