@@ -3,8 +3,6 @@ import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
-const sleep = (m) => new Promise((r) => setTimeout(r, m));
-
 export const CustomerForm = (props) => {
     console.log(props);
 
