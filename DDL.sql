@@ -1,5 +1,5 @@
 /*
-CS 340 - Project Step 2
+CS 340 - Project Step 4
 Data Definition Query (DDL)
 Group #25
 Jesseline Velazquez, Anthony Logan Clary
