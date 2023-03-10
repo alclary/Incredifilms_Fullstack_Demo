@@ -24,8 +24,13 @@ FROM Customer ORDER BY Customer.last_name;
 
 -- SELECTS -----------------------------------------------------------------------------
 -- Get full Movie table
-SELECT movie_id AS 'Movie ID', movie_name AS "Movie Name", runtime_min AS 'Runetime (mins)', mpa_rating AS 'MPA Rating', movie_year AS 'Year'
-FROM Movie;
+SELECT movie_genre_id, Movie.movie_name, Genre.genre_name 
+FROM Movie_Genre
+JOIN Movie 
+ON Movie.movie_id = Movie_Genre.movie_id 
+JOIN Genre 
+ON Genre.genre_id = Movie_Genre.genre_id 
+ORDER BY movie_genre_id;
 
 -- Get full Genre table
 SELECT genre_id AS 'Genre ID', genre_name AS 'Genre Name'
@@ -40,18 +45,21 @@ SELECT customer_id AS 'Customer ID', first_name AS 'First Name', last_name AS 'L
 FROM Customer;
 
 -- Get full Showtime table, with readable movie & theater names
-SELECT Showtime.showtime_id AS 'Showtime ID', Showtime.showtime_date_time AS 'Datetime', Movie.movie_name AS 'Movie', Theater.theater_name AS 'Theater'
-FROM Showtime
-JOIN Movie ON Showtime.movie_id = Movie.movie_id
-JOIN Theater ON Showtime.theater_id = Theater.theater_id;
+SELECT Showtime.showtime_id AS showtime_id, Showtime.showtime_date_time AS date_time, Movie.movie_name AS movie_id, Theater.theater_name AS theater_id 
+FROM Showtime 
+JOIN Movie ON Showtime.movie_id = Movie.movie_id 
+JOIN Theater ON Showtime.theater_id = Theater.theater_id 
+ORDER BY showtime_id ASC;
 
 -- Get full Ticket table, with readable customer, movie, theater
-SELECT Ticket.ticket_id AS 'Ticket ID', CONCAT(Customer.first_name, ' ', Customer.last_name) AS Customer, Showtime.showtime_date_time AS 'Showtime Datetime', Movie.movie_name AS Movie, Theater.theater_name AS Theater, Ticket.price AS Price, Ticket.payment_method AS 'Payment Method'
-FROM Ticket
-JOIN Customer ON Ticket.customer_id = Customer.customer_id
-JOIN Showtime ON Ticket.showtime_id = Showtime.showtime_id
-JOIN Movie ON Showtime.movie_id = Movie.movie_id
-JOIN Theater ON Showtime.theater_id = Theater.theater_id;
+  SELECT Ticket.ticket_id AS 'ticket_id', CONCAT(Customer.first_name, ' ', Customer.last_name) AS customer_id, Showtime.showtime_date_time AS 'showtime_id', Movie.movie_name AS movie_id, Theater.theater_name AS theater_id, Ticket.price AS price, Ticket.payment_method AS payment_method 
+  FROM Ticket 
+  JOIN Customer ON Ticket.customer_id = Customer.customer_id 
+  JOIN Showtime ON Ticket.showtime_id = Showtime.showtime_id 
+  JOIN Movie ON Showtime.movie_id = Movie.movie_id 
+  JOIN Theater ON Showtime.theater_id = Theater.theater_id 
+  ORDER BY Ticket.ticket_id ASC;
+
 
 -- Get list of all movies with showtimes between two given dates
 SELECT Movie.movie_name AS Movie

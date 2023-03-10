@@ -1,5 +1,5 @@
 /*
-CS 340 - Project Step 2
+CS 340 - Project Step 4
 Data Definition Query (DDL)
 Group #25
 Jesseline Velazquez, Anthony Logan Clary
@@ -71,7 +71,7 @@ INSERT INTO `Genre` (`genre_name`) VALUES
   ('Historical');
 
 -- Create Movie Table
-DROP TABLE IF EXISTS Movie;
+	DROP TABLE IF EXISTS Movie;
 CREATE TABLE `Movie` (
   `movie_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `movie_name` varchar(100) NOT NULL,
