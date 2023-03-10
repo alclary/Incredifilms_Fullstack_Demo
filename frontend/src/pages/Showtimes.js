@@ -4,6 +4,7 @@ import { Grid, _ } from "gridjs-react";
 import { MdEdit, MdDeleteForever } from "react-icons/md";
 import axios from "axios";
 import { ShowtimeForm } from "./ShowtimeForm";
+import moment from "moment";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -66,7 +67,15 @@ export default function Showtimes() {
             <Grid
                 columns={[
                     { name: "Showtime ID", id: "showtime_id", sort: true },
-                    { name: "Datetime", id: "date_time", sort: true },
+                    {
+                        name: "Datetime",
+                        id: "date_time",
+                        sort: true,
+                        formatter: (cell) => {
+                            let dt = new moment(cell);
+                            return dt.format("MM/DD/YY h:mma");
+                        },
+                    },
                     { name: "Movie", id: "movie_id", sort: true },
                     { name: "Theater", id: "theater_id" },
                     {
