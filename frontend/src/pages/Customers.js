@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { Grid, _ } from "gridjs-react";
 import { MdEdit, MdDeleteForever } from "react-icons/md";
 import axios from "axios";
@@ -67,41 +66,43 @@ export default function Customers() {
             <Grid
                 columns={[
                     {
-                        name: "Customer ID",
+                        name: "ID",
                         id: "customer_id",
                         sort: true,
-                        width: "8%",
+                        width: "6%",
                     },
                     { name: "First Name", id: "first_name", sort: true },
                     { name: "Last Name", id: "last_name", sort: true },
                     {
                         name: "Date of Birth",
                         id: "dob",
+                        sort: true,
                         formatter: (cell) => {
                             return cell.split("T")[0];
                         },
                     },
-                    { name: "Email", id: "email" },
+                    { name: "Email", id: "email", sort: true },
                     {
-                        name: "Edit Item",
+                        name: "Edit",
                         data: (rowData) =>
                             _(<MdEdit onClick={() => handleEdit(rowData)} />),
-                        width: "6%",
+                        width: "5%",
                     },
                     {
-                        name: "Delete Item",
+                        name: "Delete",
                         data: (rowData) =>
                             _(
                                 <MdDeleteForever
                                     onClick={() => handleDelete(rowData)}
                                 />
                             ),
-                        width: "6%",
+                        width: "5%",
                     },
                 ]}
                 data={async () => await customers}
                 search={true}
                 pagination={{ limit: 10 }}
+                autoWidth={false}
             />
             <CustomerForm
                 key={key}
