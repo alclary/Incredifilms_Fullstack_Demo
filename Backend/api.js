@@ -1,3 +1,4 @@
+require("dotenv").config();
 // Import Routes
 const customerRoutes = require("./routes/customerRoutes.js");
 const theaterRoutes = require("./routes/theaterRoutes.js");
@@ -13,7 +14,7 @@ const cors = require("cors");
 // Express configuration
 const express = require("express");
 const app = express();
-const port = 3001;
+const port = process.env.API_PORT;
 
 // Enable CORS for localhost origin
 app.use(cors({ origin: "*" }));
