@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -32,12 +32,13 @@ export const CustomerForm = (props) => {
             });
             if (res === 200) {
             }
-            // TODO replace with feedback of success and redirect to customers table
+            // Success toast notification
+            toast.success(`Record ID ${res.data.data.insertId} created.`);
             // Reload entity table / grid.js component (for updates)
             props.gridReload();
         } catch (error) {
+            toast.error(error.message);
             console.error(error);
-            // TODO add user feedback of failure
         }
         props.resetForm();
     }
@@ -56,16 +57,18 @@ export const CustomerForm = (props) => {
             );
             if (res.status === 200) {
             }
-            // TODO replace with feedback of success and redirect to customers table
+            // Success toast notification
+            toast.success(`Record ID ${res.data.data.insertId} updated.`);
             // Reload entity table / grid.js component (for updates)
             props.gridReload();
         } catch (error) {
+            toast.error(error.message);
             console.error(error);
-            // TODO add user feedback of failure
         }
         props.resetForm();
     }
 
+    // Handle submit of bi-modal form; submit action based on form mode
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (props.formType === "edit") {

@@ -3,6 +3,7 @@ import { Grid, _ } from "gridjs-react";
 import { MdEdit, MdDeleteForever } from "react-icons/md";
 import axios from "axios";
 import { CustomerForm } from "./CustomerForm";
+import { toast } from "react-toastify";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -43,11 +44,17 @@ export default function Customers() {
                 `Are you sure you want to DELETE the record for customer ID = ${rowData.customer_id}?`
             ) === true
         ) {
-            let deleted = await axios.delete(
-                API_URL + `/customers/${rowData.customer_id}`
-            );
-            if (deleted.status === 200) {
-                fetchAndSetCustomers();
+            try {
+                const res = await axios.delete(
+                    API_URL + `/customers/${rowData.customer_id}`
+                );
+                if (res.status === 200) {
+                    toast.success("Record deleted.");
+                    fetchAndSetCustomers();
+                }
+            } catch (error) {
+                toast.error(error.message);
+                console.log(error);
             }
         }
     }
