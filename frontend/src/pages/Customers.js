@@ -63,6 +63,7 @@ export default function Customers() {
         <div>
             <h3>Customers</h3>
             <p>Create, Retrieve, Update or Delete a Customer</p>
+            {/* Grid.js component wrapper */}
             <Grid
                 columns={[
                     {
@@ -102,14 +103,20 @@ export default function Customers() {
                 data={async () => await customers}
                 search={true}
                 pagination={{ limit: 10 }}
+                // autoWidth false helps prevent screen flash when customers state is reloaded
                 autoWidth={false}
             />
             <CustomerForm
+                // key update is being used to force rerender component
                 key={key}
+                // mode of form "edit" or "new"
                 formType={formType}
-                resetForm={resetForm}
+                // form data to populate in form (if any and mode is "edit")
                 rowData={formData}
-                parentRerender={() => fetchAndSetCustomers()}
+                // function via prop to reset form state from parent
+                resetForm={resetForm}
+                // function call via prop to refresh table / Grid component
+                gridReload={() => fetchAndSetCustomers()}
             ></CustomerForm>
         </div>
     );

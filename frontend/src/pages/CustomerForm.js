@@ -1,12 +1,13 @@
 import React, { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
 import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 export const CustomerForm = (props) => {
-    console.log(props);
-
     // State definitions
+    //      If formType mode "edit", populate fields with record data to edit,
+    //      else form field empty (for new entry)
     const [fname, setFname] = useState(
         props.formType === "edit" ? props.rowData.first_name : ""
     );
@@ -20,6 +21,7 @@ export const CustomerForm = (props) => {
         props.formType === "edit" ? props.rowData.email : ""
     );
 
+    // Handle "new" record form submissions
     async function newSubmit() {
         try {
             const res = await axios.post(API_URL + "/customers", {
@@ -30,17 +32,18 @@ export const CustomerForm = (props) => {
             });
             if (res === 200) {
             }
-            console.log(res);
             // TODO replace with feedback of success and redirect to customers table
+            // Reload entity table / grid.js component (for updates)
+            props.gridReload();
         } catch (error) {
             console.error(error);
             // TODO add user feedback of failure
         }
-        props.parentRerender();
         props.resetForm();
     }
 
-    async function updateSubmit() {
+    // Handle "edit" record form submissions
+    async function editSubmit() {
         try {
             const res = await axios.put(
                 API_URL + `/customers/${props.rowData.customer_id}`,
@@ -54,18 +57,19 @@ export const CustomerForm = (props) => {
             if (res.status === 200) {
             }
             // TODO replace with feedback of success and redirect to customers table
+            // Reload entity table / grid.js component (for updates)
+            props.gridReload();
         } catch (error) {
             console.error(error);
             // TODO add user feedback of failure
         }
-        props.parentRerender();
         props.resetForm();
     }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async (event) => {
+        event.preventDefault();
         if (props.formType === "edit") {
-            updateSubmit();
+            editSubmit();
         } else {
             newSubmit();
         }
@@ -73,6 +77,7 @@ export const CustomerForm = (props) => {
 
     return (
         <div>
+            {/* Form title based on mode ("edit" or "new") */}
             {props.formType === "edit" ? (
                 <h3>Update customer</h3>
             ) : (
@@ -89,35 +94,37 @@ export const CustomerForm = (props) => {
                     id="stacked-fname"
                     required
                     value={fname}
-                    onChange={(e) => setFname(e.target.value)}
+                    onChange={(event) => setFname(event.target.value)}
                 />
                 <label>Last name</label>
                 <input
                     type="text"
                     required
                     value={lname}
-                    onChange={(e) => setLname(e.target.value)}
+                    onChange={(event) => setLname(event.target.value)}
                 />
                 <label>Date of Birth</label>
                 <input
                     type="date"
                     required
                     value={dob}
-                    onChange={(e) => setDob(e.target.value)}
+                    onChange={(event) => setDob(event.target.value)}
                 />
                 <label>Email</label>
                 <input
                     type="email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(event) => setEmail(event.target.value)}
                 />
                 <button type="submit" class="pure-button pure-button-primary">
                     Submit
                 </button>
+                {/* Cancel button only displayed for "edit" form modality */}
                 {props.formType === "edit" ? (
                     <button
                         type="button"
                         class="pure-button pure-button"
+                        // Cancel button resets form to cancel edit attempt
                         onClick={() => {
                             props.resetForm();
                         }}
