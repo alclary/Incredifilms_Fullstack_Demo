@@ -10,9 +10,8 @@ import Movies from "./pages/Movies";
 import Showtimes from "./pages/Showtimes";
 import Theaters from "./pages/Theaters";
 import MovieGenres from "./pages/MovieGenres";
-
 import Tickets from "./pages/Tickets";
-import CustomerNew from "./pages/CustomerNew";
+
 import MovieNew from "./pages/MovieNew";
 import TheaterNew from "./pages/TheaterNew";
 import GenreNew from "./pages/GenreNew";
@@ -58,11 +57,6 @@ export default function App() {
                                 element={<MovieGenres />}
                             />
 
-                            <Route
-                                exact
-                                path="/CustomerNew"
-                                element={<CustomerNew />}
-                            />
                             <Route
                                 exact
                                 path="/ShowtimeNew"
