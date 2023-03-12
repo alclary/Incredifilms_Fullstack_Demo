@@ -77,7 +77,6 @@ export default function Customers() {
                         name: "ID",
                         id: "customer_id",
                         sort: true,
-                        width: "6%",
                     },
                     { name: "First Name", id: "first_name", sort: true },
                     { name: "Last Name", id: "last_name", sort: true },
@@ -94,7 +93,6 @@ export default function Customers() {
                         name: "Edit",
                         data: (rowData) =>
                             _(<MdEdit onClick={() => handleEdit(rowData)} />),
-                        width: "5%",
                     },
                     {
                         name: "Delete",
@@ -104,14 +102,11 @@ export default function Customers() {
                                     onClick={() => handleDelete(rowData)}
                                 />
                             ),
-                        width: "5%",
                     },
                 ]}
                 data={async () => await customers}
                 search={true}
                 pagination={{ limit: 10 }}
-                // autoWidth false helps prevent screen flash when customers state is reloaded
-                autoWidth={false}
             />
             <CustomerForm
                 // key update is being used to force rerender component
