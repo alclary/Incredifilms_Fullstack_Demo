@@ -19,8 +19,34 @@ router.get("/", (req, res) => {
   );
 });
 
-// TODO CREATE functionality for entries to XXXX table, at '/XXXX' endpoint
-// TODO UPDATE functionality for XXXX table record, at '/XXXX' endpoint
+// CREATE functionality for entries to moviegenres table, at '/moviegenres' endpoint
+router.post("/", (req, res) => {
+  console.log("POST request received.");
+  db.query(
+      "INSERT INTO `Movie_Genre` (`movie_id`, `genre_id`) VALUES(?,?);",
+      [
+          req.body.movie_id,
+          req.body.genre_id,
+      ],
+      (err, data, fields) => {
+          if (err) {
+              console.error(err);
+          } // TODO Better error handling
+          res.status(200).json({
+              // TODO decide if appropriate response
+              fields,
+              data,
+          });
+          console.log("POST request successful.");
+      }
+  );
+});
+
+
+// UPDATE functionality for movies table record, at '/moviegenres/{id}' endpoint
+/* NOTE: Movie_Genre table is not permitted to be updated directly (cascade or delete+recreate);
+Tickets table is not permitted to be updated directly (cascade or delete+recreate).*/
+
 
 // DELETE functionality for moviegenres table record, at '/moviegenres/{id}' endpoint
 router.delete("/:id", (req, res) => {

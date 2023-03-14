@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Grid, _ } from "gridjs-react";
 import { MdEdit, MdDeleteForever } from "react-icons/md";
 import axios from "axios";
-// import { MovieGenreForm } from "./MovieGenreForm";
+import { MovieGenreForm } from "./MovieGenreForm";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -64,12 +64,6 @@ export default function MovieGenres() {
                     { name: "Movie", id: "movie_id", sort: true },
                     { name: "Genre", id: "genre_id", sort: true },
                     {
-                        name: "Edit Item",
-                        data: (row) =>
-                            _(<MdEdit onClick={() => handleEdit(row)} />),
-                        width: "6%",
-                    },
-                    {
                         name: "Delete Item",
                         data: (row) =>
                             _(
@@ -87,13 +81,13 @@ export default function MovieGenres() {
             <Link to="/MovieGenreNew" className="newPlus">
                 Add new Movie Genre relationship
             </Link>
-            {/* {showForm ? (
+            {showForm ? (
                     <MovieGenreForm
                       row={formData}
                       showForm={setShowForm}
                       parentRerender={() => fetchAndSetMovieGenres()}
                     ></MovieGenreForm>
-                  ) : null} */}
+                  ) : null}
         </div>
     );
 }
