@@ -87,7 +87,7 @@ export const MovieGenreNew = () => {
           <ul>
             {genreList.map((genre, i) => {
               return (
-                <li key={i} value={genre.genre_id}>
+                <li key={i} value={genre_id}>
                   <input
                     type="checkbox"
                     id={genre.genre_id}
