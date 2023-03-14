@@ -21,7 +21,7 @@ router.get("/", (req, res) => {
 
 // TODO CREATE functionality for entries to XXXX table, at '/XXXX' endpoint
 
-// TODO UPDATE functionality for XXXX table record, at '/XXXX' endpoint
+// UPDATE functionality for ticket table record is not permitted to be updated directly (cascade or delete+recreate);
 
 // DELETE functionality for tickets table record, at '/tickets/{id}' endpoint
 router.delete("/:id", (req, res) => {

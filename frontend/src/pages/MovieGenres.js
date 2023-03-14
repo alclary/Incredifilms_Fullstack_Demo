@@ -53,7 +53,7 @@ export default function MovieGenres() {
     return (
         <div>
             <h3>MovieGenres</h3>
-            <p>Create, Retrieve, Update or Delete a Movie Genre relationship</p>
+            <p>Create, Retrieve, or Delete a Movie Genre relationship</p>
             <Grid
                 columns={[
                     {
