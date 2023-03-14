@@ -95,3 +95,8 @@ h3 {
     float: left;
     margin-bottom: 0;
 }
+
+li {
+    list-style-type: none;
+    padding-bottom: 2px;
+}

@@ -79,4 +79,25 @@ router.delete("/:id", (req, res) => {
   );
 });
 
+
+// READ functionality for genre names only, at '/genres/names' endpoint
+router.get("/names", (req, res) => {
+  console.log("GET request received.");
+  db.query(
+      "SELECT genre_id, genre_name FROM Genre ORDER BY genre_name ASC;",
+      (err, data, fields) => {
+          if (err) {
+              console.error(err);
+          } // TODO Better error handling
+          res.status(200).json({
+              fields,
+              data,
+          });
+      }
+  );
+});
+
+
+
+
 module.exports = router;
