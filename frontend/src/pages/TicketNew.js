@@ -83,15 +83,26 @@ export const TicketNew = () => {
           })}
         </select>
 
-        <label>
-          Showtime ID
-          <input type="number" min="0" required />
-        </label>
-        <br />
-        <label>
-          Price
-          <input type="number" min="0" required />
-        </label>
+        <label>Showtime </label>
+
+        <select
+          name="showtime"
+          value={showtime_id}
+          onChange={(e) => {
+            set_showtime_id(e.target.value);
+          }}
+        >
+          <option disabled selected value="" required>
+            -- select an option --
+          </option>
+          {showtimeList.map((showtime, i) => {
+            return (
+              <option key={i} value={showtime.showtime_id}>
+                {showtime.showtime}
+              </option>
+            );
+          })}
+        </select>
         <br />
         <label>
           Payment method
