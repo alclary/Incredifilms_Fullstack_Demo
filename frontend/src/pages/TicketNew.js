@@ -83,7 +83,7 @@ const handlePaymentChange = async (e) => {
             set_customer_id(e.target.value);
           }}
         >
-          <option disabled selected value="">
+          <option selected value="NULL">
             -- select an option --
           </option>
           {customerList.map((customer, i) => {

@@ -71,7 +71,7 @@ export const MovieGenreForm = (props) => {
 
   return (
     <div>
-      {props.row ? <h3>Update showtime</h3> : <h3>Add a new showtime</h3>}
+      {props.row ? <h3>Update movie genre</h3> : <h3>Add a new movie genre</h3>}
 
       <form onSubmit={handleSubmit} className="pure-form pure-form-stacked">
         {/* <label for="showtime_date_time">Datetime</label>
