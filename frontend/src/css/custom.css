@@ -9,6 +9,9 @@ RIGHT NOW:
 
  */
 
+/* Google Font Import - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,700;1,400&display=swap");
+
 body {
     margin: 0;
     /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -36,14 +39,14 @@ code {
     left: 10px;
     background: #2d2845;
     overflow-x: hidden;
-    padding: 8px 0;
     height: 100%;
     text-align: left;
     border-radius: 5px;
 }
 
 .sidebar a {
-    padding: 6px 8px 6px 16px;
+    margin: auto;
+    padding: 10px;
     text-decoration: none;
     font-size: 25px;
     color: #f3f4fc;
@@ -55,8 +58,8 @@ code {
 }
 
 .main {
-    margin-left: 195px; /* Same width as the sidebar + left position in px */
-    font-size: 1.1em; /* Increased text to enable scrolling */
+    margin-left: 205px; /* Sidebar left offset + sidebar width + equal offset on right */
+    font-size: 1em; /* Increased text to enable scrolling */
     padding: 0px 10px;
 }
 
