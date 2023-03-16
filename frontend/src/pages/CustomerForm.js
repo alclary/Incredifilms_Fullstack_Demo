@@ -79,7 +79,7 @@ export const CustomerForm = (props) => {
     };
 
     return (
-        <div>
+        <div className="form_wrapper">
             {/* Form title based on mode ("edit" or "new") */}
             {props.formType === "edit" ? (
                 <h3>Update customer</h3>
