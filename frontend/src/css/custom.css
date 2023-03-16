@@ -59,10 +59,17 @@ code {
 }
 
 .main {
-    margin-top: 2.1em;
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.8em;
     margin-left: 15em; /* Sidebar left offset + sidebar width + equal offset on right */
     margin-right: 2em;
     font-size: 1em; /* Increased text to enable scrolling */
+    height: 100%;
+}
+
+.form_wrapper {
+    margin-top: auto;
 }
 
 /* Color overrides for grid.js default theme */
