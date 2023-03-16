@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Grid, _ } from "gridjs-react";
 import { MdEdit, MdDeleteForever } from "react-icons/md";
 import axios from "axios";
-// import { TicketForm } from "./TicketForm";
+import { TicketForm } from "./TicketForm";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -52,7 +52,7 @@ export default function Tickets() {
     return (
         <div>
             <h3>Tickets</h3>
-            <p>Create, Retrieve, or Delete a Ticket</p>
+            <p>Create, Retrieve, Update, or Delete a Ticket</p>
             <Grid
                 columns={[
                     { name: "Ticket ID", id: "ticket_id", sort: true },
@@ -66,6 +66,12 @@ export default function Tickets() {
                     { name: "Theater", id: "theater_id" },
                     { name: "Price", id: "price" },
                     { name: "Payment Method", id: "payment_method" },
+                    {
+                        name: "Edit Item",
+                        data: (row) =>
+                            _(<MdEdit onClick={() => handleEdit(row)} />),
+                        width: "6%",
+                    },
                     {
                         name: "Delete Item",
                         data: (row) =>

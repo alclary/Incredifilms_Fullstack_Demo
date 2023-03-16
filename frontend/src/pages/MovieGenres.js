@@ -64,6 +64,12 @@ export default function MovieGenres() {
                     { name: "Movie", id: "movie_id", sort: true },
                     { name: "Genre", id: "genre_id", sort: true },
                     {
+                        name: "Edit Item",
+                        data: (row) =>
+                            _(<MdEdit onClick={() => handleEdit(row)} />),
+                        width: "6%",
+                    },
+                    {
                         name: "Delete Item",
                         data: (row) =>
                             _(

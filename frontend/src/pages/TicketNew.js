@@ -58,6 +58,18 @@ export const TicketNew = () => {
     navigate("/Ticket");
   };
 
+  const payment_methods = [
+    { method: "CASH", label: "CASH" },
+    { method: "CREDIT", label: "CREDIT" },
+    { method: "DEBIT", label: "DEBIT" },
+
+];
+
+const handlePaymentChange = async (e) => {
+  set_payment_method(e.target.value);
+};
+
+
   return (
     <>
       <h3>Add a new ticket</h3>
@@ -82,7 +94,7 @@ export const TicketNew = () => {
             );
           })}
         </select>
-
+<p>
         <label>Showtime </label>
 
         <select
@@ -103,15 +115,22 @@ export const TicketNew = () => {
             );
           })}
         </select>
-        <br />
-        <label>
-          Payment method
-          <select>
-            <option>CASH</option>
-            <option>CREDIT</option>
-            <option>DEBIT</option>
-          </select>
-        </label>
+        </p>
+        <label>Payment Method</label>
+                        <select onChange={handlePaymentChange}>
+                            <option
+                                type="radio"
+                                name="payment_method"
+                                value={payment_method.value}
+                            >
+                                {payment_method.label}
+                            </option>
+                            {payment_methods.map((payment_method) => (
+                                <option value={payment_method.value}>
+                                    {payment_method.label}
+                                </option>
+                            ))}
+                        </select>
         <br />
         <button
           type="submit"
