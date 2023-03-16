@@ -39,7 +39,7 @@ router.post("/", (req, res) => {
   );
 });
 
-// UPDATE functionality for moviegenre table record is not permitted to be updated directly (cascade or delete+recreate);
+// TODO UPDATE functionality for moviegenres table record, at '/moviegenres/{id}' endpoint
 
 
 // DELETE functionality for moviegenres table record, at '/moviegenres/{id}' endpoint
