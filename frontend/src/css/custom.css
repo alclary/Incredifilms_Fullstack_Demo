@@ -32,21 +32,22 @@ code {
 }
 
 .sidebar {
-    width: 185px;
+    width: 12em;
     position: fixed;
     z-index: 1;
-    top: 20px;
-    left: 10px;
+    top: 1em;
+    left: 1em;
     background: #2d2845;
     overflow-x: hidden;
     height: 100%;
     text-align: left;
     border-radius: 5px;
+    padding-top: 1em;
 }
 
 .sidebar a {
     margin: auto;
-    padding: 10px;
+    padding: 0.3em 0.5em;
     text-decoration: none;
     font-size: 25px;
     color: #f3f4fc;
@@ -58,9 +59,10 @@ code {
 }
 
 .main {
-    margin-left: 205px; /* Sidebar left offset + sidebar width + equal offset on right */
+    margin-top: 2.1em;
+    margin-left: 15em; /* Sidebar left offset + sidebar width + equal offset on right */
+    margin-right: 2em;
     font-size: 1em; /* Increased text to enable scrolling */
-    padding: 0px 10px;
 }
 
 /* Color overrides for grid.js default theme */
