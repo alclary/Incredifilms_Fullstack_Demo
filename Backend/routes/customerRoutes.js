@@ -88,7 +88,7 @@ router.delete("/:id", (req, res) => {
 router.get("/names", (req, res) => {
   console.log("GET request received.");
   db.query(
-      " SELECT CONCAT(last_name, ', ', first_name, ' (', customer_id, ')') AS customer, customer_id FROM Customer ORDER BY Customer.last_name ASC;",
+      "SELECT CONCAT(last_name, ', ', first_name, ' (', customer_id, ')') AS customer, customer_id FROM Customer ORDER BY Customer.last_name ASC;",
       (err, data, fields) => {
           if (err) {
               console.error(err);

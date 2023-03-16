@@ -1,66 +1,55 @@
 /*
-CS 340 - Project Step 3
+CS 340 - Portfolio Project
 Data Manipulation Queries (DML)
-Group #25
+Group #25 - Konami Code
 Jesseline Velazquez, Anthony Logan Clary
 */
 
 -- DROP-DOWN LIST QUERIES ------------------------------------------------------------------------
 -- Get list of all genres
-SELECT genre_name FROM Genre;
+SELECT genre_id, genre_name FROM Genre ORDER BY genre_name ASC;
 
 -- Get list of all movies in format [movie_name (movie_id)] and associated movie_id
 -- To be used to populate dropdown list and map selection to movie_id
-SELECT CONCAT(movie_name, ' (', movie_id, ')') AS movie, movie_id FROM Movie;
+-- SELECT CONCAT(movie_name, ' (', movie_id, ')') AS movie, movie_id FROM Movie;
+SELECT movie_id, movie_name FROM Movie ORDER BY movie_name ASC;
 
 -- Get list of all theaters
-SELECT theater_name FROM Theater;
+SELECT theater_id, theater_name FROM Theater ORDER BY theater_name ASC;
+
 
 -- Get list of customer names [last, first, (customer_id)] and associated customer_id
 -- To be used to populate dropdown list and map selection to customer_id
-SELECT CONCAT(last_name, ', ', first_name, ' (', customer_id, ')') AS customer,
-	customer_id
-FROM Customer ORDER BY Customer.last_name;
+SELECT CONCAT(last_name, ', ', first_name, ' (', customer_id, ')') AS customer, customer_id FROM Customer ORDER BY Customer.last_name ASC;
+
+-- Get list of showtimes [movie name, theater name, showtime date & time)] and associated showtime_id
+-- To be used to populate dropdown list and map selection to showtime_id
+SELECT CONCAT(movie_name, ' @ ', theater_name, ' on ', showtime_date_time) as showtime FROM Showtime JOIN Movie ON Movie.movie_id = Showtime.movie_id JOIN Theater on Theater.theater_id = Showtime.theater_id ORDER BY theater_name ASC;
 
 -- SELECTS -----------------------------------------------------------------------------
 -- Get full Movie table
-SELECT movie_genre_id, Movie.movie_name, Genre.genre_name 
-FROM Movie_Genre
-JOIN Movie 
-ON Movie.movie_id = Movie_Genre.movie_id 
-JOIN Genre 
-ON Genre.genre_id = Movie_Genre.genre_id 
-ORDER BY movie_genre_id;
+SELECT * FROM Movie ORDER BY movie_id ASC;
 
 -- Get full Genre table
-SELECT genre_id AS 'Genre ID', genre_name AS 'Genre Name'
-FROM Genre;
+SELECT * FROM Genre ORDER BY genre_id ASC;
 
 -- Get full Theater table
-SELECT theater_id AS 'Theater ID', theater_name AS 'Theater Name', no_of_seats AS 'Number of seats'
-FROM Theater;
+SELECT * FROM Theater ORDER BY theater_id ASC;
 
 -- Get full Customer table
-SELECT customer_id AS 'Customer ID', first_name AS 'First Name', last_name AS 'Last Name', dob AS 'Date of Birth', email AS 'Email'
-FROM Customer;
+SELECT * FROM Customer;
 
 -- Get full Showtime table, with readable movie & theater names
-SELECT Showtime.showtime_id AS showtime_id, Showtime.showtime_date_time AS date_time, Movie.movie_name AS movie_id, Theater.theater_name AS theater_id 
-FROM Showtime 
-JOIN Movie ON Showtime.movie_id = Movie.movie_id 
-JOIN Theater ON Showtime.theater_id = Theater.theater_id 
-ORDER BY showtime_id ASC; 
+SELECT Showtime.showtime_id AS showtime_id, Showtime.showtime_date_time AS date_time, Movie.movie_name AS movie_id, Theater.theater_name AS theater_id FROM Showtime JOIN Movie ON Showtime.movie_id = Movie.movie_id JOIN Theater ON Showtime.theater_id = Theater.theater_id ORDER BY showtime_id ASC;
 
 -- Get full Ticket table, with readable customer, movie, theater
-  SELECT Ticket.ticket_id AS 'ticket_id', CONCAT(Customer.first_name, ' ', Customer.last_name) AS customer_id, Showtime.showtime_date_time AS 'showtime_id', Movie.movie_name AS movie_id, Theater.theater_name AS theater_id, Ticket.price AS price, Ticket.payment_method AS payment_method 
-  FROM Ticket 
-  JOIN Customer ON Ticket.customer_id = Customer.customer_id 
-  JOIN Showtime ON Ticket.showtime_id = Showtime.showtime_id 
-  JOIN Movie ON Showtime.movie_id = Movie.movie_id 
-  JOIN Theater ON Showtime.theater_id = Theater.theater_id 
-  ORDER BY Ticket.ticket_id ASC;
+SELECT Ticket.ticket_id AS 'ticket_id', CONCAT(Customer.first_name, ' ', Customer.last_name) AS customer_id, Showtime.showtime_date_time AS 'showtime_id', Movie.movie_name AS movie_id, Theater.theater_name AS theater_id, Ticket.price AS price, Ticket.payment_method AS payment_method FROM Ticket JOIN Customer ON Ticket.customer_id = Customer.customer_id JOIN Showtime ON Ticket.showtime_id = Showtime.showtime_id JOIN Movie ON Showtime.movie_id = Movie.movie_id JOIN Theater ON Showtime.theater_id = Theater.theater_id ORDER BY Ticket.ticket_id ASC;
+
+-- Get full Movie Genre table, with readable movie, theater
+SELECT movie_genre_id, Movie.movie_name AS movie_id, Genre.genre_name AS genre_id FROM `Movie_Genre` JOIN Movie on Movie.movie_id = Movie_Genre.movie_id  JOIN Genre on Genre.genre_id = Movie_Genre.genre_id ORDER BY movie_genre_id ASC;
 
 
+-- TODO
 -- Get list of all movies with showtimes between two given dates
 SELECT Movie.movie_name AS Movie
 FROM Showtime
@@ -93,7 +82,7 @@ VALUES (
 );
 
 -- Create a showtime
-INSERT INTO Showtime (showtime_date_time, movie_id, theatre_id)
+INSERT INTO Showtime (showtime_date_time, movie_id, theater_id)
 VALUES (
     :dateTimeInput,
     (SELECT movie_id FROM Movie WHERE movie_name = :movieNameFromDropdownList),
@@ -110,9 +99,6 @@ VALUES (
 );
 
 -- UPDATES -----------------------------------------------------------------------------
-/* NOTE: Movie_Genre table is not permitted to be updated directly (cascade or delete+recreate);
-Tickets table is not permitted to be updated directly (cascade or delete+recreate).*/
-
 -- Update a movie
 UPDATE Movie
 SET movie_name = :movieNameInput, runtime_min = :runtimeMinInput, mpa_rating = :ratingFromHardcodedList, movie_year = :movieYearInput
@@ -147,6 +133,12 @@ SET showtime_date_time = :dateTimeInput,
     movie_id = :movieNameFromDropdownList,
     theater_id = :theaterNameFromDropdownList
 WHERE showtime_id = :showtimeIdFromListOrControlledInput
+
+-- Update a movie genre relationship
+UPDATE MovieGenre
+SET movie_id = :movieNameFromDropdownList, genre = :genreIdFromListOrControlledInput
+WHERE movie_genre_id = moviegenreIdFromListOrControlledInput
+
 
 -- DELETES -----------------------------------------------------------------------------
 /* With great power comes great responsibility */
