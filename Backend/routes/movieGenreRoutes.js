@@ -40,7 +40,29 @@ router.post("/", (req, res) => {
 });
 
 // TODO UPDATE functionality for moviegenres table record, at '/moviegenres/{id}' endpoint
-
+router.put("/:id", (req, res) => {
+  console.log("UPDATE request received.");
+  db.query(
+    `UPDATE Movie_Genre
+      SET movie_id = ?, genre_id = ?
+      WHERE movie_genre_id = ?`,
+    [
+      req.body.movie_id,
+      req.body.genre_id,
+      req.params.id,
+    ],
+    (err, data, fields) => {
+      if (err) {
+        console.error(err);
+      } // TODO Better error handling
+      res.status(200).json({
+        fields,
+        data,
+      });
+      console.log("UPDATE request successful.");
+    }
+  );
+});
 
 // DELETE functionality for moviegenres table record, at '/moviegenres/{id}' endpoint
 router.delete("/:id", (req, res) => {
