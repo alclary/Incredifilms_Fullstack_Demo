@@ -82,4 +82,24 @@ router.delete("/:id", (req, res) => {
   );
 });
 
+
+
+// READ functionality for customer names only, at '/customers/names' endpoint
+router.get("/names", (req, res) => {
+  console.log("GET request received.");
+  db.query(
+      " SELECT CONCAT(last_name, ', ', first_name, ' (', customer_id, ')') AS customer, customer_id FROM Customer ORDER BY Customer.last_name ASC;",
+      (err, data, fields) => {
+          if (err) {
+              console.error(err);
+          } // TODO Better error handling
+          res.status(200).json({
+              fields,
+              data,
+          });
+      }
+  );
+});
+
+
 module.exports = router;

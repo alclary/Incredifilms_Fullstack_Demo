@@ -89,7 +89,7 @@ router.delete("/:id", (req, res) => {
 router.get("/showings", (req, res) => {
   console.log("GET request received.");
   db.query(
-      "SELECT movie_name, theater_name, FROM Showtime JOIN Movie ON movie_id = Showtime.movie_id JOIN Theater on theater_id = Showtime.theater_id ORDER BY theater_name ASC;",
+      "SELECT movie_name, theater_name FROM Showtime JOIN Movie ON Movie.movie_id = Showtime.movie_id JOIN Theater on Theater.theater_id = Showtime.theater_id ORDER BY theater_name ASC;",
       (err, data, fields) => {
           if (err) {
               console.error(err);

@@ -91,7 +91,6 @@ export const MovieGenreNew = () => {
                   <input
                     type="checkbox"
                     id={genre.genre_id}
-                    // name={genre.genre_name}
                     value={genre.genre_id}
                   />
                   <label>{genre.genre_name}</label>

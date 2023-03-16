@@ -5,99 +5,115 @@ import { useNavigate } from "react-router-dom";
 const API_URL = process.env.REACT_APP_API_URL;
 
 export const TicketNew = () => {
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
+  const [customerList, setCustomerList] = useState([]);
+  const [showtimeList, setShowtimeList] = useState([]);
 
-
-
-    const [customerList, setCustomerList] = useState([]);
-    const [showtimeList, setShowtimeList] = useState([]);
-  
-    useEffect(() => {
-      async function getCustomerList() {
-        try {
-          const customers = await axios.get(API_URL + "/customers/names");
-          setCustomerList(customers.data.data);
-        } catch (error) {
-          console.error(error);
-          // TODO add user feedback of failure
-        }
+  useEffect(() => {
+    async function getCustomerList() {
+      try {
+        const customers = await axios.get(API_URL + "/customers/names");
+        setCustomerList(customers.data.data);
+      } catch (error) {
+        console.error(error);
+        // TODO add user feedback of failure
       }
-      async function getShowtimeList() {
-        try {
-          const showtimes = await axios.get(API_URL + "/showtimes/showings");
-          setShowtimeList(showtimes.data.data);
-        } catch (error) {
-          console.error(error);
-          // TODO add user feedback of failure
-        }
+    }
+    async function getShowtimeList() {
+      try {
+        const showtimes = await axios.get(API_URL + "/showtimes/showings");
+        setShowtimeList(showtimes.data.data);
+      } catch (error) {
+        console.error(error);
+        // TODO add user feedback of failure
       }
-  
-      getCustomerList();
-      getShowtimeList();
-    }, []);
-  
+    }
 
+    getCustomerList();
+    getShowtimeList();
+  }, []);
 
+  const [customer_id, set_customer_id] = useState("");
+  const [showtime_id, set_showtime_id] = useState("");
+  const [price, set_price] = useState("");
+  const [payment_method, set_payment_method] = useState("");
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.post(API_URL + "/tickets", {
+        customer_id,
+        showtime_id,
+        price,
+        payment_method,
+      });
+      console.log(res);
+      // TODO replace with feedback of success and redirect to tickets table
+    } catch (error) {
+      console.error(error);
+      // TODO add user feedback of failure
+    }
 
+    navigate("/Ticket");
+  };
 
+  return (
+    <>
+      <h3>Add a new ticket</h3>
+      <form className="form">
+        <label>Customer </label>
 
+        <select
+          name="customer"
+          value={customer_id}
+          onChange={(e) => {
+            set_customer_id(e.target.value);
+          }}
+        >
+          <option disabled selected value="">
+            -- select an option --
+          </option>
+          {customerList.map((customer, i) => {
+            return (
+              <option key={i} value={customer.customer_id}>
+                {customer.customer}
+              </option>
+            );
+          })}
+        </select>
 
-    const [customer_id, set_customer_id] = useState("");
-    const [showtime_id, set_showtime_id] = useState("");
-    const [price, set_price] = useState("");
-    const [payment_method, set_payment_method] = useState("");
+        <label>
+          Showtime ID
+          <input type="number" min="0" required />
+        </label>
+        <br />
+        <label>
+          Price
+          <input type="number" min="0" required />
+        </label>
+        <br />
+        <label>
+          Payment method
+          <select>
+            <option>CASH</option>
+            <option>CREDIT</option>
+            <option>DEBIT</option>
+          </select>
+        </label>
+        <br />
+        <button
+          type="submit"
+          className="pure-button pure-button-primary"
+          onClick={handleSubmit}
+        >
+          Submit
+        </button>
+      </form>
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // TODO implement POST request to API
-
-        navigate("/Ticket");
-    };
-
-    return (
-        <>
-            <article>
-                <h3>Add a new ticket</h3>
-                <form className="form">
-                    <label>
-                        Customer ID
-                        <input type="number" min="0" required />
-                    </label>
-                    <br />
-                    <label>
-                        Showtime ID
-                        <input type="number" min="0" required />
-                    </label>
-                    <br />
-                    <label>
-                        Price
-                        <input type="number" min="0" required />
-                    </label>
-                    <br />
-                    <label>
-                        Payment method
-                        <select>
-                            <option>CASH</option>
-                            <option>CREDIT</option>
-                            <option>DEBIT</option>
-                        </select>
-                    </label>
-                    <br />
-                    <button
-                        type="submit"
-                        className="pure-button pure-button-primary"
-                        onClick={handleSubmit}
-                    >
-                        Submit
-                    </button>
-                </form>
-            </article>
-
-            <a href="./Ticket">Return to all tickets</a>
-        </>
-    );
+      <a href="./Ticket">Return to all tickets</a>
+    </>
+  );
 };
 
 export default TicketNew;
