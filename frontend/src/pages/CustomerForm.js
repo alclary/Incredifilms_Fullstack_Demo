@@ -58,7 +58,7 @@ export const CustomerForm = (props) => {
             if (res.status === 200) {
             }
             // Success toast notification
-            toast.success(`Record ID ${res.data.data.insertId} updated.`);
+            toast.success(`Record updated.`);
             // Reload entity table / grid.js component (for updates)
             props.gridReload();
         } catch (error) {
