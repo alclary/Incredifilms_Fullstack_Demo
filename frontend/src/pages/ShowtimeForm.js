@@ -107,13 +107,13 @@ export const ShowtimeForm = (props) => {
 
     // State definitions
     const [showtime_date_time, set_showtime_date_time] = useState(
-        props.row.first_name ? props.row.first_name : ""
+        props.row.showtime_date_time ? props.row.showtime_date_time.split("T")[0] : ""
     );
     const [movie_id, set_movie_id] = useState(
-        props.row.last_name ? props.row.last_name : ""
+        props.row.movie_id ? props.row.movie_id : ""
     );
     const [theater_id, set_theater_id] = useState(
-        props.row.dob ? props.row.dob.split("T")[0] : ""
+        props.row.theater_id ? props.row.theater_id : ""
     );
 
     const handleSubmit = async (e) => {

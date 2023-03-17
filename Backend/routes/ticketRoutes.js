@@ -23,32 +23,29 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
   console.log("POST request received.");
   db.query(
-      "INSERT INTO Ticket (customer_id, showtime_id, price, payment_method)VALUES ((?,?,?,?);",
-      [req.body.customer_id, req.body.showtime_id],
-      [req.body.price, req.body.payment_method],
-      (err, data, fields) => {
-          if (err) {
-              console.error(err);
-          } // TODO Better error handling
-          res.status(200).json({
-              // TODO decide if appropriate response
-              fields,
-              data,
-          });
-          console.log("POST request successful.");
+    "INSERT INTO Ticket (customer_id, showtime_id, price, payment_method) VALUES (?,?,?,?);",
+    [req.body.customer_id, req.body.showtime_id, req.body.price, req.body.payment_method],
+    (err, data, fields) => {
+      if (err) {
+        console.error(err);
+      } // TODO Better error handling
+      else {
+        res.status(200).json({
+          // TODO decide if appropriate response
+          fields,
+          data,
+        });
+        console.log("POST request successful.");
       }
+    }
   );
 });
-
-
-
 
 // TODO UPDATE functionality for tickets table record, at '/tickets/{id}' endpoint
 router.put("/:id", (req, res) => {
   console.log("UPDATE request received.");
   db.query(
-    `UPDATE Ticket
-      SET customer_id = ?, showtime_id = ?, price = ?, payment_method = ?
+    `UPDATE Ticket SET customer_id = ?, showtime_id = ?, price = ?, payment_method = ?
       WHERE ticket_id = ?`,
     [
       req.body.customer_id,
@@ -69,11 +66,6 @@ router.put("/:id", (req, res) => {
     }
   );
 });
-
-
-
-
-
 
 // DELETE functionality for tickets table record, at '/tickets/{id}' endpoint
 router.delete("/:id", (req, res) => {

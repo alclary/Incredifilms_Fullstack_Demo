@@ -93,7 +93,7 @@ VALUES (
 );
 
 -- Create a showtime
-INSERT INTO Showtime (showtime_date_time, movie_id, theatre_id)
+INSERT INTO Showtime (showtime_date_time, movie_id, theater_id)
 VALUES (
     :dateTimeInput,
     (SELECT movie_id FROM Movie WHERE movie_name = :movieNameFromDropdownList),
