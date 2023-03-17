@@ -142,6 +142,7 @@ export const MovieForm = (props) => {
                     max="2050"
                     value={year}
                     onChange={(event) => setYear(event.target.value)}
+                    required
                 />
                 <button
                     type="submit"
