@@ -40,7 +40,7 @@ export default function Theaters() {
   async function handleDelete(rowData) {
     if (
       window.confirm(
-        `Are you sure you want to DELETE the record for theater ID = ${rowData.theater_id}?`
+        `Are you sure you want to DELETE the theater record for ${rowData.theater_name}?`
       ) === true
     ) {
       try {
@@ -70,20 +70,20 @@ export default function Theaters() {
     <div>
       <h3>Theaters</h3>
       <p>Create, Retrieve, Update or Delete a Theater</p>
-    {/* Grid.js component wrapper */}
+      {/* Grid.js component wrapper */}
       <Grid
         columns={[
           { name: "Theater ID", id: "theater_id", sort: true },
           { name: "Theater Name", id: "theater_name", sort: true },
           { name: "Number of seats", id: "no_of_seats", sort: true },
           {
-            name: "Edit Item",
+            name: "Edit",
             data: (rowData) =>
               _(<MdEdit onClick={() => handleEdit(rowData)} />),
             width: "6%",
           },
           {
-            name: "Delete Item",
+            name: "Delete",
             data: (rowData) =>
               _(<MdDeleteForever onClick={() => handleDelete(rowData)} />),
             width: "6%",

@@ -30,7 +30,7 @@ export default function Genres() {
         setKey(Math.random());
     }
 
-    // Forces customers data to be refetched from API, updating grid.js table
+    // Forces genres data to be refetched from API, updating grid.js table
     function gridRefresh() {
         setGenres(async () => await fetchGenres());
     }
@@ -40,12 +40,12 @@ export default function Genres() {
     async function handleDelete(rowData) {
         if (
             window.confirm(
-                `Are you sure you want to DELETE the record for ${rowData.genre_name}?`
+                `Are you sure you want to DELETE the genre record for ${rowData.genre_name}?`
             ) === true
             ) {
                 try {
                     const res = await axios.delete(
-                        API_URL + `/customers/${rowData.genre_id}`
+                        API_URL + `/genres/${rowData.genre_id}`
                     );
                     if (res.status === 200) {
                         toast.success("Record deleted.");
@@ -76,13 +76,13 @@ export default function Genres() {
                     { name: "Genre ID", id: "genre_id", sort: true },
                     { name: "Genre Name", id: "genre_name", sort: true },
                     {
-                        name: "Edit Item",
+                        name: "Edit",
                         data: (rowData) =>
                             _(<MdEdit onClick={() => handleEdit(rowData)} />),
                         width: "6%",
                     },
                     {
-                        name: "Delete Item",
+                        name: "Delete",
                         data: (rowData) =>
                             _(
                                 <MdDeleteForever
