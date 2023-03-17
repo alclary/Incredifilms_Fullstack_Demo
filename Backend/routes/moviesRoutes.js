@@ -5,18 +5,18 @@ const db = require("../db.js");
 // READ functionality for movies table, at '/movies' endpoint
 router.get("/", (req, res) => {
     console.log("GET request received.");
-    db.query(
-        "SELECT * FROM Movie ORDER BY movie_id ASC;",
-        (err, data, fields) => {
-            if (err) {
-                console.error(err);
-            } // TODO Better error handling
+    db.query("SELECT * FROM Movie;", (err, data, fields) => {
+        if (err) {
+            console.error(err);
+        } // TODO Better error handling
+        else {
             res.status(200).json({
                 fields,
                 data,
             });
+            console.log("GET request successful.");
         }
-    );
+    });
 });
 
 // CREATE functionality for entries to movies table, at '/movies' endpoint
@@ -24,22 +24,17 @@ router.post("/", (req, res) => {
     console.log("POST request received.");
     db.query(
         "INSERT INTO `Movie` (`movie_name`, `runtime_min`, `mpa_rating`, `movie_year`) VALUES(?,?,?,?);",
-        [
-            req.body.movie_name,
-            req.body.runtime_min,
-            req.body.mpa_rating,
-            req.body.movie_year,
-        ],
+        [req.body.movieName, req.body.runtime, req.body.rating, req.body.year],
         (err, data, fields) => {
             if (err) {
                 console.error(err);
-            } // TODO Better error handling
-            res.status(200).json({
-                // TODO decide if appropriate response
-                fields,
-                data,
-            });
-            console.log("POST request successful.");
+            } else {
+                res.status(200).json({
+                    fields,
+                    data,
+                });
+                console.log("POST request successful.");
+            }
         }
     );
 });
@@ -52,21 +47,22 @@ router.put("/:id", (req, res) => {
       SET movie_name = ?, runtime_min = ?, mpa_rating = ?, movie_year = ?
       WHERE movie_id = ?`,
         [
-            req.body.movie_name,
-            req.body.runtime_min,
-            req.body.mpa_rating,
-            req.body.movie_year,
+            req.body.movieName,
+            req.body.runtime,
+            req.body.rating,
+            req.body.year,
             req.params.id,
         ],
         (err, data, fields) => {
             if (err) {
                 console.error(err);
-            } // TODO Better error handling
-            res.status(200).json({
-                fields,
-                data,
-            });
-            console.log("UPDATE request successful.");
+            } else {
+                res.status(200).json({
+                    fields,
+                    data,
+                });
+                console.log("UPDATE request successful.");
+            }
         }
     );
 });
@@ -80,12 +76,13 @@ router.delete("/:id", (req, res) => {
         (err, data, fields) => {
             if (err) {
                 console.error(err);
-            } // TODO Better error handling
-            res.status(200).json({
-                fields,
-                data,
-            });
-            console.log("DELETE request successful.");
+            } else {
+                res.status(200).json({
+                    fields,
+                    data,
+                });
+                console.log("DELETE request successful.");
+            }
         }
     );
 });
@@ -98,11 +95,13 @@ router.get("/titles", (req, res) => {
         (err, data, fields) => {
             if (err) {
                 console.error(err);
-            } // TODO Better error handling
-            res.status(200).json({
-                fields,
-                data,
-            });
+            } else {
+                res.status(200).json({
+                    fields,
+                    data,
+                });
+                console.log("GET request successful.");
+            }
         }
     );
 });

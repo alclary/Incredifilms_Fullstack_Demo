@@ -4,7 +4,9 @@ import { Link } from "react-router-dom";
 export default function Sidebar() {
     return (
         <div>
-            <Link to="/">IncrediFilms</Link>
+            <Link to="/">
+                <b>IncrediFilms</b>
+            </Link>
             <Link to="/movie">Movies</Link>
             <Link to="/genre">Genres</Link>
             <Link to="/theater">Theaters</Link>

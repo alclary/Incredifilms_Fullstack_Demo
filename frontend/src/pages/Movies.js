@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { Grid, _ } from "gridjs-react";
 import { MdEdit, MdDeleteForever } from "react-icons/md";
 import axios from "axios";
 import { MovieForm } from "./MovieForm";
+import { toast } from "react-toastify";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -18,79 +18,106 @@ export default function Movies() {
     // State definition for the movies data array
     const [movies, setMovies] = useState(async () => await fetchMovies());
 
-    function fetchAndSetMovies() {
+    // State definition for modal form
+    const [formData, setFormData] = useState("");
+    const [formType, setFormType] = useState("new");
+    const [key, setKey] = useState(Math.random());
+
+    // Resets the modal form (new and update) to a fresh "new" form
+    function resetForm() {
+        setFormData("");
+        setFormType("new");
+        setKey(Math.random());
+    }
+
+    // Forces customers data to be refetched from API, updating grid.js table
+    function gridRefresh() {
         setMovies(async () => await fetchMovies());
     }
 
-    // State definition for whether or not to hide form
-    const [showForm, setShowForm] = useState(false);
-    const [formData, setFormData] = useState(null);
-
     // Function to confirm and handle deletion of table record, via the delete
     //   icon in the delete column.
-    async function handleDelete(row) {
+    async function handleDelete(rowData) {
         if (
             window.confirm(
-                `Are you sure you want to DELETE the record for movie ID = ${row.movie_id}?`
+                `Are you sure you want to DELETE the record for movie ID = ${rowData.movie_id}?`
             ) === true
         ) {
-            let deleted = await axios.delete(
-                API_URL + `/movies/${row.movie_id}`
-            );
-            if (deleted.status === 200) {
-                fetchAndSetMovies();
+            try {
+                const res = await axios.delete(
+                    API_URL + `/movies/${rowData.movie_id}`
+                );
+                if (res.status === 200) {
+                    toast.success("Record deleted.");
+                    gridRefresh();
+                }
+            } catch (error) {
+                toast.error(error.message);
+                console.log(error);
             }
         }
     }
 
-    function handleEdit(row) {
-        setFormData(row);
-        setShowForm(true);
+    function handleEdit(rowData) {
+        setFormType("edit");
+        setFormData(rowData);
+        setKey(Math.random());
     }
 
     // Movie Component Contents
     return (
         <div>
-            <h3>Movies</h3>
-            <p>Create, Retrieve, Update or Delete a Movie Record</p>
-            <Grid
-                columns={[
-                    { name: "Movie ID", id: "movie_id", sort: true },
-                    { name: "Movie Name", id: "movie_name", sort: true },
-                    { name: "Runtime (mins)", id: "runtime_min", sort: true },
-                    { name: "MPA Rating", id: "mpa_rating" },
-                    { name: "Year", id: "movie_year", sort: true },
-                    {
-                        name: "Edit Item",
-                        data: (row) =>
-                            _(<MdEdit onClick={() => handleEdit(row)} />),
-                        width: "6%",
-                    },
-                    {
-                        name: "Delete Item",
-                        data: (row) =>
-                            _(
-                                <MdDeleteForever
-                                    onClick={() => handleDelete(row)}
-                                />
-                            ),
-                        width: "6%",
-                    },
-                ]}
-                data={async () => await movies}
-                search={true}
-                pagination={{ limit: 25 }}
-            />
-            <Link to="/MovieNew" class="newPlus">
-                Add new movie
-            </Link>
-            {showForm ? (
-                <MovieForm
-                    row={formData}
-                    showForm={setShowForm}
-                    parentRerender={() => fetchAndSetMovies()}
-                ></MovieForm>
-            ) : null}
+            <div className="grid_wrapper">
+                <h3>Movies</h3>
+                <p>Create, Retrieve, Update or Delete a Movie Record</p>
+                {/* Grid.js component wrapper */}
+                <Grid
+                    columns={[
+                        { name: "Movie ID", id: "movie_id", sort: true },
+                        { name: "Movie Name", id: "movie_name", sort: true },
+                        {
+                            name: "Runtime (mins)",
+                            id: "runtime_min",
+                            sort: true,
+                        },
+                        { name: "MPA Rating", id: "mpa_rating" },
+                        { name: "Year", id: "movie_year", sort: true },
+                        {
+                            name: "Edit",
+                            data: (rowData) =>
+                                _(
+                                    <MdEdit
+                                        onClick={() => handleEdit(rowData)}
+                                    />
+                                ),
+                        },
+                        {
+                            name: "Delete",
+                            data: (rowData) =>
+                                _(
+                                    <MdDeleteForever
+                                        onClick={() => handleDelete(rowData)}
+                                    />
+                                ),
+                        },
+                    ]}
+                    data={async () => await movies}
+                    search={true}
+                    pagination={{ limit: 10 }}
+                />
+            </div>
+            <MovieForm
+                // key update is being used to force rerender component
+                key={key}
+                // mode of form "edit" or "new"
+                formType={formType}
+                // form data to populate in form (if any and mode is "edit")
+                rowData={formData}
+                // function via prop to reset form state from parent
+                resetForm={resetForm}
+                // function call via prop to refresh table / Grid component
+                gridReload={() => gridRefresh()}
+            ></MovieForm>
         </div>
     );
 }

@@ -77,7 +77,7 @@ export default function Genres() {
                 ]}
                 data={async () => await genres}
                 search={true}
-                pagination={{ limit: 25 }}
+                pagination={{ limit: 10 }}
             />
             <Link to="/GenreNew" class="newPlus">
                 Add new genre
