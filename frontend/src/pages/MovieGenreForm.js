@@ -10,6 +10,7 @@ export const MovieGenreForm = (props) => {
   //      else form field empty (for new entry)
   const [movieList, setMovieList] = useState([]);
   const [genreList, setGenreList] = useState([]);
+  const [checkedList, setCheckedList] = useState([]);
 
   useEffect(() => {
     async function getMovieList() {
@@ -68,25 +69,40 @@ export const MovieGenreForm = (props) => {
     set_movie_id(e.target.value);
   };
 
-  const handleGenreChange = async (e) => {
-  set_genre_id(e.target.value)
+  // THIS WORKS FOR ONE NOT FOR MANY //
+  // const handleGenreChange = async (e) => {
+  // set_genre_id(e.target.value)
+  // };
+
+  const handleGenreChange = (event) => {
+    const value = event.target.value;
+    const isChecked = event.target.checked;
+
+    if (isChecked) {
+      //Add checked item into checkList
+      set_genre_id([value]);
+    } else {
+      //Remove unchecked item from checkList
+      const filteredList = genreList.filter((item) => item !== value);
+      set_genre_id(filteredList);
+
+    }
   };
 
-  // const handleGenreChange = async (e) => {
-  //   set_genre_id(e.target.value)
+  // const handleGenreChange = (event) => {
+  //   const value = event.target.value;
+  //   const isChecked = event.target.checked;
 
-  //   const is_checked = e.target.checked;
-
-
-  //   if (is_checked) {
-  //     set_genre_id([genreList, genre_id]);
+  //   if (isChecked) {
+  //     //Add checked item into checkList
+  //     set_genre_id([...checkedList, value]);
   //   } else {
-  //     const filteredList = genreList.filter((i) => i !== genre_id);
-  //     set_genre_id([filteredList]);
-  //   };
-
-
-
+  //     //Remove unchecked item from checkList
+  //     const filteredList = checkedList.filter((item) => item !== value);
+  //     setCheckedList(filteredList);
+  //   }
+  //   set_genre_id(setCheckedList[value]);
+  // };
 
   return (
     <div>
@@ -132,25 +148,6 @@ export const MovieGenreForm = (props) => {
             </div>
           );
         })}
-
-        {/* <ul>
-
-
-
-          {genreList.map((genre, i) => {
-            return (
-              <li key={i} value={genre.genre_id}  onSelect={handleGenreChange}
-              >
-                <input
-                  type="checkbox"
-                  id={genre.genre_id}
-                  value={genre_id}
-                />
-                <label>{genre.genre_name}</label>
-              </li>
-            );
-          })}
-        </ul> */}
 
         <button type="submit" class="pure-button pure-button-primary">
           Submit

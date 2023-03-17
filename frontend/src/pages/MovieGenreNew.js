@@ -98,25 +98,6 @@ export const MovieGenreNew = () => {
               );
             })}
           </ul>
-          {/* <select
-            name="genre"
-            value={genre_id}
-            onChange={(e) => {
-              set_genre_id(e.target.value);
-            }}
-            required
-          >
-            <option disabled selected value="">
-              -- select an option --
-            </option>
-            {genreList.map((genre, i) => {
-              return (
-                <option key={i} value={genre.genre_id}>
-                  {genre.genre_name}
-                </option>
-              );
-            })}
-          </select> */}
         </label>
         <br />
         <button
