@@ -1,43 +1,30 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 export const ShowtimeForm = (props) => {
   console.log(props);
 
-  const [movieList, setMovieList] = useState([]);
-  const [theaterList, setTheaterList] = useState([]);
-
-  useEffect(() => {
     async function getMovieList() {
-      try {
-        const movies = await axios.get(API_URL + "/movies/titles");
-        setMovieList(movies.data.data);
-      } catch (error) {
-        console.error(error);
-        // TODO add user feedback of failure
-      }
+        try {
+            const movies = await axios.get(API_URL + "/movies/titles");
+            return movies.data.data;
+        } catch (error) {
+            console.error(error);
+            // TODO add user feedback of failure
+        }
     }
+
     async function getTheaterList() {
-      try {
-        const theaters = await axios.get(API_URL + "/theaters/locations");
-        setTheaterList(theaters.data.data);
-      } catch (error) {
-        console.error(error);
-        // TODO add user feedback of failure
-      }
+        try {
+            const theaters = await axios.get(API_URL + "/theaters/locations");
+            return theaters.data.data;
+        } catch (error) {
+            console.error(error);
+            // TODO add user feedback of failure
+        }
     }
-
-    getTheaterList();
-    getMovieList();
-  }, []);
-
-  async function getMovieOptions() {
-    try {
-      const res = await axios.get(API_URL + `/movies/${props.row.movie_id}`);
-      const data = res.data;
 
       const movie_options = data.map((d) => ({
         value: d.movie_id,
