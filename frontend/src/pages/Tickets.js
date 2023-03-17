@@ -85,7 +85,7 @@ export default function Tickets() {
                 ]}
                 data={async () => await tickets}
                 search={true}
-                pagination={{ limit: 25 }}
+                pagination={{ limit: 10 }}
             />
             <Link to="/TicketNew" className="newPlus">
                 Add new ticket
