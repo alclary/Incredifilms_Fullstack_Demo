@@ -5,8 +5,9 @@ import { useNavigate } from "react-router-dom";
 const API_URL = process.env.REACT_APP_API_URL;
 
 export const MovieGenreForm = (props) => {
-  console.log(props);
-
+  // State definitions
+  //      If formType mode "edit", populate fields with record data to edit,
+  //      else form field empty (for new entry)
   const [movieList, setMovieList] = useState([]);
   const [genreList, setGenreList] = useState([]);
 
@@ -34,7 +35,6 @@ export const MovieGenreForm = (props) => {
     getMovieList();
   }, []);
 
-
   async function newSubmit() {
     try {
       const res = await axios.post(API_URL + "/moviegenres", {
@@ -49,18 +49,17 @@ export const MovieGenreForm = (props) => {
     }
   }
 
-
   // State definitions
   const [movie_id, set_movie_id] = useState(
-    props.row.movie_id ? props.row.movie_id : ""
+    props.formType === "edit" ? props.rowData.movie_id : ""
   );
   const [genre_id, set_genre_id] = useState(
-    props.row.genre_id ? props.row.genre_id : ""
+    props.formType === "edit" ? props.rowData.genre_id : ""
   );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-{
+    {
       newSubmit();
     }
   };
@@ -71,74 +70,67 @@ export const MovieGenreForm = (props) => {
 
   return (
     <div>
-      {props.row ? <h3>Update movie genre</h3> : <h3>Add a new movie genre</h3>}
-
+      {/* Form title based on mode ("edit" or "new") */}
+      {props.formType === "edit" ? (
+        <h3>Update movie genre relationship</h3>
+      ) : (
+        <h3>Add a new movie genre relationship</h3>
+      )}
       <form onSubmit={handleSubmit} className="pure-form pure-form-stacked">
-        {/* <label for="showtime_date_time">Datetime</label>
-        <input
-          type="datetime-local"
-          id="showtime_date_time"
-          required
-          value={showtime_date_time}
-          onChange={(e) => set_showtime_date_time(e.target.value)}
-        ></input>
+        <label>Movie </label>
 
-        <label>
-          Movie
-          <select
-            name="movie"
-            value={movie_id}
-            onChange={(e) => {
-              set_movie_id(e.target.value);
-            }}
-            required
-          >
-            <option disabled selected value="">
-              -- select an option --
-            </option>
-            {movieList.map((movie, i) => {
-              return (
-                <option key={i} value={movie.movie_id}>
-                  {movie.movie_name}
-                </option>
-              );
-            })}
-          </select>
-        </label>
-        <label>
-          Theater
-          <select
-            name="movie"
-            value={theater_id}
-            onChange={(e) => {
-              set_theater_id(e.target.value);
-            }}
-            required
-          >
-            <option disabled selected value="">
-              -- select an option --
-            </option>
-            {theaterList.map((theater, i) => {
-              return (
-                <option key={i} value={theater.theater_id}>
-                  {theater.theater_name}
-                </option>
-              );
-            })}
-          </select>
-        </label> */}
+        <select
+          name="movie"
+          value={movie_id}
+          onChange={(event) => {
+            set_movie_id(event.target.value);
+          }}
+          required
+        >
+          <option disabled selected value="">
+            -- select an option --
+          </option>
+          {movieList.map((movie, i) => {
+            return (
+              <option key={i} value={movie.movie_id}>
+                {movie.movie_name}
+              </option>
+            );
+          })}
+        </select>
+        <br />
+        <label>Genre</label>
+        <ul>
+          {genreList.map((genre, i) => {
+            return (
+              <li key={i} value={genre_id}>
+                <input
+                  type="checkbox"
+                  id={genre.genre_id}
+                  value={genre.genre_id}
+                />
+                <label>{genre.genre_name}</label>
+              </li>
+            );
+          })}
+        </ul>
+
         <button type="submit" class="pure-button pure-button-primary">
           Submit
         </button>
-        <button
-          type="button"
-          class="pure-button pure-button"
-          onClick={() => {
-            props.showForm(false);
-          }}
-        >
-          Cancel
-        </button>
+        {/* Cancel button only displayed for "edit" form modality */}
+        {props.formType === "edit" ? (
+          <button
+            type="button"
+            class="pure-button pure-button"
+            // Cancel button resets form to cancel edit attempt
+            onClick={() => {
+              props.resetForm();
+            }}
+          >
+            Cancel
+          </button>
+        ) : undefined}
       </form>
     </div>
   );

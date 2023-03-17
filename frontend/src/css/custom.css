@@ -54,6 +54,10 @@ code {
     color: #3e885b;
 }
 
+.sidebar :focus{
+    color: #3e885b;
+}
+
 .main {
     margin-left: 195px; /* Same width as the sidebar + left position in px */
     font-size: 1.1em; /* Increased text to enable scrolling */
