@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Grid, _ } from "gridjs-react";
 import { MdEdit, MdDeleteForever } from "react-icons/md";
 import axios from "axios";
@@ -18,34 +18,50 @@ export default function Genres() {
     // State definition for the genres data array
     const [genres, setGenres] = useState(async () => await fetchGenres());
 
-    function fetchAndSetGenres() {
+        // State definition for modal form
+        const [formData, setFormData] = useState("");
+        const [formType, setFormType] = useState("new");
+        const [key, setKey] = useState(Math.random());
+
+    // Resets the modal form (new and update) to a fresh "new" form
+    function resetForm() {
+        setFormData("");
+        setFormType("new");
+        setKey(Math.random());
+    }
+
+    // Forces customers data to be refetched from API, updating grid.js table
+    function gridRefresh() {
         setGenres(async () => await fetchGenres());
     }
 
-    // State definition for whether or not to hide form
-    const [showForm, setShowForm] = useState(false);
-    const [formData, setFormData] = useState(null);
-
     // Function to confirm and handle deletion of table record, via the delete
     //   icon in the delete column.
-    async function handleDelete(row) {
+    async function handleDelete(rowData) {
         if (
             window.confirm(
-                `Are you sure you want to DELETE the record for genre ID = ${row.genre_id}?`
+                `Are you sure you want to DELETE the record for ${rowData.genre_name}?`
             ) === true
-        ) {
-            let deleted = await axios.delete(
-                API_URL + `/genres/${row.genre_id}`
-            );
-            if (deleted.status === 200) {
-                fetchAndSetGenres();
+            ) {
+                try {
+                    const res = await axios.delete(
+                        API_URL + `/customers/${rowData.genre_id}`
+                    );
+                    if (res.status === 200) {
+                        toast.success("Record deleted.");
+                        gridRefresh();
+                    }
+                } catch (error) {
+                    toast.error(error.message);
+                    console.log(error);
+                }
             }
         }
-    }
 
-    function handleEdit(row) {
-        setFormData(row);
-        setShowForm(true);
+    function handleEdit(rowData) {
+        setFormType("edit");
+        setFormData(rowData);
+        setKey(Math.random());
     }
 
     // Genre Component Contents
@@ -53,6 +69,7 @@ export default function Genres() {
         <div>
             <h3>Genres</h3>
             <p>Create, Retrieve, Update or Delete a Genre</p>
+                {/* Grid.js component wrapper */}
 
             <Grid
                 columns={[
@@ -60,16 +77,16 @@ export default function Genres() {
                     { name: "Genre Name", id: "genre_name", sort: true },
                     {
                         name: "Edit Item",
-                        data: (row) =>
-                            _(<MdEdit onClick={() => handleEdit(row)} />),
+                        data: (rowData) =>
+                            _(<MdEdit onClick={() => handleEdit(rowData)} />),
                         width: "6%",
                     },
                     {
                         name: "Delete Item",
-                        data: (row) =>
+                        data: (rowData) =>
                             _(
                                 <MdDeleteForever
-                                    onClick={() => handleDelete(row)}
+                                    onClick={() => handleDelete(rowData)}
                                 />
                             ),
                         width: "6%",
@@ -79,16 +96,18 @@ export default function Genres() {
                 search={true}
                 pagination={{ limit: 10 }}
             />
-            <Link to="/GenreNew" class="newPlus">
-                Add new genre
-            </Link>
-            {showForm ? (
-                <GenreForm
-                    row={formData}
-                    showForm={setShowForm}
-                    parentRerender={() => fetchAndSetGenres()}
-                ></GenreForm>
-            ) : null}
+            <GenreForm
+                // key update is being used to force rerender component
+                key={key}
+                // mode of form "edit" or "new"
+                formType={formType}
+                // form data to populate in form (if any and mode is "edit")
+                rowData={formData}
+                // function via prop to reset form state from parent
+                resetForm={resetForm}
+                // function call via prop to refresh table / Grid component
+                gridReload={() => gridRefresh()}
+            ></GenreForm>
         </div>
     );
 }
