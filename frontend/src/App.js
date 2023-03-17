@@ -12,7 +12,6 @@ import Theaters from "./pages/Theaters";
 import MovieGenres from "./pages/MovieGenres";
 import Tickets from "./pages/Tickets";
 
-import MovieNew from "./pages/MovieNew";
 import GenreNew from "./pages/GenreNew";
 import ShowtimeNew from "./pages/ShowtimeNew";
 import TicketNew from "./pages/TicketNew";
@@ -70,11 +69,6 @@ export default function App() {
                                 exact
                                 path="/GenreNew"
                                 element={<GenreNew />}
-                            />
-                            <Route
-                                exact
-                                path="/MovieNew"
-                                element={<MovieNew />}
                             />
                             <Route
                                 exact
