@@ -31,8 +31,8 @@ export default function Customers() {
         setKey(Math.random());
     }
 
-    // Forces customers data to be refetched from API, updates customers state
-    function fetchAndSetCustomers() {
+    // Forces customers data to be refetched from API, updating grid.js table
+    function gridRefresh() {
         setCustomers(async () => await fetchCustomers());
     }
 
@@ -50,7 +50,7 @@ export default function Customers() {
                 );
                 if (res.status === 200) {
                     toast.success("Record deleted.");
-                    fetchAndSetCustomers();
+                    gridRefresh();
                 }
             } catch (error) {
                 toast.error(error.message);
@@ -68,46 +68,52 @@ export default function Customers() {
     // Customer Component Contents
     return (
         <div>
-            <h3>Customers</h3>
-            <p>Create, Retrieve, Update or Delete a Customer</p>
-            {/* Grid.js component wrapper */}
-            <Grid
-                columns={[
-                    {
-                        name: "ID",
-                        id: "customer_id",
-                        sort: true,
-                    },
-                    { name: "First Name", id: "first_name", sort: true },
-                    { name: "Last Name", id: "last_name", sort: true },
-                    {
-                        name: "Date of Birth",
-                        id: "dob",
-                        sort: true,
-                        formatter: (cell) => {
-                            return cell.split("T")[0];
+            <div className="grid_wrapper">
+                <h3>Customers</h3>
+                <p>Create, Retrieve, Update or Delete a Customer</p>
+                {/* Grid.js component wrapper */}
+                <Grid
+                    columns={[
+                        {
+                            name: "ID",
+                            id: "customer_id",
+                            sort: true,
                         },
-                    },
-                    { name: "Email", id: "email", sort: true },
-                    {
-                        name: "Edit",
-                        data: (rowData) =>
-                            _(<MdEdit onClick={() => handleEdit(rowData)} />),
-                    },
-                    {
-                        name: "Delete",
-                        data: (rowData) =>
-                            _(
-                                <MdDeleteForever
-                                    onClick={() => handleDelete(rowData)}
-                                />
-                            ),
-                    },
-                ]}
-                data={async () => await customers}
-                search={true}
-                pagination={{ limit: 10 }}
-            />
+                        { name: "First Name", id: "first_name", sort: true },
+                        { name: "Last Name", id: "last_name", sort: true },
+                        {
+                            name: "Date of Birth",
+                            id: "dob",
+                            sort: true,
+                            formatter: (cell) => {
+                                return cell.split("T")[0];
+                            },
+                        },
+                        { name: "Email", id: "email", sort: true },
+                        {
+                            name: "Edit",
+                            data: (rowData) =>
+                                _(
+                                    <MdEdit
+                                        onClick={() => handleEdit(rowData)}
+                                    />
+                                ),
+                        },
+                        {
+                            name: "Delete",
+                            data: (rowData) =>
+                                _(
+                                    <MdDeleteForever
+                                        onClick={() => handleDelete(rowData)}
+                                    />
+                                ),
+                        },
+                    ]}
+                    data={async () => await customers}
+                    search={true}
+                    pagination={{ limit: 10 }}
+                />
+            </div>
             <CustomerForm
                 // key update is being used to force rerender component
                 key={key}
@@ -118,7 +124,7 @@ export default function Customers() {
                 // function via prop to reset form state from parent
                 resetForm={resetForm}
                 // function call via prop to refresh table / Grid component
-                gridReload={() => fetchAndSetCustomers()}
+                gridReload={() => gridRefresh()}
             ></CustomerForm>
         </div>
     );
