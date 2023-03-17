@@ -78,34 +78,42 @@ export const MovieGenreForm = (props) => {
     const value = event.target.value;
     const isChecked = event.target.checked;
 
+    
     if (isChecked) {
       //Add checked item into checkList
-      set_genre_id([value]);
+      setCheckedList([...checkedList, value]);
+      // newSubmit();
+
+      // console.log(`${value} is ${isChecked}`);
     } else {
       //Remove unchecked item from checkList
       const filteredList = genreList.filter((item) => item !== value);
-      set_genre_id(filteredList);
-
+      setCheckedList(filteredList);
+      console.log(checkedList);
     }
-  };
+  
+  
+  
+//   {checkedList.map((item, index) =>{
+// console.log({item})
+  
+  }
+    
+  
 
-  // const handleGenreChange = (event) => {
-  //   const value = event.target.value;
-  //   const isChecked = event.target.checked;
 
-  //   if (isChecked) {
-  //     //Add checked item into checkList
-  //     set_genre_id([...checkedList, value]);
-  //   } else {
-  //     //Remove unchecked item from checkList
-  //     const filteredList = checkedList.filter((item) => item !== value);
-  //     setCheckedList(filteredList);
-  //   }
-  //   set_genre_id(setCheckedList[value]);
-  // };
+  
+
 
   return (
+
+
+
     <div>
+      
+
+
+
       {/* Form title based on mode ("edit" or "new") */}
       {props.formType === "edit" ? (
         <h3>Update movie genre relationship</h3>
@@ -141,6 +149,7 @@ export const MovieGenreForm = (props) => {
               <input
                 type="checkbox"
                 name="genres"
+                id="movie_genre_id"
                 value={genre.genre_id}
                 onChange={handleGenreChange}
               ></input>
@@ -166,6 +175,20 @@ export const MovieGenreForm = (props) => {
           </button>
         ) : undefined}
       </form>
+
+
+
+      <div>Checked items:::::
+      {checkedList.map((item, index) =>{
+     return(
+      <div>
+        <p>{item}</p>
+      </div>
+     ) 
+    })}
+      </div>
+
+
     </div>
   );
 };
