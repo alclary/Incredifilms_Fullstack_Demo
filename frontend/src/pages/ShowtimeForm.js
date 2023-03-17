@@ -165,7 +165,7 @@ export const ShowtimeForm = (props) => {
         <label>
           Theater
           <select
-            name="movie"
+            name="theater"
             value={theater_id}
             onChange={(e) => {
               set_theater_id(e.target.value);

@@ -81,7 +81,7 @@ router.delete("/:id", (req, res) => {
 
 
 // READ functionality for genre names only, at '/genres/names' endpoint
-router.get("/names", (req, res) => {
+router.get("/categories", (req, res) => {
   console.log("GET request received.");
   db.query(
       "SELECT genre_id, genre_name FROM Genre ORDER BY genre_name ASC;",

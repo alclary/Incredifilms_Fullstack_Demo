@@ -23,7 +23,7 @@ export const MovieGenreForm = (props) => {
     }
     async function getGenreList() {
       try {
-        const genres = await axios.get(API_URL + "/genres/names");
+        const genres = await axios.get(API_URL + "/genres/categories");
         setGenreList(genres.data.data);
       } catch (error) {
         console.error(error);
@@ -68,6 +68,26 @@ export const MovieGenreForm = (props) => {
     set_movie_id(e.target.value);
   };
 
+  const handleGenreChange = async (e) => {
+  set_genre_id(e.target.value)
+  };
+
+  // const handleGenreChange = async (e) => {
+  //   set_genre_id(e.target.value)
+
+  //   const is_checked = e.target.checked;
+
+
+  //   if (is_checked) {
+  //     set_genre_id([genreList, genre_id]);
+  //   } else {
+  //     const filteredList = genreList.filter((i) => i !== genre_id);
+  //     set_genre_id([filteredList]);
+  //   };
+
+
+
+
   return (
     <div>
       {/* Form title based on mode ("edit" or "new") */}
@@ -82,9 +102,7 @@ export const MovieGenreForm = (props) => {
         <select
           name="movie"
           value={movie_id}
-          onChange={(event) => {
-            set_movie_id(event.target.value);
-          }}
+          onChange={handleMovieChange}
           required
         >
           <option disabled selected value="">
@@ -100,20 +118,39 @@ export const MovieGenreForm = (props) => {
         </select>
         <br />
         <label>Genre</label>
-        <ul>
+
+        {genreList.map((genre, i) => {
+          return (
+            <div key={genre.id}>
+              <input
+                type="checkbox"
+                name="genres"
+                value={genre.genre_id}
+                onChange={handleGenreChange}
+              ></input>
+              <label>{genre.genre_name}</label>
+            </div>
+          );
+        })}
+
+        {/* <ul>
+
+
+
           {genreList.map((genre, i) => {
             return (
-              <li key={i} value={genre_id}>
+              <li key={i} value={genre.genre_id}  onSelect={handleGenreChange}
+              >
                 <input
                   type="checkbox"
                   id={genre.genre_id}
-                  value={genre.genre_id}
+                  value={genre_id}
                 />
                 <label>{genre.genre_name}</label>
               </li>
             );
           })}
-        </ul>
+        </ul> */}
 
         <button type="submit" class="pure-button pure-button-primary">
           Submit
