@@ -1,11 +1,11 @@
 /*
-CS 340 - Project Step 4
+CS 340 - Portfolio Project
 Data Definition Query (DDL)
-Group #25
+Group #25 - Konami Code
 Jesseline Velazquez, Anthony Logan Clary
 */
 -- --------------------------------------------------------
--- Diable commits and foreign key checks to minimize errors
+-- Disable commits and foreign key checks to minimize errors
 SET FOREIGN_KEY_CHECKS=0;
 SET AUTOCOMMIT = 0;
 

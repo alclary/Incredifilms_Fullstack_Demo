@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import { Grid, _ } from "gridjs-react";
 import { MdEdit, MdDeleteForever } from "react-icons/md";
 import axios from "axios";
@@ -7,6 +7,7 @@ import { MovieGenreForm } from "./MovieGenreForm";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
+// Fetch and return data array of moviegenres from API
 async function fetchMovieGenres() {
     const movie_genres = await axios.get(API_URL + "/moviegenres");
     return movie_genres.data.data;
@@ -19,41 +20,58 @@ export default function MovieGenres() {
         async () => await fetchMovieGenres()
     );
 
+    // State definition for modal form
+    const [formData, setFormData] = useState("");
+    const [formType, setFormType] = useState("new");
+    const [key, setKey] = useState(Math.random());
+
+    // Resets the modal form (new and update) to a fresh "new" form
+    function resetForm() {
+        setFormData("");
+        setFormType("new");
+        setKey(Math.random());
+    }
+
+    // Forces moviegenres data to be refetched from API, updates moviegenres state
     function fetchAndSetMovieGenres() {
         setMovieGenres(async () => await fetchMovieGenres());
     }
 
-    // State definition for whether or not to hide form
-    const [showForm, setShowForm] = useState(false);
-    const [formData, setFormData] = useState(null);
-
     // Function to confirm and handle deletion of table record, via the delete
     //   icon in the delete column.
-    async function handleDelete(row) {
+    async function handleDelete(rowData) {
         if (
             window.confirm(
-                `Are you sure you want to DELETE the record for movie_genre ID = ${row.movie_genre_id}?`
+                `Are you sure you want to DELETE the record for movie_genre ID = ${rowData.movie_genre_id}?`
             ) === true
         ) {
-            let deleted = await axios.delete(
-                API_URL + `/moviegenres/${row.movie_genre_id}`
-            );
-            if (deleted.status === 200) {
-                fetchAndSetMovieGenres();
+            try {
+                const res = await axios.delete(
+                    API_URL + `/moviegenres/${rowData.movie_genre_id}`
+                );
+                if (res.status === 200) {
+                    toast.success("Record deleted.");
+                    fetchAndSetMovieGenres();
+                }
+            } catch (error) {
+                toast.error(error.message);
+                console.log(error);
             }
         }
     }
 
-    function handleEdit(row) {
-        setFormData(row);
-        setShowForm(true);
+    function handleEdit(rowData) {
+        setFormType("edit");
+        setFormData(rowData);
+        setKey(Math.random());
     }
 
     // MovieGenre Component Contents
     return (
         <div>
             <h3>MovieGenres</h3>
-            <p>Create, Retrieve, or Delete a Movie Genre relationship</p>
+            <p>Create, Retrieve, Update, or Delete a Movie Genre relationship</p>
+            {/* Grid.js component wrapper */}
             <Grid
                 columns={[
                     {
@@ -64,36 +82,37 @@ export default function MovieGenres() {
                     { name: "Movie", id: "movie_id", sort: true },
                     { name: "Genre", id: "genre_id", sort: true },
                     {
-                        name: "Edit Item",
-                        data: (row) =>
-                            _(<MdEdit onClick={() => handleEdit(row)} />),
-                        width: "6%",
+                        name: "Edit",
+                        data: (rowData) =>
+                            _(<MdEdit onClick={() => handleEdit(rowData)} />),
                     },
                     {
-                        name: "Delete Item",
-                        data: (row) =>
+                        name: "Delete",
+                        data: (rowData) =>
                             _(
                                 <MdDeleteForever
-                                    onClick={() => handleDelete(row)}
+                                    onClick={() => handleDelete(rowData)}
                                 />
                             ),
-                        width: "6%",
                     },
                 ]}
                 data={async () => await movie_genres}
                 search={true}
-                pagination={{ limit: 25 }}
+                pagination={{ limit: 10 }}
             />
-            <Link to="/MovieGenreNew" className="newPlus">
-                Add new Movie Genre relationship
-            </Link>
-            {showForm ? (
-                    <MovieGenreForm
-                      row={formData}
-                      showForm={setShowForm}
-                      parentRerender={() => fetchAndSetMovieGenres()}
-                    ></MovieGenreForm>
-                  ) : null}
+            <MovieGenreForm
+                // key update is being used to force rerender component
+                key={key}
+                // mode of form "edit" or "new"
+                formType={formType}
+                // form data to populate in form (if any and mode is "edit")
+                rowData={formData}
+                // function via prop to reset form state from parent
+                resetForm={resetForm}
+                // function call via prop to refresh table / Grid component
+                gridReload={() => fetchAndSetMovieGenres()}
+            ></MovieGenreForm>
+
         </div>
     );
 }

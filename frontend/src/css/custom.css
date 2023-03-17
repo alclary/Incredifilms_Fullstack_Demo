@@ -58,6 +58,10 @@ code {
     color: #3e885b;
 }
 
+.sidebar :focus{
+    color: #3e885b;
+}
+
 .main {
     display: flex;
     flex-direction: column;

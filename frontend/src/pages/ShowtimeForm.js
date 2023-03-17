@@ -35,28 +35,28 @@ export const ShowtimeForm = (props) => {
         getMovieList();
     }, []);
 
-    async function getMovieOptions() {
-        try {
-            const res = await axios.get(
-                API_URL + `/movies/${props.row.movie_id}`
-            );
-            const data = res.data;
+    // async function getMovieOptions() {
+    //     try {
+    //         const res = await axios.get(
+    //             API_URL + `/movies/${props.row.movie_id}`
+    //         );
+    //         const data = res.data;
 
-            const movie_options = data.map((d) => ({
-                value: d.movie_id,
-                label: d.movie_name,
-            }));
-            this.setState({ selectMovie: movie_options });
+    //         const movie_options = data.map((d) => ({
+    //             value: d.movie_id,
+    //             label: d.movie_name,
+    //         }));
+    //         this.setState({ selectMovie: movie_options });
 
-            if (res.status === 200) {
-                props.parentRerender();
-            }
-            // TODO replace with feedback of success and redirect to movies table
-        } catch (error) {
-            console.error(error);
-            // TODO add user feedback of failure
-        }
-    }
+    //         if (res.status === 200) {
+    //             props.parentRerender();
+    //         }
+    //         // TODO replace with feedback of success and redirect to movies table
+    //     } catch (error) {
+    //         console.error(error);
+    //         // TODO add user feedback of failure
+    //     }
+    // }
 
     //   async function getTheaterOptions()
     //   {const res = await axios.get(API_URL + `/theaters/${props.row.theater_id}`)
@@ -125,10 +125,6 @@ export const ShowtimeForm = (props) => {
         }
     };
 
-    const handleMovieChange = async (e) => {
-        set_movie_id(e.target.value);
-    };
-
     return (
         <div>
             {props.row ? <h3>Update showtime</h3> : <h3>Add a new showtime</h3>}
@@ -171,7 +167,7 @@ export const ShowtimeForm = (props) => {
                 <label>
                     Theater
                     <select
-                        name="movie"
+                        name="theater"
                         value={theater_id}
                         onChange={(e) => {
                             set_theater_id(e.target.value);
