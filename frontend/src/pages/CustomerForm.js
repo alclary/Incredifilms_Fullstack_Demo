@@ -119,14 +119,17 @@ export const CustomerForm = (props) => {
                     value={email}
                     onChange={(event) => setEmail(event.target.value)}
                 />
-                <button type="submit" class="pure-button pure-button-primary">
+                <button
+                    type="submit"
+                    className="pure-button pure-button-primary"
+                >
                     Submit
                 </button>
                 {/* Cancel button only displayed for "edit" form modality */}
                 {props.formType === "edit" ? (
                     <button
                         type="button"
-                        class="pure-button pure-button"
+                        className="pure-button pure-button"
                         // Cancel button resets form to cancel edit attempt
                         onClick={() => {
                             props.resetForm();
