@@ -22,23 +22,62 @@ router.get("/", (req, res) => {
 // CREATE functionality for entries to tickets table, at '/tickets' endpoint
 router.post("/", (req, res) => {
   console.log("POST request received.");
-  db.query(
-    "INSERT INTO Ticket (customer_id, showtime_id, price, payment_method) VALUES (?,?,?,?);",
-    [req.body.customer_id, req.body.showtime_id, req.body.price, req.body.payment_method],
-    (err, data, fields) => {
-      if (err) {
-        console.error(err);
-      } // TODO Better error handling
-      else {
-        res.status(200).json({
-          // TODO decide if appropriate response
-          fields,
-          data,
-        });
-        console.log("POST request successful.");
+
+  if ([req.body.customer_id] == "") {
+    db.query(
+      "INSERT INTO Ticket (showtime_id, price, payment_method)  VALUES (?,?,?);",
+      [req.body.showtime_id, req.body.price, req.body.payment_method],
+      (err, data, fields) => {
+        if (err) {
+          console.error(err);
+        } // TODO Better error handling
+        else {
+          res.status(200).json({
+            // TODO decide if appropriate response
+            fields,
+            data,
+          });
+          console.log("POST request successful.");
+        }
+        console.log([
+          req.body.showtime_id,
+          req.body.price,
+          req.body.payment_method,
+          req.body.customer_id,
+        ]);
       }
-    }
-  );
+    );
+  } else {
+
+    db.query(
+      "INSERT INTO Ticket (showtime_id, price, payment_method, customer_id) VALUES (?,?,?,?);",
+      [
+        req.body.showtime_id,
+        req.body.price,
+        req.body.payment_method,
+        req.body.customer_id,
+      ],
+      (err, data, fields) => {
+        if (err) {
+          console.error(err);
+        } // TODO Better error handling
+        else {
+          res.status(200).json({
+            // TODO decide if appropriate response
+            fields,
+            data,
+          });
+          console.log("POST request successful.");
+        }
+        console.log([
+          req.body.showtime_id,
+          req.body.price,
+          req.body.payment_method,
+          req.body.customer_id,
+        ]);
+      }
+    );
+  }
 });
 
 // TODO UPDATE functionality for tickets table record, at '/tickets/{id}' endpoint

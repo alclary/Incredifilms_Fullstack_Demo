@@ -137,11 +137,12 @@ export const TicketForm = (props) => {
 <select
   name="showtime"
   value={showtime_id}
+  required
   onChange={(e) => {
     set_showtime_id(e.target.value);
   }}
 >
-  <option disabled selected value="" required>
+  <option disabled selected value="" >
     -- select an option --
   </option>
   {showtimeList.map((showtime, i) => {

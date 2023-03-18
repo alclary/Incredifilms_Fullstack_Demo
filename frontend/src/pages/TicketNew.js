@@ -41,19 +41,42 @@ export const TicketNew = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (customer_id == "{null}") {
+      console.log("Connecticut");
+
     try {
       const res = await axios.post(API_URL + "/tickets", {
-        customer_id,
         showtime_id,
         price,
         payment_method,
       });
       console.log(res);
+      console.log("Alabama");
       // TODO replace with feedback of success and redirect to tickets table
     } catch (error) {
       console.error(error);
+      console.log("Wyoming");
       // TODO add user feedback of failure
     }
+  }
+
+
+  else {    try {
+    const res = await axios.post(API_URL + "/tickets", {
+      customer_id,
+      showtime_id,
+      price,
+      payment_method,
+    });
+    console.log(res);
+    // TODO replace with feedback of success and redirect to tickets table
+  } catch (error) {
+    console.error(error);
+    // TODO add user feedback of failure
+  }}
+
+
 
     navigate("/Ticket");
   };
@@ -76,12 +99,13 @@ export const TicketNew = () => {
 
         <select
           name="customer"
-          value={customer_id}
           onChange={(e) => {
             set_customer_id(e.target.value);
           }}
+          value={customer_id}
+
         >
-          <option selected value="NULL">
+          <option selected value="">
             -- select an option --
           </option>
           {customerList.map((customer, i) => {
@@ -98,6 +122,7 @@ export const TicketNew = () => {
           <select
             name="showtime"
             value={showtime_id}
+            required
             onChange={(e) => {
               set_showtime_id(e.target.value);
             }}
@@ -143,7 +168,7 @@ export const TicketNew = () => {
           required
           value={payment_method}
         >
-          <option disabled selected value="">
+          <option selected value="">
             -- select an option --
           </option>
           {payment_methods.map((payment_method, i) => {
