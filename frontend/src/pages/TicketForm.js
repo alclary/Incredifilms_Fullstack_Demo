@@ -1,14 +1,19 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 export const TicketForm = (props) => {
-  console.log(props);
+    // State definitions
+    //      If formType mode "edit", populate fields with record data to edit,
+    //      else form field empty (for new entry)
 
   const [customerList, setCustomerList] = useState([]);
   const [showtimeList, setShowtimeList] = useState([]);
+
+  
 
   useEffect(() => {
     async function getCustomerList() {
