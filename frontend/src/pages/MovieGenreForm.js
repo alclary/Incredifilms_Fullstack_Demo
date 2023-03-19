@@ -10,6 +10,7 @@ export const MovieGenreForm = (props) => {
   //      else form field empty (for new entry)
   const [movieList, setMovieList] = useState([]);
   const [genreList, setGenreList] = useState([]);
+  const [checkedList, setCheckedList] = useState([]);
 
   useEffect(() => {
     async function getMovieList() {
@@ -68,28 +69,51 @@ export const MovieGenreForm = (props) => {
     set_movie_id(e.target.value);
   };
 
-  const handleGenreChange = async (e) => {
-  set_genre_id(e.target.value)
-  };
-
+  // THIS WORKS FOR ONE NOT FOR MANY //
   // const handleGenreChange = async (e) => {
-  //   set_genre_id(e.target.value)
+  // set_genre_id(e.target.value)
+  // };
 
-  //   const is_checked = e.target.checked;
+  const handleGenreChange = (event) => {
+    const value = event.target.value;
+    const isChecked = event.target.checked;
+
+    
+    if (isChecked) {
+      //Add checked item into checkList
+      setCheckedList([...checkedList, value]);
+      // newSubmit();
+
+      // console.log(`${value} is ${isChecked}`);
+    } else {
+      //Remove unchecked item from checkList
+      const filteredList = genreList.filter((item) => item !== value);
+      setCheckedList(filteredList);
+      console.log(checkedList);
+    }
+  
+  
+  
+//   {checkedList.map((item, index) =>{
+// console.log({item})
+  
+  }
+    
+  
 
 
-  //   if (is_checked) {
-  //     set_genre_id([genreList, genre_id]);
-  //   } else {
-  //     const filteredList = genreList.filter((i) => i !== genre_id);
-  //     set_genre_id([filteredList]);
-  //   };
-
-
+  
 
 
   return (
+
+
+
     <div>
+      
+
+
+
       {/* Form title based on mode ("edit" or "new") */}
       {props.formType === "edit" ? (
         <h3>Update movie genre relationship</h3>
@@ -125,6 +149,7 @@ export const MovieGenreForm = (props) => {
               <input
                 type="checkbox"
                 name="genres"
+                id="movie_genre_id"
                 value={genre.genre_id}
                 onChange={handleGenreChange}
               ></input>
@@ -132,25 +157,6 @@ export const MovieGenreForm = (props) => {
             </div>
           );
         })}
-
-        {/* <ul>
-
-
-
-          {genreList.map((genre, i) => {
-            return (
-              <li key={i} value={genre.genre_id}  onSelect={handleGenreChange}
-              >
-                <input
-                  type="checkbox"
-                  id={genre.genre_id}
-                  value={genre_id}
-                />
-                <label>{genre.genre_name}</label>
-              </li>
-            );
-          })}
-        </ul> */}
 
         <button type="submit" class="pure-button pure-button-primary">
           Submit
@@ -169,6 +175,20 @@ export const MovieGenreForm = (props) => {
           </button>
         ) : undefined}
       </form>
+
+
+
+      <div>Checked items:::::
+      {checkedList.map((item, index) =>{
+     return(
+      <div>
+        <p>{item}</p>
+      </div>
+     ) 
+    })}
+      </div>
+
+
     </div>
   );
 };

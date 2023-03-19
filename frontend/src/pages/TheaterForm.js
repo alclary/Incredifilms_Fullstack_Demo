@@ -42,19 +42,19 @@ const [no_of_seats, set_no_of_seats] = useState(
           theater_name,
           no_of_seats,
         }
-      );
-      if (res.status === 200) {
-      }
-      // Success toast notification
-      toast.success(`Record ID ${res.data.data.insertId} updated.`);
-      // Reload entity table / grid.js component (for updates)
-      props.gridReload();
+        );
+        if (res.status === 200) {
+        }
+        // Success toast notification
+        toast.success(`Record updated.`);
+        // Reload entity table / grid.js component (for updates)
+        props.gridReload();
     } catch (error) {
-      toast.error(error.message);
-      console.error(error);
+        toast.error(error.message);
+        console.error(error);
     }
     props.resetForm();
-  }
+}
 
   // Handle submit of bi-modal form; submit action based on form mode
   const handleSubmit = async (event) => {

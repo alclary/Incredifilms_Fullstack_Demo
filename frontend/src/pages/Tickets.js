@@ -4,6 +4,8 @@ import { Grid, _ } from "gridjs-react";
 import { MdEdit, MdDeleteForever } from "react-icons/md";
 import axios from "axios";
 import { TicketForm } from "./TicketForm";
+import moment from "moment";
+
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -58,7 +60,7 @@ export default function Tickets() {
                     { name: "Ticket ID", id: "ticket_id", sort: true },
                     { name: "Customer Name", id: "customer_id", sort: true },
                     {
-                        name: "Showtime Datetime",
+                        name: "Showtime Date & Time",
                         id: "showtime_id",
                         sort: true,
                     },
@@ -67,13 +69,13 @@ export default function Tickets() {
                     { name: "Price", id: "price" },
                     { name: "Payment Method", id: "payment_method" },
                     {
-                        name: "Edit Item",
+                        name: "Edit",
                         data: (row) =>
                             _(<MdEdit onClick={() => handleEdit(row)} />),
                         width: "6%",
                     },
                     {
-                        name: "Delete Item",
+                        name: "Delete",
                         data: (row) =>
                             _(
                                 <MdDeleteForever
@@ -90,13 +92,13 @@ export default function Tickets() {
             <Link to="/TicketNew" className="newPlus">
                 Add new ticket
             </Link>
-            {/* {showForm ? (
-        <TicketForm
-          row={formData}
-          showForm={setShowForm}
-          parentRerender={() => fetchAndSetTickets()}
-        ></TicketForm>
-      ) : null} */}
+            {showForm ? (
+                <TicketForm
+                    row={formData}
+                    showForm={setShowForm}
+                    parentRerender={() => fetchAndSetTickets()}
+                ></TicketForm>
+            ) : null}
         </div>
     );
 }

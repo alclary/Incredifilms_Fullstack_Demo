@@ -25,20 +25,33 @@ export default function Showtimes() {
         setShowtimes(async () => await fetchShowtimes());
     }
 
-    // State definition for whether or not to hide form
-    const [showForm, setShowForm] = useState(false);
-    const [formData, setFormData] = useState(null);
+    // State definition for modal form
+    const [formData, setFormData] = useState("");
+    const [formType, setFormType] = useState("new");
+    const [key, setKey] = useState(Math.random());
+
+    // Resets the modal form (new and update) to a fresh "new" form
+    function resetForm() {
+        setFormData("");
+        setFormType("new");
+        setKey(Math.random());
+    }
+
+    // Forces showtimes data to be refetched from API, updating grid.js table
+    function gridRefresh() {
+        setShowtimes(async () => await fetchShowtimes());
+    }
 
     // Function to confirm and handle deletion of table record, via the delete
     //   icon in the delete column.
-    async function handleDelete(row) {
+    async function handleDelete(rowData) {
         if (
             window.confirm(
-                `Are you sure you want to DELETE the record for showtime ID = ${row.showtime_id}?`
+                `Are you sure you want to DELETE the record for showtime ID = ${rowData.showtime_id}?`
             ) === true
         ) {
             let deleted = await axios.delete(
-                API_URL + `/showtimes/${row.showtime_id}`
+                API_URL + `/showtimes/${rowData.showtime_id}`
             );
             if (deleted.status === 200) {
                 fetchAndSetShowtimes();
@@ -46,9 +59,10 @@ export default function Showtimes() {
         }
     }
 
-    function handleEdit(row) {
-        setFormData(row);
-        setShowForm(true);
+    function handleEdit(rowData) {
+        setFormType("edit");
+        setFormData(rowData);
+        setKey(Math.random());
     }
 
     // Showtime Component Contents
@@ -99,16 +113,18 @@ export default function Showtimes() {
                 search={true}
                 pagination={{ limit: 10 }}
             />
-            <Link to="/ShowtimeNew" className="newPlus">
-                Add new showtime
-            </Link>
-            {showForm ? (
-                <ShowtimeForm
-                    row={formData}
-                    showForm={setShowForm}
-                    parentRerender={() => fetchAndSetShowtimes()}
-                ></ShowtimeForm>
-            ) : null}
+            <ShowtimeForm
+                // key update is being used to force rerender component
+                key={key}
+                // mode of form "edit" or "new"
+                formType={formType}
+                // form data to populate in form (if any and mode is "edit")
+                rowData={formData}
+                // function via prop to reset form state from parent
+                resetForm={resetForm}
+                // function call via prop to refresh table / Grid component
+                gridReload={() => gridRefresh()}
+            ></ShowtimeForm>
         </div>
     );
 }

@@ -41,34 +41,55 @@ export const TicketNew = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (customer_id == "{null}") {
+      console.log("Connecticut");
+
     try {
       const res = await axios.post(API_URL + "/tickets", {
-        customer_id,
         showtime_id,
         price,
         payment_method,
       });
       console.log(res);
+      console.log("Alabama");
       // TODO replace with feedback of success and redirect to tickets table
     } catch (error) {
       console.error(error);
+      console.log("Wyoming");
       // TODO add user feedback of failure
     }
+  }
+
+
+  else {    try {
+    const res = await axios.post(API_URL + "/tickets", {
+      customer_id,
+      showtime_id,
+      price,
+      payment_method,
+    });
+    console.log(res);
+    // TODO replace with feedback of success and redirect to tickets table
+  } catch (error) {
+    console.error(error);
+    // TODO add user feedback of failure
+  }}
+
+
 
     navigate("/Ticket");
   };
 
   const payment_methods = [
-    { method: "CASH", label: "CASH" },
-    { method: "CREDIT", label: "CREDIT" },
-    { method: "DEBIT", label: "DEBIT" },
-
-];
-
-const handlePaymentChange = async (e) => {
-  set_payment_method(e.target.value);
-};
-
+    { value: "CASH", label: "CASH" },
+    { value: "CREDIT", label: "CREDIT" },
+    { value: "DEBIT", label: "DEBIT" },
+  ];
+  const prices = [
+    { price: "MATINEE", label: "5" },
+    { price: "STANDARD", label: "9" },
+  ];
 
   return (
     <>
@@ -78,12 +99,13 @@ const handlePaymentChange = async (e) => {
 
         <select
           name="customer"
-          value={customer_id}
           onChange={(e) => {
             set_customer_id(e.target.value);
           }}
+          value={customer_id}
+
         >
-          <option selected value="NULL">
+          <option selected value="">
             -- select an option --
           </option>
           {customerList.map((customer, i) => {
@@ -94,43 +116,70 @@ const handlePaymentChange = async (e) => {
             );
           })}
         </select>
-<p>
-        <label>Showtime </label>
+        <p>
+          <label>Showtime</label>
 
+          <select
+            name="showtime"
+            value={showtime_id}
+            required
+            onChange={(e) => {
+              set_showtime_id(e.target.value);
+            }}
+          >
+            <option disabled selected value="" required>
+              -- select an option --
+            </option>
+            {showtimeList.map((showtime, i) => {
+              return (
+                <option key={i} value={showtime.meow}>
+                  {showtime.showtime}
+                </option>
+              );
+            })}
+          </select>
+        </p>
+        <label>Price</label>
         <select
-          name="showtime"
-          value={showtime_id}
           onChange={(e) => {
-            set_showtime_id(e.target.value);
+            set_price(e.target.value);
           }}
+          required
+          value={price}
         >
-          <option disabled selected value="" required>
+          {" "}
+          <option disabled selected value="">
             -- select an option --
           </option>
-          {showtimeList.map((showtime, i) => {
+          {prices.map((price, i) => {
             return (
-              <option key={i} value={showtime.showtime_id}>
-                {showtime.showtime}
+              <option key={i} value={price.value}>
+                {price.label}
               </option>
             );
           })}
         </select>
-        </p>
+
         <label>Payment Method</label>
-                        <select onChange={handlePaymentChange}>
-                            <option
-                                type="radio"
-                                name="payment_method"
-                                value={payment_method.value}
-                            >
-                                {payment_method.label}
-                            </option>
-                            {payment_methods.map((payment_method) => (
-                                <option value={payment_method.value}>
-                                    {payment_method.label}
-                                </option>
-                            ))}
-                        </select>
+        <select
+          onChange={(e) => {
+            set_payment_method(e.target.value);
+          }}
+          required
+          value={payment_method}
+        >
+          <option selected value="">
+            -- select an option --
+          </option>
+          {payment_methods.map((payment_method, i) => {
+            return (
+              <option key={i} value={payment_method.label}>
+                {payment_method.label}
+              </option>
+            );
+          })}
+        </select>
+
         <br />
         <button
           type="submit"
