@@ -179,7 +179,7 @@ DROP TABLE IF EXISTS Ticket;
 CREATE TABLE `Ticket` (
   `ticket_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `customer_id` int,
-  `showtime_id` int,
+  `showtime_id` int NOT NULL,
   `price` decimal(5,2) NOT NULL,
   `payment_method` varchar(45),
   PRIMARY KEY (ticket_id),
