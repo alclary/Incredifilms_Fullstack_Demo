@@ -31,7 +31,7 @@ export default function Customers() {
         setKey(Math.random());
     }
 
-    // Forces customers data to be refetched from API, updating grid.js table
+    // Forces customers data to be refetched from API, updating grid.js
     function gridRefresh() {
         setCustomers(async () => await fetchCustomers());
     }
