@@ -25,7 +25,8 @@ export const GenreForm = (props) => {
       // Reload entity table / grid.js component (for updates)
       props.gridReload();
     } catch (error) {
-      toast.error(error.message);
+      toast.error("Duplicate records are not allowed.")
+      // toast.error(error.message);
       console.error(error);
     }
     props.resetForm();

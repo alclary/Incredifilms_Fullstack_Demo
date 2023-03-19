@@ -17,7 +17,8 @@ CREATE TABLE `Customer` (
   `last_name` varchar(30) NOT NULL,
   `dob` date NOT NULL,
   `email` varchar(254),
-  PRIMARY KEY (customer_id)
+  PRIMARY KEY (customer_id),
+  UNIQUE (first_name, last_name, dob, email)
 );
 
 -- Populate Customer Table
@@ -79,7 +80,8 @@ CREATE TABLE `Movie` (
   `mpa_rating` varchar(5) NOT NULL,
   `movie_year` year NOT NULL,
    PRIMARY KEY (movie_id),
-   CONSTRAINT chk_movie_mpa_rating CHECK (mpa_rating in ('G','PG','PG-13','R','NR','NC-17'))
+   CONSTRAINT chk_movie_mpa_rating CHECK (mpa_rating in ('G','PG','PG-13','R','NR','NC-17')),
+   UNIQUE (movie_name, runtime_min, mpa_rating, movie_year)
 );
 
 -- Populate Movie Table
@@ -98,7 +100,8 @@ CREATE TABLE `Theater` (
   `theater_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `theater_name` varchar(50) NOT NULL UNIQUE,
   `no_of_seats` int NOT NULL,
-  PRIMARY KEY (theater_id)
+  PRIMARY KEY (theater_id),
+  UNIQUE (theater_name)
 );
 
 -- Populate Theater Table
@@ -118,7 +121,8 @@ CREATE TABLE `Movie_Genre` (
   `genre_id` int NOT NULL,
   PRIMARY KEY (movie_genre_id),
   CONSTRAINT fk_movie_genre_movie_id FOREIGN KEY (movie_id) REFERENCES Movie(movie_id) ON DELETE CASCADE,
-  CONSTRAINT fk_movie_genre_genre_id FOREIGN KEY (genre_id) REFERENCES Genre(genre_id) ON DELETE CASCADE
+  CONSTRAINT fk_movie_genre_genre_id FOREIGN KEY (genre_id) REFERENCES Genre(genre_id) ON DELETE CASCADE,
+  UNIQUE (movie_id, genre_id)
 );
 
 -- Populate Movie_Genre Table
@@ -155,7 +159,8 @@ CREATE TABLE `Showtime` (
   `theater_id` int,
   PRIMARY KEY (showtime_id),
   CONSTRAINT fk_showtime_movie_id FOREIGN KEY (movie_id) REFERENCES Movie(movie_id) ON DELETE SET NULL,
-  CONSTRAINT fk_showtime_theater_id FOREIGN KEY (theater_id) REFERENCES Theater(theater_id) ON DELETE SET NULL
+  CONSTRAINT fk_showtime_theater_id FOREIGN KEY (theater_id) REFERENCES Theater(theater_id) ON DELETE SET NULL,
+  UNIQUE (showtime_date_time, movie_id, theater_id)
 );
 
 -- Populate Showtime Table

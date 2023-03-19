@@ -41,17 +41,17 @@ export const MovieForm = (props) => {
             });
             if (res === 200) {
             }
-            console.log(res);
             // Success toast notification
             toast.success(`Record ID ${res.data.data.insertId} created.`);
             // Reload entity table / grid.js component (for updates)
             props.gridReload();
-        } catch (error) {
-            toast.error(error.message);
+          } catch (error) {
+            toast.error("Duplicate records are not allowed.");
+            // toast.error(error.message);
             console.error(error);
+          }
+          props.resetForm();
         }
-        props.resetForm();
-    }
 
     // Handle "edit" record form submissions
     async function editSubmit() {

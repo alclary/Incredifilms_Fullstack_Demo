@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -42,10 +43,13 @@ export const MovieGenreForm = (props) => {
         movie_id,
         genre_id,
       });
-      console.log(res);
-      // TODO replace with feedback of success and redirect to moviegenres table
+      // Success toast notification
+      toast.success(`Record ID ${res.data.data.insertId} created.`);
+      // Reload entity table / grid.js component (for updates)
+      props.gridReload(); // TODO replace with feedback of success and redirect to moviegenres table
     } catch (error) {
       console.error(error);
+      toast.error("Duplicate records are not allowed.");
       // TODO add user feedback of failure
     }
   }
@@ -61,7 +65,6 @@ export const MovieGenreForm = (props) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     {
-
       newSubmit();
     }
   };
@@ -75,30 +78,26 @@ export const MovieGenreForm = (props) => {
   // set_genre_id(e.target.value)
   // };
 
-  const handleGenreChange = async (e) => {
-    set_genre_id(e.target.value);
+  const handleGenreChange = (event) => {
+    const value = event.target.value;
+    const isChecked = event.target.checked;
+
+    if (isChecked) {
+      //Add checked item into checkList
+      setCheckedList([...checkedList, value]);
+      // newSubmit();
+
+      // console.log(`${value} is ${isChecked}`);
+    } else {
+      //Remove unchecked item from checkList
+      const filteredList = genreList.filter((item) => item !== value);
+      setCheckedList(filteredList);
+      console.log(checkedList);
+    }
+
+    //   {checkedList.map((item, index) =>{
+    // console.log({item})
   };
-
-  // const handleGenreChange = (event) => {
-  //   const value = event.target.value;
-  //   const isChecked = event.target.checked;
-
-  //   if (isChecked) {
-  //     //Add checked item into checkList
-  //     setCheckedList([...checkedList, value]);
-  //     // newSubmit();
-
-  //     // console.log(`${value} is ${isChecked}`);
-  //   } else {
-  //     //Remove unchecked item from checkList
-  //     const filteredList = genreList.filter((item) => item !== value);
-  //     setCheckedList(filteredList);
-  //     console.log(checkedList);
-  //   }
-
-  //   //   {checkedList.map((item, index) =>{
-  //   // console.log({item})
-  // };
 
   return (
     <div>
@@ -131,27 +130,6 @@ export const MovieGenreForm = (props) => {
         <br />
         <label>Genre</label>
 
-        <select
-          name="genre"
-          value={genre_id}
-          onChange={handleGenreChange}
-          required
-        >
-          <option disabled selected value="">
-            -- select an option --
-          </option>
-          {genreList.map((genre, i) => {
-            return (
-              <option key={i} value={genre.genre_id}>
-                {genre.genre_name}
-              </option>
-            );
-          })}
-        </select>
-
-
-
-{/* 
         {genreList.map((genre, i) => {
           return (
             <div key={genre.id}>
@@ -165,7 +143,7 @@ export const MovieGenreForm = (props) => {
               <label>{genre.genre_name}</label>
             </div>
           );
-        })} */}
+        })}
 
         <button type="submit" class="pure-button pure-button-primary">
           Submit
@@ -187,7 +165,7 @@ export const MovieGenreForm = (props) => {
         )}
       </form>
 
-      {/* <div>
+      <div>
         Checked items:::::
         {checkedList.map((item, index) => {
           return (
@@ -196,9 +174,7 @@ export const MovieGenreForm = (props) => {
             </div>
           );
         })}
-      </div> */}
-
-
+      </div>
     </div>
   );
 };
