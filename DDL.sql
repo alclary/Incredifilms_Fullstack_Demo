@@ -17,8 +17,7 @@ CREATE TABLE `Customer` (
   `last_name` varchar(30) NOT NULL,
   `dob` date NOT NULL,
   `email` varchar(254),
-  PRIMARY KEY (customer_id),
-  UNIQUE (first_name, last_name, dob, email)
+  PRIMARY KEY (customer_id)
 );
 
 -- Populate Customer Table
@@ -80,8 +79,7 @@ CREATE TABLE `Movie` (
   `mpa_rating` varchar(5) NOT NULL,
   `movie_year` year NOT NULL,
    PRIMARY KEY (movie_id),
-   CONSTRAINT chk_movie_mpa_rating CHECK (mpa_rating in ('G','PG','PG-13','R','NR','NC-17')),
-   UNIQUE (movie_name, runtime_min, mpa_rating, movie_year)
+   CONSTRAINT chk_movie_mpa_rating CHECK (mpa_rating in ('G','PG','PG-13','R','NR','NC-17'))
 );
 
 -- Populate Movie Table
@@ -100,8 +98,7 @@ CREATE TABLE `Theater` (
   `theater_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `theater_name` varchar(50) NOT NULL UNIQUE,
   `no_of_seats` int NOT NULL,
-  PRIMARY KEY (theater_id),
-  UNIQUE (theater_name)
+  PRIMARY KEY (theater_id)
 );
 
 -- Populate Theater Table
@@ -121,8 +118,7 @@ CREATE TABLE `Movie_Genre` (
   `genre_id` int NOT NULL,
   PRIMARY KEY (movie_genre_id),
   CONSTRAINT fk_movie_genre_movie_id FOREIGN KEY (movie_id) REFERENCES Movie(movie_id) ON DELETE CASCADE,
-  CONSTRAINT fk_movie_genre_genre_id FOREIGN KEY (genre_id) REFERENCES Genre(genre_id) ON DELETE CASCADE,
-  UNIQUE (movie_id, genre_id)
+  CONSTRAINT fk_movie_genre_genre_id FOREIGN KEY (genre_id) REFERENCES Genre(genre_id) ON DELETE CASCADE
 );
 
 -- Populate Movie_Genre Table
@@ -159,8 +155,7 @@ CREATE TABLE `Showtime` (
   `theater_id` int,
   PRIMARY KEY (showtime_id),
   CONSTRAINT fk_showtime_movie_id FOREIGN KEY (movie_id) REFERENCES Movie(movie_id) ON DELETE SET NULL,
-  CONSTRAINT fk_showtime_theater_id FOREIGN KEY (theater_id) REFERENCES Theater(theater_id) ON DELETE SET NULL,
-  UNIQUE (showtime_date_time, movie_id, theater_id)
+  CONSTRAINT fk_showtime_theater_id FOREIGN KEY (theater_id) REFERENCES Theater(theater_id) ON DELETE SET NULL
 );
 
 -- Populate Showtime Table
@@ -179,7 +174,7 @@ DROP TABLE IF EXISTS Ticket;
 CREATE TABLE `Ticket` (
   `ticket_id` int NOT NULL AUTO_INCREMENT UNIQUE,
   `customer_id` int,
-  `showtime_id` int NOT NULL,
+  `showtime_id` int,
   `price` decimal(5,2) NOT NULL,
   `payment_method` varchar(45),
   PRIMARY KEY (ticket_id),
@@ -195,7 +190,8 @@ INSERT INTO `Ticket` (`customer_id`, `showtime_id`, `price`, `payment_method`) V
   ((SELECT customer_id FROM Customer WHERE first_name = 'Em' AND last_name = 'Patterson'), (SELECT showtime_id from Showtime WHERE showtime_date_time = '2023-02-10 16:00:00' AND theater_id = '1'), 9, 'CASH'),
   (NULL, (SELECT showtime_id from Showtime WHERE showtime_date_time = '2023-02-10 16:00:00' AND theater_id = '1'), 9, 'DEBIT'),
   ((SELECT customer_id FROM Customer WHERE first_name = 'Alexa' AND last_name = 'Bliss'), (SELECT showtime_id from Showtime WHERE showtime_date_time = '2023-02-10 15:00:00' AND theater_id = '4'), 9, 'CREDIT'),
-  ((SELECT customer_id FROM Customer WHERE first_name = 'Booker' AND last_name = 'T'), (SELECT showtime_id from Showtime WHERE showtime_date_time = '2023-02-14 18:00:00' AND theater_id = '2'), 9, NULL);
+  ((SELECT customer_id FROM Customer WHERE first_name = 'Booker' AND last_name = 'T'), (SELECT showtime_id from Showtime WHERE showtime_date_time = '2023-02-14 18:00:00' AND theater_id = '2'), 9, NULL),
+    (NULL, (SELECT showtime_id from Showtime WHERE showtime_date_time = '2023-02-14 18:00:00' AND theater_id = '2'), 9, NULL);
 
 -- Re-enable commits and foreign key checks
 SET FOREIGN_KEY_CHECKS=1;
