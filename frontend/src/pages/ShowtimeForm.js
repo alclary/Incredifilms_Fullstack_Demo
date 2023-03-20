@@ -59,14 +59,14 @@ export const ShowtimeForm = (props) => {
             if (res === 200) {
                 // Success toast notification
                 toast.success(`Record ID ${res.data.data.insertId} created.`);
-                // Reload entity table / grid.js component (for updates)
-                props.gridReload();
             }
         } catch (error) {
             toast.error(error.message);
             console.error(error);
         }
         props.resetForm();
+        // Reload entity table / grid.js component (for updates)
+        props.gridReload();
     }
 
     // Handle "edit" record form submissions
@@ -83,14 +83,14 @@ export const ShowtimeForm = (props) => {
             if (res.status === 200) {
                 // Success toast notification
                 toast.success(`Record updated.`);
-                // Reload entity table / grid.js component (for updates)
-                props.gridReload();
             }
         } catch (error) {
             toast.error(error.message);
             console.error(error);
         }
         props.resetForm();
+        // Reload entity table / grid.js component (for updates)
+        props.gridReload();
     }
 
     // Handle submit of bi-modal form; submit action based on form mode
