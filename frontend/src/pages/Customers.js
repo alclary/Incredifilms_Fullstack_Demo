@@ -41,7 +41,7 @@ export default function Customers() {
     async function handleDelete(rowData) {
         if (
             window.confirm(
-                `Are you sure you want to DELETE the record for customer ID = ${rowData.customer_id}?`
+                `Are you sure you want to DELETE the record for customer ${rowData.first_name} ${rowData.last_name}?`
             ) === true
         ) {
             try {

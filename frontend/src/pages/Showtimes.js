@@ -85,7 +85,7 @@ const dateRange = {
   return (
     <div>
       <h3>Showtimes</h3>
-      <p>Create, Retrieve, or Delete a Showtime</p>
+      <p>Create, Retrieve, or Delete a Showtime record or filter between two dates</p>
       <p>
         To display only showtimes between two given dates please indicate a
         start and end date:
