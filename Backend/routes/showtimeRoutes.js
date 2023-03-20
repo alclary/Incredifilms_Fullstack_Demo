@@ -1,12 +1,21 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../db.js");
+const moment = require("moment");
 
 // READ functionality for showtimes table, at '/showtimes' endpoint
 router.get("/", (req, res) => {
     console.log("GET request received.");
+    console.log(
+        moment.utc(req.query.startdate).format("YYYY/MM/DD HH:mm:ss"),
+        moment.utc(req.query.enddate).format("YYYY/MM/DD HH:mm:ss")
+    );
     db.query(
-        "SELECT Showtime.showtime_id AS showtime_id, Showtime.showtime_date_time AS date_time, Showtime.movie_id AS movie_id, Movie.movie_name AS movie_name, Showtime.theater_id AS theater_id, Theater.theater_name AS theater_name FROM Showtime JOIN Movie ON Showtime.movie_id = Movie.movie_id JOIN Theater ON Showtime.theater_id = Theater.theater_id ORDER BY showtime_id ASC;",
+        "SELECT Showtime.showtime_id AS showtime_id, Showtime.showtime_date_time AS date_time, Showtime.movie_id AS movie_id, Movie.movie_name AS movie_name, Showtime.theater_id AS theater_id, Theater.theater_name AS theater_name FROM Showtime JOIN Movie ON Showtime.movie_id = Movie.movie_id JOIN Theater ON Showtime.theater_id = Theater.theater_id WHERE Showtime.showtime_date_time BETWEEN ? AND ? ORDER BY showtime_id ASC;",
+        [
+            moment.utc(req.query.startdate).format("YYYY/MM/DD HH:mm:ss"),
+            moment.utc(req.query.enddate).format("YYYY/MM/DD HH:mm:ss"),
+        ],
         (err, data, fields) => {
             if (err) {
                 console.error(err);

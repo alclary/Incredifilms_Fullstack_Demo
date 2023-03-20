@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Grid, _ } from "gridjs-react";
 import { MdEdit, MdDeleteForever } from "react-icons/md";
 import axios from "axios";
@@ -7,35 +7,60 @@ import { toast } from "react-toastify";
 import moment from "moment";
 
 const API_URL = process.env.REACT_APP_API_URL;
+const START_DATE_LIMIT = "1878-01-01"; // year of first movie
+const END_DATE_LIMIT = "2040-01-01"; // arbitrary end limit
 
 // Fetch and return data array of showtimes from API
-async function fetchShowtimes() {
-    const showtimes = await axios.get(API_URL + "/showtimes");
+async function fetchShowtimes(startDate, endDate) {
+    const showtimes = await axios.get(
+        `${API_URL}/showtimes?startdate=${startDate}&enddate=${endDate}`
+    );
     return showtimes.data.data;
 }
 
 // Functional Component Definition for Showtimes Component
 export default function Showtimes() {
+    // State definition for showtime date range
+    //      Defaults match hard limits on form entries
+    const [startDate, setStartDate] = useState(START_DATE_LIMIT);
+    const [endDate, setEndDate] = useState(END_DATE_LIMIT);
+
     // State definition for the showtimes data array
     const [showtimes, setShowtimes] = useState(
-        async () => await fetchShowtimes()
+        async () => await fetchShowtimes(startDate, endDate)
     );
+
+    // Forces showtimes data to be refetched from API, updating grid.js table
+    function gridRefresh() {
+        setShowtimes(async () => await fetchShowtimes(startDate, endDate));
+    }
+
+    // Once a date range is entered, requery grid.js table results
+    useEffect(() => {
+        setShowtimes(async () => await fetchShowtimes(startDate, endDate));
+    }, [startDate, endDate]);
 
     // State definition for modal form
     const [formData, setFormData] = useState("");
     const [formType, setFormType] = useState("new");
     const [key, setKey] = useState(Math.random());
 
+    // resets the date range selector form
+    function resetDateRange() {
+        document
+            .querySelectorAll(".dateRangeSel")
+            .forEach((input) => (input.value = null));
+        setStartDate(START_DATE_LIMIT);
+        setEndDate(END_DATE_LIMIT);
+        console.log(startDate, endDate);
+        gridRefresh();
+    }
+
     // Resets the modal form (new and update) to a fresh "new" form
     function resetForm() {
         setFormData("");
         setFormType("new");
         setKey(Math.random());
-    }
-
-    // Forces showtimes data to be refetched from API, updating grid.js table
-    function gridRefresh() {
-        setShowtimes(async () => await fetchShowtimes());
     }
 
     function handleEdit(rowData) {
@@ -76,10 +101,42 @@ export default function Showtimes() {
                     To display only showtimes between two given dates please
                     indicate a start and end date:
                 </p>
-                <label for="start">Start date:</label>
-                <input type="date" id="start" name="start-input"></input>
-                <label for="end">End date:</label>
-                <input type="date" id="end" name="end-input"></input>
+                <div className="dateRangeSelector">
+                    <form className="pure-form">
+                        <legend>Filter results by date range:</legend>
+                        <input
+                            type="datetime-local"
+                            id="startDate"
+                            className="dateRangeSel"
+                            name="startDate"
+                            placeholder="Start Date"
+                            min={START_DATE_LIMIT}
+                            max={END_DATE_LIMIT}
+                            onChange={(event) => {
+                                setStartDate(event.target.value);
+                            }}
+                        ></input>
+                        <input
+                            type="datetime-local"
+                            id="endDate"
+                            className="dateRangeSel"
+                            name="endDate"
+                            placeholder="End Date"
+                            min={startDate} // prevent endDate < startDate
+                            max={END_DATE_LIMIT}
+                            onChange={(event) => {
+                                setEndDate(event.target.value);
+                            }}
+                        ></input>
+                        <button
+                            type="button"
+                            className="pure-button pure-button"
+                            onClick={() => resetDateRange()}
+                        >
+                            Clear
+                        </button>
+                    </form>
+                </div>
                 <Grid
                     columns={[
                         { name: "Showtime ID", id: "showtime_id", sort: true },

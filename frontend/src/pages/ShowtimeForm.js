@@ -121,6 +121,8 @@ export const ShowtimeForm = (props) => {
                     id="showtime_date_time"
                     required
                     value={showtime_date_time}
+                    min={"01/01/1878"}
+                    max={"01/01/2040"}
                     onChange={(event) =>
                         set_showtime_date_time(event.target.value)
                     }
