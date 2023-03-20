@@ -40,7 +40,6 @@ export const MovieForm = (props) => {
                 year,
             });
             if (res === 200) {
-                console.log(res);
                 // Success toast notification
                 toast.success(`Record ID ${res.data.data.insertId} created.`);
             }

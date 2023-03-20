@@ -35,7 +35,7 @@ export const CustomerForm = (props) => {
                 toast.success(`Record ID ${res.data.data.insertId} created.`);
             }
         } catch (error) {
-            toast.error("Duplicate records are not allowed.");
+            toast.error(error.message);
             console.error(error);
         }
         // Reload entity table / grid.js component (for updates)
