@@ -12,6 +12,7 @@ export const GenreForm = (props) => {
         props.formType === "edit" ? props.rowData.genre_name : ""
     );
 
+<<<<<<< HEAD
     // Handle "new" record form submissions
     async function newSubmit() {
         try {
@@ -29,6 +30,24 @@ export const GenreForm = (props) => {
             console.error(error);
         }
         props.resetForm();
+=======
+  // Handle "new" record form submissions
+  async function newSubmit() {
+    try {
+      const res = await axios.post(API_URL + "/genres", {
+        genre_name,
+      });
+      if (res === 200) {
+      }
+      // Success toast notification
+      toast.success(`Record ID ${res.data.data.insertId} created.`);
+      // Reload entity table / grid.js component (for updates)
+      props.gridReload();
+    } catch (error) {
+      toast.error("Duplicate records are not allowed.")
+      // toast.error(error.message);
+      console.error(error);
+>>>>>>> 98b584ba8bfb32f22598aa79f46f17865e0f2b0a
     }
 
     // Handle "edit" record form submissions

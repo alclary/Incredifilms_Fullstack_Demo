@@ -37,7 +37,7 @@ export const CustomerForm = (props) => {
                 props.gridReload();
             }
         } catch (error) {
-            toast.error(error.message);
+            toast.error("Duplicate records are not allowed.")
             console.error(error);
         }
         props.resetForm();

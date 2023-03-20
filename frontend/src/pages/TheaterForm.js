@@ -27,7 +27,7 @@ const [no_of_seats, set_no_of_seats] = useState(
       // Reload entity table / grid.js component (for updates)
       props.gridReload();
     } catch (error) {
-      toast.error(error.message);
+      toast.error("Duplicate records are not allowed.")
       console.error(error);
     }
     props.resetForm();
