@@ -5,8 +5,6 @@ import axios from "axios";
 import { ShowtimeForm } from "./ShowtimeForm";
 import { toast } from "react-toastify";
 import moment from "moment";
-import "react-date-range/dist/styles.css"; // main style file
-import "react-date-range/dist/theme/default.css"; // theme css file
 
 const API_URL = process.env.REACT_APP_API_URL;
 
