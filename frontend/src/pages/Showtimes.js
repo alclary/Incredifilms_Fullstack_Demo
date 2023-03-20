@@ -96,7 +96,7 @@ export default function Showtimes() {
                         { name: "Movie", id: "movie_name", sort: true },
                         { name: "Theater", id: "theater_name" },
                         {
-                            name: "Edit Item",
+                            name: "Edit",
                             data: (rowData) =>
                                 _(
                                     <MdEdit
@@ -105,7 +105,7 @@ export default function Showtimes() {
                                 ),
                         },
                         {
-                            name: "Delete Item",
+                            name: "Delete",
                             data: (rowData) =>
                                 _(
                                     <MdDeleteForever

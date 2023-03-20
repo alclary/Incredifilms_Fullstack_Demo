@@ -40,12 +40,12 @@ export const MovieForm = (props) => {
                 year,
             });
             if (res === 200) {
+                console.log(res);
+                // Success toast notification
+                toast.success(`Record ID ${res.data.data.insertId} created.`);
+                // Reload entity table / grid.js component (for updates)
+                props.gridReload();
             }
-            console.log(res);
-            // Success toast notification
-            toast.success(`Record ID ${res.data.data.insertId} created.`);
-            // Reload entity table / grid.js component (for updates)
-            props.gridReload();
         } catch (error) {
             toast.error(error.message);
             console.error(error);
@@ -66,12 +66,12 @@ export const MovieForm = (props) => {
                 }
             );
             if (res === 200) {
+                console.log(res);
+                // Success toast notification
+                toast.success(`Record ID updated.`);
+                // Reload entity table / grid.js component (for updates)
+                props.gridReload();
             }
-            console.log(res);
-            // Success toast notification
-            toast.success(`Record ID updated.`);
-            // Reload entity table / grid.js component (for updates)
-            props.gridReload();
         } catch (error) {
             toast.error(error.message);
             console.error(error);

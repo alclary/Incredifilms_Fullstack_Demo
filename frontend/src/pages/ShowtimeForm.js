@@ -38,6 +38,7 @@ export const ShowtimeForm = (props) => {
         getMovieList();
     }, []);
 
+    // State definitions
     const [showtime_date_time, set_showtime_date_time] = useState(
         props.formType === "edit" ? props.rowData.date_time.split(".")[0] : ""
     );
@@ -56,11 +57,11 @@ export const ShowtimeForm = (props) => {
                 theater_id,
             });
             if (res === 200) {
+                // Success toast notification
+                toast.success(`Record ID ${res.data.data.insertId} created.`);
+                // Reload entity table / grid.js component (for updates)
+                props.gridReload();
             }
-            // Success toast notification
-            toast.success(`Record ID ${res.data.data.insertId} created.`);
-            // Reload entity table / grid.js component (for updates)
-            props.gridReload();
         } catch (error) {
             toast.error(error.message);
             console.error(error);
@@ -80,11 +81,11 @@ export const ShowtimeForm = (props) => {
                 }
             );
             if (res.status === 200) {
+                // Success toast notification
+                toast.success(`Record updated.`);
+                // Reload entity table / grid.js component (for updates)
+                props.gridReload();
             }
-            // Success toast notification
-            toast.success(`Record updated.`);
-            // Reload entity table / grid.js component (for updates)
-            props.gridReload();
         } catch (error) {
             toast.error(error.message);
             console.error(error);
