@@ -12,8 +12,6 @@ import Theaters from "./pages/Theaters";
 import MovieGenres from "./pages/MovieGenres";
 import Tickets from "./pages/Tickets";
 
-import TicketNew from "./pages/TicketNew";
-
 export default function App() {
     return (
         <Router>
@@ -50,12 +48,6 @@ export default function App() {
                                 exact
                                 path="/moviegenre"
                                 element={<MovieGenres />}
-                            />
-
-                            <Route
-                                exact
-                                path="/TicketNew"
-                                element={<TicketNew />}
                             />
 
                             <Route

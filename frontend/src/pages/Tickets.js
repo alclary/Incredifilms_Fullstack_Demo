@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { Grid, _ } from "gridjs-react";
 import { MdEdit, MdDeleteForever } from "react-icons/md";
 import axios from "axios";
 import { TicketForm } from "./TicketForm";
+import { toast } from "react-toastify";
 import moment from "moment";
-
 
 const API_URL = process.env.REACT_APP_API_URL;
 
@@ -20,85 +19,121 @@ export default function Tickets() {
     // State definition for the tickets data array
     const [tickets, setTickets] = useState(async () => await fetchTickets());
 
-    function fetchAndSetTickets() {
+    // State definition for modal form
+    const [formData, setFormData] = useState("");
+    const [formType, setFormType] = useState("new");
+    const [key, setKey] = useState(Math.random());
+
+    // Resets the modal form (new and update) to a fresh "new" form
+    function resetForm() {
+        setFormData("");
+        setFormType("new");
+        setKey(Math.random());
+    }
+
+    // Forces showtimes data to be refetched from API, updating grid.js table
+    function gridRefresh() {
         setTickets(async () => await fetchTickets());
     }
 
-    // State definition for whether or not to hide form
-    const [showForm, setShowForm] = useState(false);
-    const [formData, setFormData] = useState(null);
-
     // Function to confirm and handle deletion of table record, via the delete
     //   icon in the delete column.
-    async function handleDelete(row) {
+    async function handleDelete(rowData) {
         if (
             window.confirm(
-                `Are you sure you want to DELETE the record for ticket ID = ${row.ticket_id}?`
+                `Are you sure you want to DELETE the record for ticket ID = ${rowData.ticket_id}?`
             ) === true
         ) {
-            let deleted = await axios.delete(
-                API_URL + `/tickets/${row.ticket_id}`
-            );
-            if (deleted.status === 200) {
-                fetchAndSetTickets();
+            try {
+                const res = await axios.delete(
+                    API_URL + `/tickets/${rowData.ticket_id}`
+                );
+                if (res.status === 200) {
+                    toast.success("Record deleted.");
+                    gridRefresh();
+                }
+            } catch (error) {
+                toast.error(error.message);
+                console.error(error);
             }
         }
     }
 
-    function handleEdit(row) {
-        setFormData(row);
-        setShowForm(true);
+    function handleEdit(rowData) {
+        setFormType("edit");
+        setFormData(rowData);
+        setKey(Math.random());
     }
 
     // Ticket Component Contents
     return (
         <div>
-            <h3>Tickets</h3>
-            <p>Create, Retrieve, Update, or Delete a Ticket</p>
-            <Grid
-                columns={[
-                    { name: "Ticket ID", id: "ticket_id", sort: true },
-                    { name: "Customer Name", id: "customer_id", sort: true },
-                    {
-                        name: "Showtime Date & Time",
-                        id: "showtime_id",
-                        sort: true,
-                    },
-                    { name: "Movie", id: "movie_id" },
-                    { name: "Theater", id: "theater_id" },
-                    { name: "Price", id: "price" },
-                    { name: "Payment Method", id: "payment_method" },
-                    {
-                        name: "Edit",
-                        data: (row) =>
-                            _(<MdEdit onClick={() => handleEdit(row)} />),
-                        width: "6%",
-                    },
-                    {
-                        name: "Delete",
-                        data: (row) =>
-                            _(
-                                <MdDeleteForever
-                                    onClick={() => handleDelete(row)}
-                                />
-                            ),
-                        width: "6%",
-                    },
-                ]}
-                data={async () => await tickets}
-                search={true}
-                pagination={{ limit: 10 }}
-            />
-            <Link to="/TicketNew" className="newPlus">
-                Add new ticket
-            </Link>
-            {showForm ? (
+            <div className="grid_wrapper">
+                <h3>Tickets</h3>
+                <p>Create, Retrieve, Update, or Delete a Ticket</p>
+                <Grid
+                    columns={[
+                        { name: "Ticket ID", id: "ticket_id", sort: true },
+                        {
+                            name: "Customer Name",
+                            id: "customer_name",
+                            sort: true,
+                        },
+                        {
+                            name: "Showtime Date & Time",
+                            id: "showtime_date_time",
+                            sort: true,
+                            formatter: (cell) => {
+                                let dt = new moment.utc(cell);
+                                return dt.format("MM/DD/YY h:mma");
+                            },
+                        },
+                        { name: "Movie", id: "movie_name" },
+                        { name: "Theater", id: "theater_name" },
+                        {
+                            name: "Price",
+                            id: "price",
+                            formatter: (cell) => {
+                                return `$${Number(cell).toFixed(2)}`;
+                            },
+                        },
+                        { name: "Payment Method", id: "payment_method" },
+                        {
+                            name: "Edit",
+                            data: (rowData) =>
+                                _(
+                                    <MdEdit
+                                        onClick={() => handleEdit(rowData)}
+                                    />
+                                ),
+                        },
+                        {
+                            name: "Delete",
+                            data: (rowData) =>
+                                _(
+                                    <MdDeleteForever
+                                        onClick={() => handleDelete(rowData)}
+                                    />
+                                ),
+                        },
+                    ]}
+                    data={async () => await tickets}
+                    search={true}
+                    pagination={{ limit: 10 }}
+                />
                 <TicketForm
-                    row={formData}
-                    showForm={setShowForm}
-                    parentRerender={() => fetchAndSetTickets()}
+                    // key update is being used to force rerender component
+                    key={key}
+                    // mode of form "edit" or "new"
+                    formType={formType}
+                    // form data to populate in form (if any and mode is "edit")
+                    rowData={formData}
+                    // function via prop to reset form state from parent
+                    resetForm={resetForm}
+                    // function call via prop to refresh table / Grid component
+                    gridReload={() => gridRefresh()}
                 ></TicketForm>
-            ) : null}
+            </div>
         </div>
     );
 }
