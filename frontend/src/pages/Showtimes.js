@@ -56,7 +56,7 @@ export default function Showtimes() {
                 }
             } catch (error) {
                 toast.error(error.message);
-                console.log(error);
+                console.error(error);
             }
         }
     }
@@ -101,7 +101,6 @@ export default function Showtimes() {
                                 _(
                                     <MdEdit
                                         onClick={() => handleEdit(rowData)}
-                                        // onClick={() => console.log(rowData)}
                                     />
                                 ),
                         },
