@@ -40,10 +40,10 @@ export const TicketForm = (props) => {
 
     // State definitions
     const [customer_id, set_customer_id] = useState(
-        props.rowData.customer_id ? props.rowData.customer_id : ""
+        props.rowData.customer_id ? props.rowData.customer_id : null
     );
     const [showtime_id, set_showtime_id] = useState(
-        props.rowData.showtime_id ? props.rowData.showtime_id : ""
+        props.rowData.showtime_id ? props.rowData.showtime_id : null
     );
     const [price, set_price] = useState(
         props.rowData.price ? props.rowData.price : ""
@@ -51,11 +51,6 @@ export const TicketForm = (props) => {
     const [payment_method, set_payment_method] = useState(
         props.rowData.payment_method ? props.rowData.payment_method : ""
     );
-
-    useEffect(() => {
-        console.log(customer_id, showtime_id, price, payment_method);
-        console.log(props.rowData);
-    }, [customer_id, showtime_id, price, payment_method]);
 
     const payment_methods = [
         { value: "CASH", label: "CASH" },
@@ -70,6 +65,7 @@ export const TicketForm = (props) => {
 
     async function newSubmit() {
         try {
+            console.log(customer_id);
             const res = await axios.post(API_URL + "/tickets", {
                 customer_id,
                 showtime_id,
@@ -143,8 +139,8 @@ export const TicketForm = (props) => {
                         set_customer_id(event.target.value);
                     }}
                 >
-                    <option selected value="NULL">
-                        -- select an option --
+                    <option selected value={null}>
+                        -- None --
                     </option>
                     {customerList.map((customer, i) => {
                         return (
@@ -159,13 +155,12 @@ export const TicketForm = (props) => {
                 <select
                     name="showtime"
                     value={showtime_id}
-                    required
                     onChange={(event) => {
                         set_showtime_id(event.target.value);
                     }}
                 >
-                    <option disabled selected value="">
-                        -- select an option --
+                    <option disabled selected value={null}>
+                        -- None --
                     </option>
                     {showtimeList.map((showtime, i) => {
                         return (
