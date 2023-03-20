@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { Grid, _ } from "gridjs-react";
 import { MdEdit, MdDeleteForever } from "react-icons/md";
 import axios from "axios";
 import { ShowtimeForm } from "./ShowtimeForm";
+import { toast } from "react-toastify";
 import moment from "moment";
 
 const API_URL = process.env.REACT_APP_API_URL;
@@ -20,10 +20,6 @@ export default function Showtimes() {
     const [showtimes, setShowtimes] = useState(
         async () => await fetchShowtimes()
     );
-
-    function fetchAndSetShowtimes() {
-        setShowtimes(async () => await fetchShowtimes());
-    }
 
     // State definition for modal form
     const [formData, setFormData] = useState("");
@@ -50,11 +46,17 @@ export default function Showtimes() {
                 `Are you sure you want to DELETE the record for showtime ID = ${rowData.showtime_id}?`
             ) === true
         ) {
-            let deleted = await axios.delete(
-                API_URL + `/showtimes/${rowData.showtime_id}`
-            );
-            if (deleted.status === 200) {
-                fetchAndSetShowtimes();
+            try {
+                const res = await axios.delete(
+                    API_URL + `/showtimes/${rowData.showtime_id}`
+                );
+                if (res.status === 200) {
+                    toast.success("Record deleted.");
+                    gridRefresh();
+                }
+            } catch (error) {
+                toast.error(error.message);
+                console.log(error);
             }
         }
     }
@@ -68,63 +70,68 @@ export default function Showtimes() {
     // Showtime Component Contents
     return (
         <div>
-            <h3>Showtimes</h3>
-            <p>Create, Retrieve, Update or Delete a Showtime</p>
-            <p>
-                To display only showtimes between two given dates please
-                indicate a start and end date:
-            </p>
-            <label for="start">Start date:</label>
-            <input type="date" id="start" name="start-input"></input>
-            <label for="end">End date:</label>
-            <input type="date" id="end" name="end-input"></input>
-            <Grid
-                columns={[
-                    { name: "Showtime ID", id: "showtime_id", sort: true },
-                    {
-                        name: "Datetime",
-                        id: "date_time",
-                        sort: true,
-                        formatter: (cell) => {
-                            let dt = new moment(cell);
-                            return dt.format("MM/DD/YY h:mma");
+            <div className="grid_wrapper">
+                <h3>Showtimes</h3>
+                <p>Create, Retrieve, Update or Delete a Showtime</p>
+                <p>
+                    To display only showtimes between two given dates please
+                    indicate a start and end date:
+                </p>
+                <label for="start">Start date:</label>
+                <input type="date" id="start" name="start-input"></input>
+                <label for="end">End date:</label>
+                <input type="date" id="end" name="end-input"></input>
+                <Grid
+                    columns={[
+                        { name: "Showtime ID", id: "showtime_id", sort: true },
+                        {
+                            name: "Datetime",
+                            id: "date_time",
+                            sort: true,
+                            formatter: (cell) => {
+                                let dt = new moment.utc(cell);
+                                return dt.format("MM/DD/YY h:mma");
+                            },
                         },
-                    },
-                    { name: "Movie", id: "movie_id", sort: true },
-                    { name: "Theater", id: "theater_id" },
-                    {
-                        name: "Edit Item",
-                        data: (row) =>
-                            _(<MdEdit onClick={() => handleEdit(row)} />),
-                        width: "6%",
-                    },
-                    {
-                        name: "Delete Item",
-                        data: (row) =>
-                            _(
-                                <MdDeleteForever
-                                    onClick={() => handleDelete(row)}
-                                />
-                            ),
-                        width: "6%",
-                    },
-                ]}
-                data={async () => await showtimes}
-                search={true}
-                pagination={{ limit: 10 }}
-            />
-            <ShowtimeForm
-                // key update is being used to force rerender component
-                key={key}
-                // mode of form "edit" or "new"
-                formType={formType}
-                // form data to populate in form (if any and mode is "edit")
-                rowData={formData}
-                // function via prop to reset form state from parent
-                resetForm={resetForm}
-                // function call via prop to refresh table / Grid component
-                gridReload={() => gridRefresh()}
-            ></ShowtimeForm>
+                        { name: "Movie", id: "movie_name", sort: true },
+                        { name: "Theater", id: "theater_name" },
+                        {
+                            name: "Edit Item",
+                            data: (rowData) =>
+                                _(
+                                    <MdEdit
+                                        onClick={() => handleEdit(rowData)}
+                                        // onClick={() => console.log(rowData)}
+                                    />
+                                ),
+                        },
+                        {
+                            name: "Delete Item",
+                            data: (rowData) =>
+                                _(
+                                    <MdDeleteForever
+                                        onClick={() => handleDelete(rowData)}
+                                    />
+                                ),
+                        },
+                    ]}
+                    data={async () => await showtimes}
+                    search={true}
+                    pagination={{ limit: 10 }}
+                />
+                <ShowtimeForm
+                    // key update is being used to force rerender component
+                    key={key}
+                    // mode of form "edit" or "new"
+                    formType={formType}
+                    // form data to populate in form (if any and mode is "edit")
+                    rowData={formData}
+                    // function via prop to reset form state from parent
+                    resetForm={resetForm}
+                    // function call via prop to refresh table / Grid component
+                    gridReload={() => gridRefresh()}
+                ></ShowtimeForm>
+            </div>
         </div>
     );
 }
