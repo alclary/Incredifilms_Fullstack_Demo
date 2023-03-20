@@ -1,206 +1,168 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const API_URL = process.env.REACT_APP_API_URL;
 
 export const MovieGenreForm = (props) => {
-  // State definitions
-  //      If formType mode "edit", populate fields with record data to edit,
-  //      else form field empty (for new entry)
-  const [movieList, setMovieList] = useState([]);
-  const [genreList, setGenreList] = useState([]);
-  const [checkedList, setCheckedList] = useState([]);
+    // State definitions
+    //      If formType mode "edit", populate fields with record data to edit,
+    //      else form field empty (for new entry)
+    const [movieList, setMovieList] = useState([]);
+    const [genreList, setGenreList] = useState([]);
 
-  useEffect(() => {
-    async function getMovieList() {
-      try {
-        const movies = await axios.get(API_URL + "/movies/titles");
-        setMovieList(movies.data.data);
-      } catch (error) {
-        console.error(error);
-        // TODO add user feedback of failure
-      }
+    useEffect(() => {
+        async function getMovieList() {
+            try {
+                const movies = await axios.get(API_URL + "/movies/titles");
+                setMovieList(movies.data.data);
+            } catch (error) {
+                console.error(error);
+                toast.error(error.message);
+            }
+        }
+        async function getGenreList() {
+            try {
+                const genres = await axios.get(API_URL + "/genres/categories");
+                setGenreList(genres.data.data);
+            } catch (error) {
+                console.error(error);
+                toast.error(error.message);
+            }
+        }
+
+        getGenreList();
+        getMovieList();
+    }, []);
+
+    // State definitions
+    const [movie_id, set_movie_id] = useState(
+        props.formType === "edit" ? props.rowData.movie_id : ""
+    );
+    const [genre_id, set_genre_id] = useState(
+        props.formType === "edit" ? props.rowData.genre_id : ""
+    );
+
+    async function newSubmit() {
+        try {
+            const res = await axios.post(API_URL + "/moviegenres", {
+                movie_id,
+                genre_id,
+            });
+            if (res === 200) {
+                // Success toast notification
+                toast.success(`Record ID ${res.data.data.insertId} created.`);
+                // Reload entity table / grid.js component (for updates)
+                props.gridReload();
+            }
+        } catch (error) {
+            console.error(error);
+            toast.error("Duplicate records are not allowed.");
+        }
+        props.resetForm();
     }
-    async function getGenreList() {
-      try {
-        const genres = await axios.get(API_URL + "/genres/categories");
-        setGenreList(genres.data.data);
-      } catch (error) {
-        console.error(error);
-        // TODO add user feedback of failure
-      }
-    }
 
-    getGenreList();
-    getMovieList();
-  }, []);
-
-  async function newSubmit() {
-    try {
-      const res = await axios.post(API_URL + "/moviegenres", {
-        movie_id,
-        genre_id,
-      });
-      console.log(res);
-      // TODO replace with feedback of success and redirect to moviegenres table
-    } catch (error) {
-      console.error(error);
-      // TODO add user feedback of failure
-    }
-  }
-
-  // State definitions
-  const [movie_id, set_movie_id] = useState(
-    props.formType === "edit" ? props.rowData.movie_id : ""
-  );
-  const [genre_id, set_genre_id] = useState(
-    props.formType === "edit" ? props.rowData.genre_id : ""
-  );
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    {
-
-      newSubmit();
-    }
-  };
-
-  const handleMovieChange = async (e) => {
-    set_movie_id(e.target.value);
-  };
-
-  // THIS WORKS FOR ONE NOT FOR MANY //
-  // const handleGenreChange = async (e) => {
-  // set_genre_id(e.target.value)
-  // };
-
-  const handleGenreChange = async (e) => {
-    set_genre_id(e.target.value);
-  };
-
-  // const handleGenreChange = (event) => {
-  //   const value = event.target.value;
-  //   const isChecked = event.target.checked;
-
-  //   if (isChecked) {
-  //     //Add checked item into checkList
-  //     setCheckedList([...checkedList, value]);
-  //     // newSubmit();
-
-  //     // console.log(`${value} is ${isChecked}`);
-  //   } else {
-  //     //Remove unchecked item from checkList
-  //     const filteredList = genreList.filter((item) => item !== value);
-  //     setCheckedList(filteredList);
-  //     console.log(checkedList);
-  //   }
-
-  //   //   {checkedList.map((item, index) =>{
-  //   // console.log({item})
-  // };
-
-  return (
-    <div>
-      {/* Form title based on mode ("edit" or "new") */}
-      {props.formType === "edit" ? (
-        <h3>Update movie genre relationship</h3>
-      ) : (
-        <h3>Add a new movie genre relationship</h3>
-      )}
-      <form onSubmit={handleSubmit} className="pure-form pure-form-stacked">
-        <label>Movie </label>
-
-        <select
-          name="movie"
-          value={movie_id}
-          onChange={handleMovieChange}
-          required
-        >
-          <option disabled selected value="">
-            -- select an option --
-          </option>
-          {movieList.map((movie, i) => {
-            return (
-              <option key={i} value={movie.movie_id}>
-                {movie.movie_name}
-              </option>
+    // Handle "edit" record form submissions
+    async function editSubmit() {
+        try {
+            const res = await axios.put(
+                API_URL + `/moviegenres/${props.rowData.showtime_id}`,
+                {
+                    movie_id,
+                    genre_id,
+                }
             );
-          })}
-        </select>
-        <br />
-        <label>Genre</label>
+            if (res.status === 200) {
+                // Success toast notification
+                toast.success(`Record updated.`);
+                // Reload entity table / grid.js component (for updates)
+                props.gridReload();
+            }
+        } catch (error) {
+            toast.error(error.message);
+            console.error(error);
+        }
+        props.resetForm();
+    }
 
-        <select
-          name="genre"
-          value={genre_id}
-          onChange={handleGenreChange}
-          required
-        >
-          <option disabled selected value="">
-            -- select an option --
-          </option>
-          {genreList.map((genre, i) => {
-            return (
-              <option key={i} value={genre.genre_id}>
-                {genre.genre_name}
-              </option>
-            );
-          })}
-        </select>
+    // Handle submit of bi-modal form; submit action based on form mode
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        if (props.formType === "edit") {
+            editSubmit();
+        } else {
+            newSubmit();
+        }
+    };
 
+    return (
+        <div className="form_wrapper">
+            {/* Form title based on mode ("edit" or "new") */}
+            {props.formType === "edit" ? (
+                <h3>Update a genre association with a movie.</h3>
+            ) : (
+                <h3>Add a new genre association with a movie.</h3>
+            )}
+            <form
+                onSubmit={handleSubmit}
+                className="pure-form pure-form-stacked"
+            >
+                <label>Movie</label>
+                <select
+                    name="movie"
+                    value={movie_id}
+                    onChange={(event) => set_movie_id(event.target.value)}
+                    required
+                >
+                    <option disabled selected value="">
+                        -- select an option --
+                    </option>
+                    {movieList.map((movie, i) => {
+                        return (
+                            <option key={i} value={movie.movie_id}>
+                                {movie.movie_name}
+                            </option>
+                        );
+                    })}
+                </select>
+                <label>Genre</label>
+                <select
+                    name="genre"
+                    value={genre_id}
+                    onChange={(event) => set_genre_id(event.target.value)}
+                    required
+                >
+                    <option disabled selected value="">
+                        -- select an option --
+                    </option>
+                    {genreList.map((genre, i) => {
+                        return (
+                            <option key={i} value={genre.genre_id}>
+                                {genre.genre_name}
+                            </option>
+                        );
+                    })}
+                </select>
 
-
-{/* 
-        {genreList.map((genre, i) => {
-          return (
-            <div key={genre.id}>
-              <input
-                type="checkbox"
-                name="genres"
-                id="movie_genre_id"
-                value={genre.genre_id}
-                onChange={handleGenreChange}
-              ></input>
-              <label>{genre.genre_name}</label>
-            </div>
-          );
-        })} */}
-
-        <button type="submit" class="pure-button pure-button-primary">
-          Submit
-        </button>
-        {/* Cancel button only displayed for "edit" form modality */}
-        {props.formType === "edit" ? (
-          <button
-            type="button"
-            class="pure-button pure-button"
-            // Cancel button resets form to cancel edit attempt
-            onClick={() => {
-              props.resetForm();
-            }}
-          >
-            Cancel
-          </button>
-        ) : (
-          undefined
-        )}
-      </form>
-
-      {/* <div>
-        Checked items:::::
-        {checkedList.map((item, index) => {
-          return (
-            <div>
-              <p>{item}</p>
-            </div>
-          );
-        })}
-      </div> */}
-
-
-    </div>
-  );
+                <button type="submit" class="pure-button pure-button-primary">
+                    Submit
+                </button>
+                {/* Cancel button only displayed for "edit" form modality */}
+                {props.formType === "edit" ? (
+                    <button
+                        type="button"
+                        className="pure-button pure-button"
+                        // Cancel button resets form to cancel edit attempt
+                        onClick={() => {
+                            props.resetForm();
+                        }}
+                    >
+                        Cancel
+                    </button>
+                ) : undefined}
+            </form>
+        </div>
+    );
 };
 
 export default MovieGenreForm;

@@ -46,9 +46,7 @@ SELECT Showtime.showtime_id AS showtime_id, Showtime.showtime_date_time AS date_
 SELECT Ticket.ticket_id AS 'ticket_id', Customer.customer_id AS customer_id,CONCAT(Customer.first_name, ' ', Customer.last_name) AS customer_name, Showtime.showtime_id AS showtime_id, Showtime.showtime_date_time AS showtime_date_time, Movie.movie_id AS movie_id, Movie.movie_name AS movie_name, Theater.theater_id AS theater_id, Theater.theater_name AS theater_name, Ticket.price AS price, Ticket.payment_method AS payment_method FROM Ticket JOIN Customer ON Ticket.customer_id = Customer.customer_id JOIN Showtime ON Ticket.showtime_id = Showtime.showtime_id JOIN Movie ON Showtime.movie_id = Movie.movie_id JOIN Theater ON Showtime.theater_id = Theater.theater_id ORDER BY Ticket.ticket_id ASC;
 
 -- Get full Movie Genre table, with readable movie, theater
-SELECT movie_genre_id, Movie.movie_name AS movie_id, Genre.genre_name AS genre_id FROM `Movie_Genre` JOIN Movie on Movie.movie_id = Movie_Genre.movie_id  JOIN Genre on Genre.genre_id = Movie_Genre.genre_id ORDER BY movie_genre_id ASC;
-
-
+SELECT movie_genre_id, Movie.movie_id AS movie_id, Movie.movie_name AS movie_name, Genre.genre_id AS genre_id, Genre.genre_name AS genre_name FROM `Movie_Genre` JOIN Movie on Movie.movie_id = Movie_Genre.movie_id  JOIN Genre on Genre.genre_id = Movie_Genre.genre_id ORDER BY movie_genre_id ASC;
 -- TODO
 -- Get list of all movies with showtimes between two given dates
 SELECT Movie.movie_name AS Movie
