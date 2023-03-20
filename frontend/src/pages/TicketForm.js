@@ -75,13 +75,14 @@ export const TicketForm = (props) => {
             if (res === 200) {
                 // Success toast notification
                 toast.success(`Ticket ${res.data.data.insertId} purchased.`);
-                // Reload entity table / grid.js component (for updates)
-                props.gridReload();
             }
         } catch (error) {
             toast.error(error.message);
             console.error(error);
         }
+        // Reload entity table / grid.js component (for updates)
+        props.gridReload();
+        props.resetForm();
     }
 
     async function editSubmit() {
@@ -105,6 +106,8 @@ export const TicketForm = (props) => {
             toast.error(error.message);
             console.error(error);
         }
+        // Reload entity table / grid.js component (for updates)
+        props.gridReload();
         props.resetForm();
     }
 

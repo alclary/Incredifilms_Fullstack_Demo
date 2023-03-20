@@ -21,13 +21,13 @@ export const GenreForm = (props) => {
             if (res === 200) {
                 // Success toast notification
                 toast.success(`Record ID ${res.data.data.insertId} created.`);
-                // Reload entity table / grid.js component (for updates)
-                props.gridReload();
             }
         } catch (error) {
             toast.error(error.message);
             console.error(error);
         }
+        // Reload entity table / grid.js component (for updates)
+        props.gridReload();
         props.resetForm();
     }
 
@@ -41,13 +41,13 @@ export const GenreForm = (props) => {
             if (res.status === 200) {
                 // Success toast notification
                 toast.success(`Record updated.`);
-                // Reload entity table / grid.js component (for updates)
-                props.gridReload();
             }
         } catch (error) {
             toast.error(error.message);
             console.error(error);
         }
+        // Reload entity table / grid.js component (for updates)
+        props.gridReload();
         props.resetForm();
     }
 

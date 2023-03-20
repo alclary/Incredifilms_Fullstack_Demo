@@ -43,13 +43,13 @@ export const MovieForm = (props) => {
                 console.log(res);
                 // Success toast notification
                 toast.success(`Record ID ${res.data.data.insertId} created.`);
-                // Reload entity table / grid.js component (for updates)
-                props.gridReload();
             }
         } catch (error) {
             toast.error(error.message);
             console.error(error);
         }
+        // Reload entity table / grid.js component (for updates)
+        props.gridReload();
         props.resetForm();
     }
 
@@ -69,13 +69,13 @@ export const MovieForm = (props) => {
                 console.log(res);
                 // Success toast notification
                 toast.success(`Record ID updated.`);
-                // Reload entity table / grid.js component (for updates)
-                props.gridReload();
             }
         } catch (error) {
             toast.error(error.message);
             console.error(error);
         }
+        // Reload entity table / grid.js component (for updates)
+        props.gridReload();
         props.resetForm();
     }
 
