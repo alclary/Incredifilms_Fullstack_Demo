@@ -168,7 +168,7 @@ export const TicketForm = (props) => {
                     </option>
                     {showtimeList.map((showtime, i) => {
                         return (
-                            <option key={i} value={showtime.meow}>
+                            <option key={i} value={showtime.showtime_id}>
                                 {showtime.showtime}
                             </option>
                         );
