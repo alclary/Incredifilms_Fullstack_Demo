@@ -19,7 +19,6 @@ export const GenreForm = (props) => {
                 genre_name,
             });
             if (res.status === 200) {
-                console.log(res);
                 // Success toast notification
                 toast.success(`Record ID ${res.data.data.insertId} created.`);
             }
