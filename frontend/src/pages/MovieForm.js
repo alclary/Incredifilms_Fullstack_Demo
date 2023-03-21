@@ -137,7 +137,7 @@ export const MovieForm = (props) => {
                 <label>Year</label>
                 <input
                     type="number"
-                    min="1878"
+                    min="1901"
                     max="2050"
                     value={year}
                     onChange={(event) => setYear(event.target.value)}

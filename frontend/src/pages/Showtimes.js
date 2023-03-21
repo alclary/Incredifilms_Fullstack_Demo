@@ -7,8 +7,8 @@ import { toast } from "react-toastify";
 import moment from "moment";
 
 const API_URL = process.env.REACT_APP_API_URL;
-const START_DATE_LIMIT = moment.utc("1878-01-01"); // year of first movie
-const END_DATE_LIMIT = moment.utc("2040-01-01"); // arbitrary end limit
+const START_DATE_LIMIT = moment.utc("1901-01-01"); //lowest year supported by SQL
+const END_DATE_LIMIT = moment.utc("2050-01-01"); // arbitrary end limit
 
 // Fetch and return data array of showtimes from API
 async function fetchShowtimes(startDate, endDate) {
