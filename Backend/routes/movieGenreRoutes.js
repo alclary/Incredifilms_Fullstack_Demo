@@ -44,9 +44,7 @@ router.post("/", (req, res) => {
 router.put("/:id", (req, res) => {
     console.log("UPDATE request received.");
     db.query(
-        `UPDATE Movie_Genre
-      SET movie_id = ?, genre_id = ?
-      WHERE movie_genre_id = ?`,
+        "UPDATE Movie_Genre SET movie_id = ?, genre_id = ? WHERE movie_genre_id = ?",
         [req.body.movie_id, req.body.genre_id, req.params.id],
         (err, data, fields) => {
             if (err) {

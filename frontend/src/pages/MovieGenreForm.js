@@ -37,11 +37,15 @@ export const MovieGenreForm = (props) => {
 
     // State definitions
     const [movie_id, set_movie_id] = useState(
-        props.formType === "edit" ? props.rowData.movie_id : ""
+        props.formType === "edit" ? props.rowData.movie_id : null
     );
     const [genre_id, set_genre_id] = useState(
-        props.formType === "edit" ? props.rowData.genre_id : ""
+        props.formType === "edit" ? props.rowData.genre_id : null
     );
+
+    useEffect(() => {
+        console.log(movie_id, genre_id);
+    }, [movie_id, genre_id]);
 
     async function newSubmit() {
         try {
@@ -55,7 +59,7 @@ export const MovieGenreForm = (props) => {
             }
         } catch (error) {
             console.error(error);
-            toast.error("Duplicate records are not allowed.");
+            toast.error(error.message);
         }
         // Reload entity table / grid.js component (for updates)
         props.gridReload();
@@ -66,7 +70,7 @@ export const MovieGenreForm = (props) => {
     async function editSubmit() {
         try {
             const res = await axios.put(
-                API_URL + `/moviegenres/${props.rowData.showtime_id}`,
+                API_URL + `/moviegenres/${props.rowData.movie_genre_id}`,
                 {
                     movie_id,
                     genre_id,
@@ -114,7 +118,7 @@ export const MovieGenreForm = (props) => {
                     onChange={(event) => set_movie_id(event.target.value)}
                     required
                 >
-                    <option disabled selected value="">
+                    <option disabled selected value={null}>
                         -- select an option --
                     </option>
                     {movieList.map((movie, i) => {
@@ -132,7 +136,7 @@ export const MovieGenreForm = (props) => {
                     onChange={(event) => set_genre_id(event.target.value)}
                     required
                 >
-                    <option disabled selected value="">
+                    <option disabled selected value={null}>
                         -- select an option --
                     </option>
                     {genreList.map((genre, i) => {

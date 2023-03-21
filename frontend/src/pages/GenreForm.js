@@ -35,7 +35,7 @@ export const GenreForm = (props) => {
     async function editSubmit() {
         try {
             const res = await axios.put(
-                API_URL + `/customers/${props.rowData.genre_id}`,
+                API_URL + `/genres/${props.rowData.genre_id}`,
                 { genre_name }
             );
             if (res.status === 200) {
