@@ -56,7 +56,7 @@ export const ShowtimeForm = (props) => {
                 movie_id,
                 theater_id,
             });
-            if (res === 200) {
+            if (res.status === 200) {
                 // Success toast notification
                 toast.success(`Record ID ${res.data.data.insertId} created.`);
             }

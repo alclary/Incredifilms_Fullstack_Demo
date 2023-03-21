@@ -18,7 +18,8 @@ export const GenreForm = (props) => {
             const res = await axios.post(API_URL + "/genres", {
                 genre_name,
             });
-            if (res === 200) {
+            if (res.status === 200) {
+                console.log(res);
                 // Success toast notification
                 toast.success(`Record ID ${res.data.data.insertId} created.`);
             }

@@ -72,7 +72,7 @@ export const TicketForm = (props) => {
                 price,
                 payment_method,
             });
-            if (res === 200) {
+            if (res.status === 200) {
                 // Success toast notification
                 toast.success(`Ticket ${res.data.data.insertId} purchased.`);
             }

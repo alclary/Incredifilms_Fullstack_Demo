@@ -30,7 +30,7 @@ export const CustomerForm = (props) => {
                 dob,
                 email,
             });
-            if (res === 200) {
+            if (res.status === 200) {
                 // Success toast notification
                 toast.success(`Record ID ${res.data.data.insertId} created.`);
             }
