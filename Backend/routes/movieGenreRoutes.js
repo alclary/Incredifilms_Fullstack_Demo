@@ -10,6 +10,7 @@ router.get("/", (req, res) => {
         (err, data, fields) => {
             if (err) {
                 console.error(err);
+                res.status(500).json({ ...err });
             } else {
                 res.status(200).json({
                     fields,
@@ -29,6 +30,7 @@ router.post("/", (req, res) => {
         (err, data, fields) => {
             if (err) {
                 console.error(err);
+                res.status(500).json({ ...err });
             } else {
                 res.status(200).json({
                     fields,
@@ -49,6 +51,7 @@ router.put("/:id", (req, res) => {
         (err, data, fields) => {
             if (err) {
                 console.error(err);
+                res.status(500).json({ ...err });
             } else {
                 res.status(200).json({
                     fields,
@@ -69,6 +72,7 @@ router.delete("/:id", (req, res) => {
         (err, data, fields) => {
             if (err) {
                 console.error(err);
+                res.status(500).json({ ...err });
             } else {
                 res.status(200).json({
                     fields,
