@@ -10,11 +10,12 @@ router.get("/", (req, res) => {
         (err, data, fields) => {
             if (err) {
                 console.error(err);
-            } // TODO Better error handling
-            res.status(200).json({
-                fields,
-                data,
-            });
+            } else {
+                res.status(200).json({
+                    fields,
+                    data,
+                });
+            }
         }
     );
 });
@@ -28,18 +29,18 @@ router.post("/", (req, res) => {
         (err, data, fields) => {
             if (err) {
                 console.error(err);
-            } // TODO Better error handling
-            res.status(200).json({
-                // TODO decide if appropriate response
-                fields,
-                data,
-            });
-            console.log("POST request successful.");
+            } else {
+                res.status(200).json({
+                    fields,
+                    data,
+                });
+                console.log("POST request successful.");
+            }
         }
     );
 });
 
-// TODO UPDATE functionality for moviegenres table record, at '/moviegenres/{id}' endpoint
+// UPDATE functionality for moviegenres table record, at '/moviegenres/{id}' endpoint
 router.put("/:id", (req, res) => {
     console.log("UPDATE request received.");
     db.query(
@@ -50,12 +51,13 @@ router.put("/:id", (req, res) => {
         (err, data, fields) => {
             if (err) {
                 console.error(err);
-            } // TODO Better error handling
-            res.status(200).json({
-                fields,
-                data,
-            });
-            console.log("UPDATE request successful.");
+            } else {
+                res.status(200).json({
+                    fields,
+                    data,
+                });
+                console.log("UPDATE request successful.");
+            }
         }
     );
 });
@@ -69,12 +71,13 @@ router.delete("/:id", (req, res) => {
         (err, data, fields) => {
             if (err) {
                 console.error(err);
-            } // TODO Better error handling
-            res.status(200).json({
-                fields,
-                data,
-            });
-            console.log("DELETE request successful.");
+            } else {
+                res.status(200).json({
+                    fields,
+                    data,
+                });
+                console.log("DELETE request successful.");
+            }
         }
     );
 });

@@ -10,11 +10,12 @@ router.get("/", (req, res) => {
         (err, data, fields) => {
             if (err) {
                 console.error(err);
-            } // TODO Better error handling
-            res.status(200).json({
-                fields,
-                data,
-            });
+            } else {
+                res.status(200).json({
+                    fields,
+                    data,
+                });
+            }
         }
     );
 });
@@ -33,10 +34,8 @@ router.post("/", (req, res) => {
         (err, data, fields) => {
             if (err) {
                 console.error(err);
-            } // TODO Better error handling
-            else {
+            } else {
                 res.status(200).json({
-                    // TODO decide if appropriate response
                     fields,
                     data,
                 });
@@ -46,7 +45,7 @@ router.post("/", (req, res) => {
     );
 });
 
-// TODO UPDATE functionality for tickets table record, at '/tickets/{id}' endpoint
+// UPDATE functionality for tickets table record, at '/tickets/{id}' endpoint
 router.put("/:id", (req, res) => {
     console.log("UPDATE request received.");
     db.query(
@@ -62,12 +61,13 @@ router.put("/:id", (req, res) => {
         (err, data, fields) => {
             if (err) {
                 console.error(err);
-            } // TODO Better error handling
-            res.status(200).json({
-                fields,
-                data,
-            });
-            console.log("UPDATE request successful.");
+            } else {
+                res.status(200).json({
+                    fields,
+                    data,
+                });
+                console.log("UPDATE request successful.");
+            }
         }
     );
 });
@@ -81,12 +81,13 @@ router.delete("/:id", (req, res) => {
         (err, data, fields) => {
             if (err) {
                 console.error(err);
-            } // TODO Better error handling
-            res.status(200).json({
-                fields,
-                data,
-            });
-            console.log("DELETE request successful.");
+            } else {
+                res.status(200).json({
+                    fields,
+                    data,
+                });
+                console.log("DELETE request successful.");
+            }
         }
     );
 });

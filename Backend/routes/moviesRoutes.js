@@ -8,8 +8,7 @@ router.get("/", (req, res) => {
     db.query("SELECT * FROM Movie;", (err, data, fields) => {
         if (err) {
             console.error(err);
-        } // TODO Better error handling
-        else {
+        } else {
             res.status(200).json({
                 fields,
                 data,

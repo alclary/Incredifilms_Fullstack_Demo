@@ -19,16 +19,17 @@ router.get("/", (req, res) => {
         (err, data, fields) => {
             if (err) {
                 console.error(err);
-            } // TODO Better error handling
-            res.status(200).json({
-                fields,
-                data,
-            });
+            } else {
+                res.status(200).json({
+                    fields,
+                    data,
+                });
+            }
         }
     );
 });
 
-// TODO CREATE functionality for entries to showtimes table, at '/showtimes' endpoint
+// CREATE functionality for entries to showtimes table, at '/showtimes' endpoint
 router.post("/", (req, res) => {
     console.log("POST request received.");
     db.query(
@@ -37,10 +38,8 @@ router.post("/", (req, res) => {
         (err, data, fields) => {
             if (err) {
                 console.error(err);
-            } // TODO Better error handling
-            else {
+            } else {
                 res.status(200).json({
-                    // TODO decide if appropriate response
                     fields,
                     data,
                 });
@@ -66,12 +65,13 @@ router.put("/:id", (req, res) => {
         (err, data, fields) => {
             if (err) {
                 console.error(err);
-            } // TODO Better error handling
-            res.status(200).json({
-                fields,
-                data,
-            });
-            console.log("UPDATE request successful.");
+            } else {
+                res.status(200).json({
+                    fields,
+                    data,
+                });
+                console.log("UPDATE request successful.");
+            }
         }
     );
 });
@@ -85,12 +85,13 @@ router.delete("/:id", (req, res) => {
         (err, data, fields) => {
             if (err) {
                 console.error(err);
-            } // TODO Better error handling
-            res.status(200).json({
-                fields,
-                data,
-            });
-            console.log("DELETE request successful.");
+            } else {
+                res.status(200).json({
+                    fields,
+                    data,
+                });
+                console.log("DELETE request successful.");
+            }
         }
     );
 });
@@ -103,11 +104,12 @@ router.get("/showings", (req, res) => {
         (err, data, fields) => {
             if (err) {
                 console.error(err);
-            } // TODO Better error handling
-            res.status(200).json({
-                fields,
-                data,
-            });
+            } else {
+                res.status(200).json({
+                    fields,
+                    data,
+                });
+            }
         }
     );
 });
