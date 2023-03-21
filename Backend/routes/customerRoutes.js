@@ -5,17 +5,20 @@ const db = require("../db.js");
 // READ functionality for customers table, at '/customers' endpoint
 router.get("/", (req, res) => {
     console.log("GET request received.");
-    db.query("SELECT * FROM Customer;", (err, data, fields) => {
-        if (err) {
-            console.error(err);
-        } else {
-            res.status(200).json({
-                fields,
-                data,
-            });
-            console.log("GET request successful.");
+    db.query(
+        "SELECT * FROM Customer ORDER BY customer_id ASC;",
+        (err, data, fields) => {
+            if (err) {
+                console.error(err);
+            } else {
+                res.status(200).json({
+                    fields,
+                    data,
+                });
+                console.log("GET request successful.");
+            }
         }
-    });
+    );
 });
 
 // CREATE functionality for customers table records, at '/customers' endpoint

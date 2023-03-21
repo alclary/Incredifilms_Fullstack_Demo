@@ -173,3 +173,10 @@ JOIN Theater
 ON Theater.theater_id = Showtime.theater_id
 
 ORDER BY Ticket.ticket_id;
+
+-- Get list of all movies with showtimes between two given dates
+SELECT Movie.movie_name AS Movie
+FROM Showtime
+JOIN Movie ON Showtime.movie_id = Movie.movie_id
+WHERE Showtime.showtime_date_time BETWEEN :dateTimeInput1 AND :dateTimeInput2
+GROUP BY Movie;

@@ -5,17 +5,20 @@ const db = require("../db.js");
 // READ functionality for movies table, at '/movies' endpoint
 router.get("/", (req, res) => {
     console.log("GET request received.");
-    db.query("SELECT * FROM Movie;", (err, data, fields) => {
-        if (err) {
-            console.error(err);
-        } else {
-            res.status(200).json({
-                fields,
-                data,
-            });
-            console.log("GET request successful.");
+    db.query(
+        "SELECT * FROM Movie ORDER BY movie_id ASC;",
+        (err, data, fields) => {
+            if (err) {
+                console.error(err);
+            } else {
+                res.status(200).json({
+                    fields,
+                    data,
+                });
+                console.log("GET request successful.");
+            }
         }
-    });
+    );
 });
 
 // CREATE functionality for entries to movies table, at '/movies' endpoint

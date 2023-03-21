@@ -17,7 +17,6 @@ SELECT movie_id, movie_name FROM Movie ORDER BY movie_name ASC;
 -- Get list of all theaters
 SELECT theater_id, theater_name FROM Theater ORDER BY theater_name ASC;
 
-
 -- Get list of customer names [last, first, (customer_id)] and associated customer_id
 -- To be used to populate dropdown list and map selection to customer_id
 SELECT CONCAT(last_name, ', ', first_name, ' (', customer_id, ')') AS customer, customer_id FROM Customer ORDER BY Customer.last_name ASC;
@@ -37,23 +36,16 @@ SELECT * FROM Genre ORDER BY genre_id ASC;
 SELECT * FROM Theater ORDER BY theater_id ASC;
 
 -- Get full Customer table
-SELECT * FROM Customer;
+SELECT * FROM Customer ORDER BY customer_id ASC;
 
 -- Get full Showtime table, with readable movie & theater names
-SELECT Showtime.showtime_id AS showtime_id, Showtime.showtime_date_time AS date_time, Showtime.movie_id AS movie_id, Movie.movie_name AS movie_name, Showtime.theater_id AS theater_id, Theater.theater_name AS theater_name FROM Showtime JOIN Movie ON Showtime.movie_id = Movie.movie_id JOIN Theater ON Showtime.theater_id = Theater.theater_id ORDER BY showtime_id ASC;
+SELECT Showtime.showtime_id AS showtime_id, Showtime.showtime_date_time AS date_time, Showtime.movie_id AS movie_id, Movie.movie_name AS movie_name, Showtime.theater_id AS theater_id, Theater.theater_name AS theater_name FROM Showtime LEFT JOIN Movie ON Showtime.movie_id = Movie.movie_id LEFT JOIN Theater ON Showtime.theater_id = Theater.theater_id WHERE Showtime.showtime_date_time BETWEEN ? AND ? ORDER BY showtime_id ASC;
 
 -- Get full Ticket table, with readable customer, movie, theater
-SELECT Ticket.ticket_id AS 'ticket_id', Customer.customer_id AS customer_id,CONCAT(Customer.first_name, ' ', Customer.last_name) AS customer_name, Showtime.showtime_id AS showtime_id, Showtime.showtime_date_time AS showtime_date_time, Movie.movie_id AS movie_id, Movie.movie_name AS movie_name, Theater.theater_id AS theater_id, Theater.theater_name AS theater_name, Ticket.price AS price, Ticket.payment_method AS payment_method FROM Ticket LEFT JOIN Customer ON Ticket.customer_id = Customer.customer_id JOIN Showtime ON Ticket.showtime_id = Showtime.showtime_id JOIN Movie ON Showtime.movie_id = Movie.movie_id JOIN Theater ON Showtime.theater_id = Theater.theater_id ORDER BY Ticket.ticket_id ASC;
+SELECT Ticket.ticket_id AS 'ticket_id', Customer.customer_id AS customer_id,CONCAT(Customer.first_name, ' ', Customer.last_name) AS customer_name, Showtime.showtime_id AS showtime_id, Showtime.showtime_date_time AS showtime_date_time, Movie.movie_id AS movie_id, Movie.movie_name AS movie_name, Theater.theater_id AS theater_id, Theater.theater_name AS theater_name, Ticket.price AS price, Ticket.payment_method AS payment_method FROM Ticket LEFT JOIN Customer ON Ticket.customer_id = Customer.customer_id LEFT JOIN Showtime ON Ticket.showtime_id = Showtime.showtime_id LEFT JOIN Movie ON Showtime.movie_id = Movie.movie_id LEFT JOIN Theater ON Showtime.theater_id = Theater.theater_id ORDER BY Ticket.ticket_id ASC;
 
 -- Get full Movie Genre table, with readable movie, theater
 SELECT movie_genre_id, Movie.movie_id AS movie_id, Movie.movie_name AS movie_name, Genre.genre_id AS genre_id, Genre.genre_name AS genre_name FROM `Movie_Genre` JOIN Movie on Movie.movie_id = Movie_Genre.movie_id  JOIN Genre on Genre.genre_id = Movie_Genre.genre_id ORDER BY movie_genre_id ASC;
--- TODO
--- Get list of all movies with showtimes between two given dates
-SELECT Movie.movie_name AS Movie
-FROM Showtime
-JOIN Movie ON Showtime.movie_id = Movie.movie_id
-WHERE Showtime.showtime_date_time BETWEEN :dateTimeInput1 AND :dateTimeInput2
-GROUP BY Movie;
 
 -- INSERTS -----------------------------------------------------------------------------
 -- Add a movie
@@ -73,25 +65,17 @@ INSERT INTO Customer (first_name, last_name, dob, email)
 VALUES (:fnameInput, :lnameInput, :dobInput, :emailInput);
 
 -- Associate a genre with a movie
-INSERT INTO Movie_Genre (movie_id, genre_id)
-VALUES (
-    (SELECT movie_id FROM Movie WHERE movie_name = :movieNameFromDropdownList),
-    (SELECT genre_id FROM Genre WHERE genre_name = :genreNameFromDropdownList)
-);
+INSERT INTO Movie_Genre (movie_id, genre_id) VALUES(:movieIdFromDropdownList,:genreIdFromDropdownList);
 
 -- Create a showtime
 INSERT INTO Showtime (showtime_date_time, movie_id, theater_id)
-VALUES (
-    :dateTimeInput,
-    (SELECT movie_id FROM Movie WHERE movie_name = :movieNameFromDropdownList),
-    (SELECT theater_id FROM Theater WHERE theater_name = :theaterNameFromDropdownList)
-);
+VALUES (:dateTimeInput,:movieIdFromDropdownList,:theaterIdFromDropdownList);
 
 -- Create a ticket
 INSERT INTO Ticket (customer_id, showtime_id, price, payment_method)
 VALUES (
-    (SELECT customer_id FROM Customer WHERE customer_id = :customerIdfromDropDownListOfUniqueCustomers),
-    (SELECT showtime_id FROM Showtime WHERE showtime_id = :showtimeIdfromDropDownListOfUniqueShowtimes),
+    :customerIdfromDropDownListOfUniqueCustomers,
+    :showtimeIdfromDropDownListOfUniqueShowtimes,
     :priceInput,
     :paymentMethodFromHardCodedList
 );
