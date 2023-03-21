@@ -73,7 +73,7 @@ export default function Showtimes() {
     async function handleDelete(rowData) {
         if (
             window.confirm(
-                `Are you sure you want to DELETE the record for showtime ID = ${rowData.showtime_id}?`
+                `Are you sure you want to DELETE the record for showtime ID = ${rowData.showtime_id}: ${rowData.movie_name} at ${rowData.theater_name} on this date?`
             ) === true
         ) {
             try {
