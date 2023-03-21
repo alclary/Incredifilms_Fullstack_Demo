@@ -7,15 +7,15 @@ import Schema from "../components/Schema";
 // renders on start up
 
 function HomePage({}) {
-  return (
-    <div>
-      <h3>Welcome</h3>
-      <Description />
-      <EntityTable />
-      <ERD />
-      <Schema />
-    </div>
-  );
+    return (
+        <div>
+            <h2>Welcome</h2>
+            <Description />
+            <EntityTable />
+            <ERD />
+            <Schema />
+        </div>
+    );
 }
 
 export default HomePage;
