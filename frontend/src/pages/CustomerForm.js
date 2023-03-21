@@ -35,7 +35,9 @@ export const CustomerForm = (props) => {
                 toast.success(`Record ID ${res.data.data.insertId} created.`);
             }
         } catch (error) {
-            toast.error(error.message);
+            toast.error(
+                `Error ${error.response.status}: ${error.response.data.sqlMessage}`
+            );
             console.error(error);
         }
         // Reload entity table / grid.js component (for updates)
@@ -60,7 +62,9 @@ export const CustomerForm = (props) => {
                 toast.success(`Record updated.`);
             }
         } catch (error) {
-            toast.error(error.message);
+            toast.error(
+                `Error ${error.response.status}: ${error.response.data.sqlMessage}`
+            );
             console.error(error);
         }
         // Reload entity table / grid.js component (for updates)

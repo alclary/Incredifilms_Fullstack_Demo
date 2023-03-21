@@ -19,7 +19,9 @@ export const ShowtimeForm = (props) => {
                 setMovieList(movies.data.data);
             } catch (error) {
                 console.error(error);
-                toast.error(error.message);
+                toast.error(
+                    `Error ${error.response.status}: ${error.response.data.sqlMessage}`
+                );
             }
         }
         async function getTheaterList() {
@@ -30,7 +32,9 @@ export const ShowtimeForm = (props) => {
                 setTheaterList(theaters.data.data);
             } catch (error) {
                 console.error(error);
-                toast.error(error.message);
+                toast.error(
+                    `Error ${error.response.status}: ${error.response.data.sqlMessage}`
+                );
             }
         }
 
@@ -61,7 +65,9 @@ export const ShowtimeForm = (props) => {
                 toast.success(`Record ID ${res.data.data.insertId} created.`);
             }
         } catch (error) {
-            toast.error(error.message);
+            toast.error(
+                `Error ${error.response.status}: ${error.response.data.sqlMessage}`
+            );
             console.error(error);
         }
         props.resetForm();
@@ -85,7 +91,9 @@ export const ShowtimeForm = (props) => {
                 toast.success(`Record updated.`);
             }
         } catch (error) {
-            toast.error(error.message);
+            toast.error(
+                `Error ${error.response.status}: ${error.response.data.sqlMessage}`
+            );
             console.error(error);
         }
         props.resetForm();

@@ -19,7 +19,9 @@ export const TicketForm = (props) => {
                 setCustomerList(customers.data.data);
             } catch (error) {
                 console.error(error);
-                toast.error(error.message);
+                toast.error(
+                    `Error ${error.response.status}: ${error.response.data.sqlMessage}`
+                );
             }
         }
         async function getShowtimeList() {
@@ -30,7 +32,9 @@ export const TicketForm = (props) => {
                 setShowtimeList(showtimes.data.data);
             } catch (error) {
                 console.error(error);
-                toast.error(error.message);
+                toast.error(
+                    `Error ${error.response.status}: ${error.response.data.sqlMessage}`
+                );
             }
         }
 
@@ -77,7 +81,9 @@ export const TicketForm = (props) => {
                 toast.success(`Ticket ${res.data.data.insertId} purchased.`);
             }
         } catch (error) {
-            toast.error(error.message);
+            toast.error(
+                `Error ${error.response.status}: ${error.response.data.sqlMessage}`
+            );
             console.error(error);
         }
         // Reload entity table / grid.js component (for updates)
@@ -103,7 +109,9 @@ export const TicketForm = (props) => {
                 props.gridReload();
             }
         } catch (error) {
-            toast.error(error.message);
+            toast.error(
+                `Error ${error.response.status}: ${error.response.data.sqlMessage}`
+            );
             console.error(error);
         }
         // Reload entity table / grid.js component (for updates)

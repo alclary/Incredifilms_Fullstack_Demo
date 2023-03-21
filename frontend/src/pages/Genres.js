@@ -18,10 +18,10 @@ export default function Genres() {
     // State definition for the genres data array
     const [genres, setGenres] = useState(async () => await fetchGenres());
 
-        // State definition for modal form
-        const [formData, setFormData] = useState("");
-        const [formType, setFormType] = useState("new");
-        const [key, setKey] = useState(Math.random());
+    // State definition for modal form
+    const [formData, setFormData] = useState("");
+    const [formType, setFormType] = useState("new");
+    const [key, setKey] = useState(Math.random());
 
     // Resets the modal form (new and update) to a fresh "new" form
     function resetForm() {
@@ -42,21 +42,23 @@ export default function Genres() {
             window.confirm(
                 `Are you sure you want to DELETE the genre record for ${rowData.genre_name}?`
             ) === true
-            ) {
-                try {
-                    const res = await axios.delete(
-                        API_URL + `/genres/${rowData.genre_id}`
-                    );
-                    if (res.status === 200) {
-                        toast.success("Record deleted.");
-                        gridRefresh();
-                    }
-                } catch (error) {
-                    toast.error(error.message);
-                    console.log(error);
+        ) {
+            try {
+                const res = await axios.delete(
+                    API_URL + `/genres/${rowData.genre_id}`
+                );
+                if (res.status === 200) {
+                    toast.success("Record deleted.");
+                    gridRefresh();
                 }
+            } catch (error) {
+                toast.error(
+                    `Error ${error.response.status}: ${error.response.data.sqlMessage}`
+                );
+                console.log(error);
             }
         }
+    }
 
     function handleEdit(rowData) {
         setFormType("edit");
@@ -69,7 +71,7 @@ export default function Genres() {
         <div>
             <h3>Genres</h3>
             <p>Create, Retrieve, Update or Delete a Genre</p>
-                {/* Grid.js component wrapper */}
+            {/* Grid.js component wrapper */}
 
             <Grid
                 columns={[

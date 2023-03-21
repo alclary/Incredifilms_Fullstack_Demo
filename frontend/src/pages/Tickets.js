@@ -53,7 +53,9 @@ export default function Tickets() {
                     gridRefresh();
                 }
             } catch (error) {
-                toast.error(error.message);
+                toast.error(
+                    `Error ${error.response.status}: ${error.response.data.sqlMessage}`
+                );
                 console.error(error);
             }
         }

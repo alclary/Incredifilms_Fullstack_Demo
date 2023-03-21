@@ -18,7 +18,9 @@ export const MovieGenreForm = (props) => {
                 setMovieList(movies.data.data);
             } catch (error) {
                 console.error(error);
-                toast.error(error.message);
+                toast.error(
+                    `Error ${error.response.status}: ${error.response.data.sqlMessage}`
+                );
             }
         }
         async function getGenreList() {
@@ -27,7 +29,9 @@ export const MovieGenreForm = (props) => {
                 setGenreList(genres.data.data);
             } catch (error) {
                 console.error(error);
-                toast.error(error.message);
+                toast.error(
+                    `Error ${error.response.status}: ${error.response.data.sqlMessage}`
+                );
             }
         }
 
@@ -59,7 +63,9 @@ export const MovieGenreForm = (props) => {
             }
         } catch (error) {
             console.error(error);
-            toast.error(error.message);
+            toast.error(
+                `Error ${error.response.status}: ${error.response.data.sqlMessage}`
+            );
         }
         // Reload entity table / grid.js component (for updates)
         props.gridReload();
@@ -81,7 +87,9 @@ export const MovieGenreForm = (props) => {
                 toast.success(`Record updated.`);
             }
         } catch (error) {
-            toast.error(error.message);
+            toast.error(
+                `Error ${error.response.status}: ${error.response.data.sqlMessage}`
+            );
             console.error(error);
         }
         // Reload entity table / grid.js component (for updates)
