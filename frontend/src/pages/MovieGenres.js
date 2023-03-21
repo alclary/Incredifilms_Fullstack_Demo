@@ -48,7 +48,7 @@ export default function MovieGenres() {
     async function handleDelete(rowData) {
         if (
             window.confirm(
-                `Are you sure you want to DELETE the movie genre relationship between movie ${rowData.movie_id} and genre ${rowData.genre_id}?`
+                `Are you sure you want to DELETE the movie genre relationship between movie ${rowData.movie_name} and genre ${rowData.genre_name}?`
             ) === true
         ) {
             try {
