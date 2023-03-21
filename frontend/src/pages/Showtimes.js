@@ -7,8 +7,8 @@ import { toast } from "react-toastify";
 import moment from "moment";
 
 const API_URL = process.env.REACT_APP_API_URL;
-const START_DATE_LIMIT = "1878-01-01"; // year of first movie
-const END_DATE_LIMIT = "2040-01-01"; // arbitrary end limit
+const START_DATE_LIMIT = moment.utc("1878-01-01"); // year of first movie
+const END_DATE_LIMIT = moment.utc("2040-01-01"); // arbitrary end limit
 
 // Fetch and return data array of showtimes from API
 async function fetchShowtimes(startDate, endDate) {
@@ -110,10 +110,16 @@ export default function Showtimes() {
                             className="dateRangeSel"
                             name="startDate"
                             placeholder="Start Date"
-                            min={START_DATE_LIMIT}
-                            max={END_DATE_LIMIT}
+                            min={moment
+                                .utc(START_DATE_LIMIT)
+                                .format("YYYY-MM-DDTHH:MM")}
+                            max={moment
+                                .utc(END_DATE_LIMIT)
+                                .format("YYYY-MM-DDTHH:MM")}
                             onChange={(event) => {
-                                setStartDate(event.target.value);
+                                setStartDate(
+                                    moment.utc(event.target.value).toISOString()
+                                );
                             }}
                         ></input>
                         <input
@@ -122,10 +128,16 @@ export default function Showtimes() {
                             className="dateRangeSel"
                             name="endDate"
                             placeholder="End Date"
-                            min={startDate} // prevent endDate < startDate
-                            max={END_DATE_LIMIT}
+                            min={moment
+                                .utc(startDate)
+                                .format("YYYY-MM-DDTHH:MM")} // prevent endDate < startDate
+                            max={moment
+                                .utc(END_DATE_LIMIT)
+                                .format("YYYY-MM-DDTHH:MM")}
                             onChange={(event) => {
-                                setEndDate(event.target.value);
+                                setEndDate(
+                                    moment.utc(event.target.value).toISOString()
+                                );
                             }}
                         ></input>
                         <button
