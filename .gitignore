@@ -1,7 +1,7 @@
-frontend/node_modules/
-frontend/build/
-backend/node_modules/
-backend/build/
+Frontend/node_modules/
+Frontend/build/
+Backend/node_modules/
+Backend/build/
 .env
 Deploy Guide
 */Project Step */backend
