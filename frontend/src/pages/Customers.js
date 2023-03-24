@@ -100,6 +100,7 @@ export default function Customers() {
                                         onClick={() => handleEdit(rowData)}
                                     />
                                 ),
+                            width: "6%",
                         },
                         {
                             name: "Delete",
@@ -109,11 +110,13 @@ export default function Customers() {
                                         onClick={() => handleDelete(rowData)}
                                     />
                                 ),
+                            width: "6%",
                         },
                     ]}
                     data={async () => await customers}
                     search={true}
                     pagination={{ limit: 10 }}
+                    autoWidth={false}
                 />
             </div>
             <CustomerForm

@@ -82,6 +82,7 @@ export default function Theaters() {
                         name: "Edit",
                         data: (rowData) =>
                             _(<MdEdit onClick={() => handleEdit(rowData)} />),
+                        width: "6%",
                     },
                     {
                         name: "Delete",
@@ -91,11 +92,13 @@ export default function Theaters() {
                                     onClick={() => handleDelete(rowData)}
                                 />
                             ),
+                        width: "6%",
                     },
                 ]}
                 data={async () => await theaters}
                 search={true}
                 pagination={{ limit: 10 }}
+                autoWidth={false}
             />
 
             <TheaterForm

@@ -88,6 +88,10 @@ th.gridjs-th {
     background: #d3d3d3 !important;
 }
 
+td.gridjs-td {
+    overflow: clip;
+}
+
 h3 {
     color: #3e885b;
 }

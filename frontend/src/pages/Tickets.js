@@ -108,6 +108,7 @@ export default function Tickets() {
                                         onClick={() => handleEdit(rowData)}
                                     />
                                 ),
+                            width: "6%",
                         },
                         {
                             name: "Delete",
@@ -117,11 +118,13 @@ export default function Tickets() {
                                         onClick={() => handleDelete(rowData)}
                                     />
                                 ),
+                            width: "6%",
                         },
                     ]}
                     data={async () => await tickets}
                     search={true}
                     pagination={{ limit: 10 }}
+                    autoWidth={false}
                 />
                 <TicketForm
                     // key update is being used to force rerender component

@@ -97,6 +97,7 @@ export default function Genres() {
                 data={async () => await genres}
                 search={true}
                 pagination={{ limit: 10 }}
+                autoWidth={false}
             />
             <GenreForm
                 // key update is being used to force rerender component
