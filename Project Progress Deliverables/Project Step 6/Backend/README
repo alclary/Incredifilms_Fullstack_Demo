@@ -1,0 +1,17 @@
+Backend requires a .env file to specify the following environmental
+variables. Strings should be in doublequotes:
+
+MYSQL_HOST = { your IP or localhost }
+MYSQL_PORT = { port db is served on }
+MYSQL_USER = { db username }
+MYSQL_PASS = { db password }
+DEFAULT_DB = { name of db to use }
+API_PORT = { port api should be served on }
+
+### Developer startup -
+1. npm install
+2. nodemon api.js
+
+### Production startup
+1. npm install
+2. serve via process manager (pm2 works well) with 'npm start api.js'

@@ -1,0 +1,157 @@
+/*
+LET'S PICK COOLLLLLLLLLLL COLORSSSSSSSSSSS EVENTUALLY
+
+RIGHT NOW:
+60% #f3f4fc
+30% #2D2845
+10% #3E885B;
+
+
+ */
+
+/* Google Font Import - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,700;1,400&display=swap");
+
+:root {
+    --toastify-color-success: #3e885b !important;
+    --toastify-color-warning: #f8e16c !important;
+    --toastify-color-error: #f2542d !important;
+}
+
+body {
+    margin: 0;
+    /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif; */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    background-color: #f3f4fc;
+    color: #2d2845;
+
+    font-family: "Poppins", sans-serif;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+}
+
+.sidebar {
+    width: 12em;
+    position: fixed;
+    z-index: 1;
+    top: 1em;
+    left: 1em;
+    background: #2d2845;
+    overflow-x: hidden;
+    height: 100%;
+    text-align: left;
+    border-radius: 5px;
+    padding-top: 1em;
+}
+
+.sidebar a {
+    margin: auto;
+    padding: 0.3em 0.5em;
+    text-decoration: none;
+    font-size: 25px;
+    color: #f3f4fc;
+    display: block;
+}
+
+.sidebar a:hover {
+    color: #3e885b;
+}
+
+.sidebar :focus {
+    color: #3e885b;
+}
+
+.main {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.8em;
+    margin-left: 15em; /* Sidebar left offset + sidebar width + equal offset on right */
+    margin-right: 2em;
+    font-size: 1em; /* Increased text to enable scrolling */
+    height: 100%;
+}
+
+.form_wrapper {
+    margin-top: auto;
+}
+
+/* Color overrides for grid.js default theme */
+th.gridjs-th {
+    color: #373a40 !important;
+    background: #d3d3d3 !important;
+}
+
+td.gridjs-td {
+    overflow: clip;
+}
+
+h3 {
+    color: #3e885b;
+}
+
+.newPlus {
+    float: right;
+    text-align: right;
+    text-decoration: none;
+    color: #3e885b;
+    font-weight: bold;
+    padding-right: 3px;
+}
+
+.pure-table {
+    border: none !important;
+}
+
+.pure-table thead {
+    color: #f3f4fc;
+    background-color: #373a40 !important;
+}
+
+.pure-table th {
+    color: #f3f4fc !important;
+}
+
+.icons {
+    color: #2d2845;
+}
+
+.description,
+.entityTable,
+.imageContainer {
+    max-width: 75%;
+    font-size: 1.2em;
+    text-align: left;
+}
+
+.imageContainer img {
+    width: 75%;
+}
+
+.search {
+    float: left;
+    margin-bottom: 0;
+}
+
+li {
+    list-style-type: none;
+    padding-bottom: 2px;
+}
+
+@media (max-width: 1440px) {
+    .description,
+    .entityTable,
+    .imageContainer {
+        max-width: 100%;
+    }
+    .imageContainer img,
+    .entityTable {
+        width: 100%;
+    }
+}
