@@ -1,7 +1,7 @@
 Backend requires a .env file to specify the following environmental
 variables. Strings should be in doublequotes:
 
-MYSQL_HOST = { your IP or localhost }
+MYSQL_HOST = { db location }
 MYSQL_PORT = { port db is served on }
 MYSQL_USER = { db username }
 MYSQL_PASS = { db password }
