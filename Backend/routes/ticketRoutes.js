@@ -2,9 +2,11 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db.js");
 
+const ENDPOINT = "/tickets";
+
 // READ functionality for tickets table, at '/tickets' endpoint
 router.get("/", (req, res) => {
-    console.log("GET request received.");
+    console.log("GET request received at", ENDPOINT);
     db.query(
         "SELECT Ticket.ticket_id AS 'ticket_id', Customer.customer_id AS customer_id,CONCAT(Customer.first_name, ' ', Customer.last_name) AS customer_name, Showtime.showtime_id AS showtime_id, Showtime.showtime_date_time AS showtime_date_time, Movie.movie_id AS movie_id, Movie.movie_name AS movie_name, Theater.theater_id AS theater_id, Theater.theater_name AS theater_name, Ticket.price AS price, Ticket.payment_method AS payment_method FROM Ticket LEFT JOIN Customer ON Ticket.customer_id = Customer.customer_id LEFT JOIN Showtime ON Ticket.showtime_id = Showtime.showtime_id LEFT JOIN Movie ON Showtime.movie_id = Movie.movie_id LEFT JOIN Theater ON Showtime.theater_id = Theater.theater_id ORDER BY Ticket.ticket_id ASC;",
         (err, data, fields) => {
@@ -23,7 +25,7 @@ router.get("/", (req, res) => {
 
 // CREATE functionality for entries to tickets table, at '/tickets' endpoint
 router.post("/", (req, res) => {
-    console.log("POST request received.");
+    console.log("POST request received at", ENDPOINT);
     db.query(
         "INSERT INTO Ticket (customer_id, showtime_id, price, payment_method)  VALUES (?,?,?,?);",
         [
@@ -49,7 +51,7 @@ router.post("/", (req, res) => {
 
 // UPDATE functionality for tickets table record, at '/tickets/{id}' endpoint
 router.put("/:id", (req, res) => {
-    console.log("UPDATE request received.");
+    console.log("UPDATE request received at", ENDPOINT + "/" + req.params.id);
     db.query(
         `UPDATE Ticket SET customer_id = ?, showtime_id = ?, price = ?, payment_method = ?
       WHERE ticket_id = ?`,
@@ -77,7 +79,7 @@ router.put("/:id", (req, res) => {
 
 // DELETE functionality for tickets table record, at '/tickets/{id}' endpoint
 router.delete("/:id", (req, res) => {
-    console.log("DELETE request received.");
+    console.log("DELETE request received at", ENDPOINT + "/" + req.params.id);
     db.query(
         `DELETE FROM Ticket WHERE ticket_id = ?`,
         [req.params.id],

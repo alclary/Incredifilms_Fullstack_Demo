@@ -2,9 +2,11 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db.js");
 
+const ENDPOINT = "/theaters";
+
 // READ functionality for theaters table, at '/theaters' endpoint
 router.get("/", (req, res) => {
-    console.log("GET request received.");
+    console.log("GET request received at", ENDPOINT);
     db.query(
         "SELECT * FROM Theater ORDER BY theater_id ASC;",
         (err, data, fields) => {
@@ -24,7 +26,7 @@ router.get("/", (req, res) => {
 
 // CREATE functionality for entries to theaters table, at '/theaters' endpoint
 router.post("/", (req, res) => {
-    console.log("POST request received.");
+    console.log("POST request received at", ENDPOINT);
     db.query(
         "INSERT INTO `Theater` (`theater_name`, `no_of_seats`) VALUES (?,?);",
         [req.body.theater_name, req.body.no_of_seats],
@@ -45,7 +47,7 @@ router.post("/", (req, res) => {
 
 // UPDATE functionality for theaters table record, at '/theaters/{id}' endpoint
 router.put("/:id", (req, res) => {
-    console.log("UPDATE request received.");
+    console.log("UPDATE request received at", ENDPOINT + "/" + req.params.id);
     db.query(
         `UPDATE Theater
       SET theater_name = ?, no_of_seats = ?
@@ -68,7 +70,7 @@ router.put("/:id", (req, res) => {
 
 // DELETE functionality for theaters table record, at '/theaters/{id}' endpoint
 router.delete("/:id", (req, res) => {
-    console.log("DELETE request received.");
+    console.log("DELETE request received at", ENDPOINT + "/" + req.params.id);
     db.query(
         `DELETE FROM Theater WHERE theater_id = ?`,
         [req.params.id],
@@ -89,7 +91,7 @@ router.delete("/:id", (req, res) => {
 
 // GET list of theaters, at '/theater/locations' endpoint
 router.get("/locations", (req, res) => {
-    console.log("GET request received.");
+    console.log("GET request received at", ENDPOINT + "/locations");
     db.query(
         "SELECT theater_id, theater_name FROM Theater ORDER BY theater_name ASC;",
         (err, data, fields) => {
