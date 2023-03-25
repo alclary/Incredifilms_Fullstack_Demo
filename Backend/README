@@ -14,4 +14,4 @@ API_PORT = { port api should be served on }
 
 ### Production startup
 1. npm install
-2. serve via process manager (pm2 works well) with 'npm start api.js'
+2. serve via process manager (pm2 works well) with 'pm2 start api.js'
