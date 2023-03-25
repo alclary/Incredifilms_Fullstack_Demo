@@ -13,16 +13,13 @@ RIGHT NOW:
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,700;1,400&display=swap");
 
 :root {
-    --toastify-color-success: #3e885b !important;
-    --toastify-color-warning: #f8e16c !important;
-    --toastify-color-error: #f2542d !important;
+    --toastify-color-success: #3e885b;
+    --toastify-color-warning: #f8e16c;
+    --toastify-color-error: #f2542d;
 }
 
 body {
     margin: 0;
-    /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif; */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 
@@ -84,8 +81,8 @@ code {
 
 /* Color overrides for grid.js default theme */
 th.gridjs-th {
-    color: #373a40 !important;
-    background: #d3d3d3 !important;
+    color: #373a40;
+    background: #d3d3d3;
 }
 
 td.gridjs-td {
@@ -106,16 +103,16 @@ h3 {
 }
 
 .pure-table {
-    border: none !important;
+    border: none;
 }
 
 .pure-table thead {
     color: #f3f4fc;
-    background-color: #373a40 !important;
+    background-color: #373a40;
 }
 
 .pure-table th {
-    color: #f3f4fc !important;
+    color: #f3f4fc;
 }
 
 .icons {
