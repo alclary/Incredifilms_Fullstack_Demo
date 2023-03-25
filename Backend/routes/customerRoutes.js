@@ -2,9 +2,11 @@ const express = require("express");
 const router = express.Router();
 const db = require("../db.js");
 
+const ENDPOINT = "/customers";
+
 // READ functionality for customers table, at '/customers' endpoint
 router.get("/", (req, res) => {
-    console.log("GET request received.");
+    console.log("GET request received at", ENDPOINT);
     db.query(
         "SELECT * FROM Customer ORDER BY customer_id ASC;",
         (err, data, fields) => {
@@ -24,7 +26,7 @@ router.get("/", (req, res) => {
 
 // CREATE functionality for customers table records, at '/customers' endpoint
 router.post("/", (req, res) => {
-    console.log("POST request received.");
+    console.log("POST request received at", ENDPOINT);
     db.query(
         "INSERT INTO `Customer` (`first_name`, `last_name`, `dob`, `email`) VALUES (?,?,?,?);",
         [req.body.fname, req.body.lname, req.body.dob, req.body.email],
@@ -45,7 +47,7 @@ router.post("/", (req, res) => {
 
 // UPDATE functionality for customers table record, at '/customers/{id}' endpoint
 router.put("/:id", (req, res) => {
-    console.log("UPDATE request received.");
+    console.log("UPDATE request received at", ENDPOINT + "/" + req.params.id);
     db.query(
         `UPDATE Customer
         SET first_name = ?, last_name = ?, dob = ?, email = ?
@@ -74,7 +76,7 @@ router.put("/:id", (req, res) => {
 
 // DELETE functionality for customers table record, at '/customers/{id}' endpoint
 router.delete("/:id", (req, res) => {
-    console.log("DELETE request received.");
+    console.log("DELETE request received at", ENDPOINT + "/" + req.params.id);
     db.query(
         `DELETE FROM Customer WHERE customer_id = ?`,
         [req.params.id],
@@ -95,7 +97,7 @@ router.delete("/:id", (req, res) => {
 
 // READ functionality for customer names only, at '/customers/names' endpoint
 router.get("/names", (req, res) => {
-    console.log("GET request received.");
+    console.log("GET request received at", ENDPOINT + "/names");
     db.query(
         "SELECT CONCAT(last_name, ', ', first_name, ' (', customer_id, ')') AS customer, customer_id FROM Customer ORDER BY Customer.last_name ASC;",
         (err, data, fields) => {
