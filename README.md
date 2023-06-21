@@ -1,5 +1,2 @@
-# CS_340_Group
-
-Group Project Repo for OSU CS 340 W23
-
-## Getting Started
+# Incredifilms Project
+Group project by Jesseline Velazquez and Anthony Clary
